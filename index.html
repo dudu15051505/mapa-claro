@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa com Localidades Marcadas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([-14.235004, -51.925280], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+        var locations = [
+            { name: 'São Paulo, SP', color: 'blue' },
+            { name: 'Rio de Janeiro, RJ', color: 'yellow' },
+            { name: 'Brasília, DF', color: 'green' },
+			{ name: 'Belo Horizonte, MG', color: 'black' }
+        ];
+
+        // Realizar a geocodificação com o Nominatim e adicionar marcadores para cada localidade
+        locations.forEach(function(location) {
+            fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + location.name)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    if (data.length > 0) {
+                        var latitude = data[0].lat;
+                        var longitude = data[0].lon;
+
+                        var iconUrl = 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-' + location.color + '.png';
+
+                        var customIcon = L.icon({
+                            iconUrl: iconUrl,
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41],
+                            popupAnchor: [0, -41]
+                        });
+
+                        var marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map);
+                        //marker.bindPopup(location.name).openPopup();
+                    } else {
+                        console.log('Localidade não encontrada: ' + location.name);
+                    }
+                })
+                .catch(function(error) {
+                    console.log('Erro durante a geocodificação: ' + error);
+                });
+        });
+    </script>
+</body>
+</html>
