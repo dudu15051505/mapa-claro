@@ -212,7 +212,7 @@
 							var firstResult = data[0];
 							var latitude = parseFloat(firstResult.lat);
 							var longitude = parseFloat(firstResult.lon);
-
+							
 							var customIcon = L.icon({
 								iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
 								iconSize: [25, 41],
@@ -224,8 +224,8 @@
 							marker.bindPopup(resultado);
 
 							// Ajustar o zoom e a posição do mapa para exibir o marcador
-							var bounds = L.latLngBounds([latitude, longitude]);
-							map.fitBounds(bounds);
+							map.panTo(new L.LatLng(latitude, longitude));
+							
 						} else {
 							console.error('Endereço não encontrado.');
 						}
@@ -238,6 +238,8 @@
 			  }
 
 			  // Exibir o resultado no elemento com o ID 'resultado'
+			  //$('#resultado').html(resultado);
+			  
 			  //$('#resultado').html(resultado);
 			}
         });
