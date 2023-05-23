@@ -1,4 +1,5 @@
 var locations = [
+{ name: 'Piraquara, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.442171', longitude: '-49.062411' },
 { name: 'Rio Branco, AC <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.97499', longitude: '-67.824348' },
 { name: 'Maceió, AL <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.665985', longitude: '-35.73496' },
 { name: 'Manaus, AM <br> Area Fibra Expansão', color: 'yellow', latitude: '-3.118662', longitude: '-60.02123' },
