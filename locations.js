@@ -482,5 +482,6 @@ var locations = [
 { name: 'Cachoeirinha, TO <br> HFC', color: 'red', latitude: '-6.115596', longitude: '-47.923399' },
 { name: 'Lajeado, TO <br> HFC', color: 'red', latitude: '-9.749956', longitude: '-48.356482' },
 { name: 'Palmas, TO <br> Area Fibra Expansão', color: 'yellow', latitude: '-10.239973', longitude: '-48.355751' },
-{ name: 'Paraíso do Tocantins, TO <br> GPON', color: 'green', latitude: '-10.174998', longitude: '-48.882269' }
+{ name: 'Paraíso do Tocantins, TO <br> GPON', color: 'green', latitude: '-10.174998', longitude: '-48.882269' },
+{ name: 'Dois Irmãos, ﻿RS <br> GPON', color: 'green', latitude: '-29.58356', longitude: '-51.089776' }
 ];
