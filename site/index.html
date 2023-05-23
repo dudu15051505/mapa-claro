@@ -225,6 +225,7 @@
 
 							// Ajustar o zoom e a posição do mapa para exibir o marcador
 							map.panTo(new L.LatLng(latitude, longitude));
+							map.setView([latitude, longitude], 16);
 							
 						} else {
 							console.error('Endereço não encontrado.');
