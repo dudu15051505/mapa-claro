@@ -28,7 +28,6 @@ consultas_por_intervalo = 20
 for i in range(len(cities)):
     city = cities[i]
     state = states[i]
-    estado = [0]
     
     # Montar a URL com a cidade e o estado atual
     url = f"https://planos.claro.com.br/cobertura/api/promotions?city={city}&state={state}"
@@ -43,16 +42,19 @@ for i in range(len(cities)):
     # Obter os valores da tag "tecnologia" para cada promoção
     estado = [promo["estado"] for promo in json_data["promo"]]
     
-    if estado[0] == state:
-        # Salvar os valores em um arquivo de texto dentro da pasta "dados"
-        file_name = f"{state}-{city}.txt"
-        file_path = os.path.join(folder_path, file_name)
-        with open(file_path, "w") as file:
-            file.write("\n".join(values))
+    if estado:
+        if estado[0] == state:
+            # Salvar os valores em um arquivo de texto dentro da pasta "dados"
+            file_name = f"{state}-{city}.txt"
+            file_path = os.path.join(folder_path, file_name)
+            with open(file_path, "w") as file:
+                file.write("\n".join(values))
 
-        print(f"Arquivo salvo para {city}, {state}: {file_path}")
+            print(f"Arquivo salvo para {city}, {state}: {file_path}")
+        else:
+                print(f"A tag 'estado' não é igual a {state} em uma das promoções. O arquivo não será salvo.")
     else:
-            print(f"A tag 'estado' não é igual a {state} em uma das promoções. O arquivo não será salvo.")
+        print("estado vazio")
 
     # Verificar se é hora de definir um tempo de espera aleatório
     if (i + 1) % consultas_por_intervalo == 0:
