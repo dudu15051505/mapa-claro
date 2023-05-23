@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mapa com Localidades Marcadas</title>
+    <title>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -10,17 +10,44 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            font-family: Arial, sans-serif;
         }
         #map {
-            height: 100%;
+            height: calc(100% - 50px);
+        }
+        #top-bar {
+            background-color: #f8f8f8;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #info-direita {
+			text-align: right;
+        }
+        #info {
+            
         }
     </style>
 </head>
 <body>
+    <div id="top-bar">
+        <div id="info">
+            <h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
+            <p>LEGENDA:</p>
+			<span>GPON <img height="20px" width="15px" src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png"/> -</span>
+			<span>HFC <img height="20px" width="15px" src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png"/> -</span>
+			<span>Sobreposição de HFC e GPON <img height="20px" width="15px" src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png"/></span>
+        </div>
+		<div id="info">
+			<p>Informações coletadas na data 23/05/2023</p>
+			<p>Este site não é afiliado a operadora CLARO</p>
+		</div>
+    </div>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-	<script src="locations.js"></script>
+    <script src="locations.js"></script>
     <script>
         var map = L.map('map').setView([-14.235004, -51.925280], 6);
 
