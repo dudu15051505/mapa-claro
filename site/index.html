@@ -217,9 +217,8 @@
 				}
 				
 				// Geocodificação do endereço fornecido
-				var address = '' + data.data.logradouro + ', ' + data.data.number + ', ' + data.data.cidade + '';
-				var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address);
-
+				var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&city='+encodeURIComponent(data.data.cidade)+'&state='+encodeURIComponent(data.data.uf)+'&street='+encodeURIComponent(data.data.number+' '+data.data.logradouro)+'&country=Brasil';
+				
 				fetch(geocodingUrl)
 					.then(function(response) {
 						return response.json();
@@ -254,14 +253,7 @@
 						console.error('Erro ao processar a solicitação de geocodificação.', error);
 						$('#resultado').html('Erro ao processar a solicitação de geocodificação.', error)
 					});
-					
-					
 			  }
-
-			  // Exibir o resultado no elemento com o ID 'resultado'
-			  //$('#resultado').html(resultado);
-			  
-			  //$('#resultado').html(resultado);
 			}
         });
       }
