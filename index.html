@@ -428,7 +428,6 @@
 { name: 'Tupiratins, TO', color: 'black', latitude: '-8.39388', longitude: '-48.1277' },
 { name: 'Wanderlândia, TO', color: 'black', latitude: '-6.85274', longitude: '-47.9601' },
 { name: 'Xambioá, TO', color: 'black', latitude: '-6.4141', longitude: '-48.532' }
-
         ];
 
         // Adicionar marcadores para cada localidade
@@ -443,6 +442,7 @@
             });
 
             var marker = L.marker([location.latitude, location.longitude], { icon: customIcon }).addTo(map);
+            marker.bindPopup(location.name);
         });
     </script>
 </body>
