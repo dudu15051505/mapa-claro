@@ -5,7 +5,7 @@ import random
 import time
 
 # Definir o caminho para o arquivo CSV
-csv_path = "suldeste.csv"
+csv_path = "arquivo.csv"
 
 # Criar a pasta "dados" se ela não existir
 folder_path = "dados"
@@ -22,7 +22,7 @@ with open(csv_path, "r") as csvfile:
         cities.append(row[1])
 
 # Definir o número de consultas após o qual será definido um tempo de espera aleatório
-consultas_por_intervalo = 10
+consultas_por_intervalo = 20
 
 # Loop pelas cidades e fazer a solicitação GET para cada uma delas
 for i in range(len(cities)):
@@ -38,14 +38,20 @@ for i in range(len(cities)):
     # Obter os valores da tag "tecnologia" para cada promoção
     json_data = response.json()
     values = [promo["tecnologia"] for promo in json_data["promo"]]
+    
+    # Obter os valores da tag "tecnologia" para cada promoção
+    estado = [promo["estado"] for promo in json_data["promo"]]
 
-    # Salvar os valores em um arquivo de texto dentro da pasta "dados"
-    file_name = f"{state}-{city}.txt"
-    file_path = os.path.join(folder_path, file_name)
-    with open(file_path, "w") as file:
-        file.write("\n".join(values))
+    if estado[0] == state:
+        # Salvar os valores em um arquivo de texto dentro da pasta "dados"
+        file_name = f"{state}-{city}.txt"
+        file_path = os.path.join(folder_path, file_name)
+        with open(file_path, "w") as file:
+            file.write("\n".join(values))
 
-    print(f"Arquivo salvo para {city}, {state}: {file_path}")
+        print(f"Arquivo salvo para {city}, {state}: {file_path}")
+    else:
+            print(f"A tag 'estado' não é igual a {state} em uma das promoções. O arquivo não será salvo.")
 
     # Verificar se é hora de definir um tempo de espera aleatório
     if (i + 1) % consultas_por_intervalo == 0:
