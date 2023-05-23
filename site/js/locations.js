@@ -1,5 +1,5 @@
 var locations = [
-/* CIDADES DICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
+/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'Piraquara, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.442171', longitude: '-49.062411' },
 { name: 'Mogi das Cruzes, SP <br> Area Fibra Expansão', color: 'yellow', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Dois Irmãos, RS <br> GPON', color: 'green', latitude: '-29.58356', longitude: '-51.089776' },
