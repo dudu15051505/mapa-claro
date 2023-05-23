@@ -41,6 +41,20 @@
             <div id="contagem">
                 <span>Somatório de cidades - </span> <!-- Texto adicionado -->
             </div>
+			<div id="consulta-cep">
+			  <h5 class="modal-title" id="cepModalLabel">Consulta por CEP e Numero</h5>
+
+				  <form id="formulario">
+					<label for="cep">CEP:</label>
+					<input type="text" id="cep" maxlength="8" required>
+					<label for="numero">Número:</label>
+					<input type="text" id="numero" minlength="1" maxlength="9" required>
+
+					<button type="submit">Consultar</button>
+				  </form>
+
+				  <div id="resultado"></div>
+			</div>
         </div>
         <div id="info">
             <p>Informações coletadas na data 23/05/2023, a partir do site da CLARO</p>
@@ -130,5 +144,111 @@
 
         L.control.layers(baseLayers).addTo(map);
     </script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Função para validar os campos antes de fazer a consulta
+      function validarCampos() {
+        var cep = $('#cep').val();
+        var numero = $('#numero').val();
+
+        // Verificar se os campos estão preenchidos corretamente
+        if (cep.length !== 8) {
+          alert('O campo CEP deve conter 8 números.');
+          return false;
+        }
+
+        if (numero.length < 1 || numero.length > 9) {
+          alert('O campo Número deve conter de 1 a 9 números.');
+          return false;
+        }
+
+        return true;
+      }
+
+      // Função para fazer a consulta AJAX e exibir os resultados
+      function consultarViabilidade() {
+        if (!validarCampos()) {
+          return;
+        }
+
+        var cep = $('#cep').val();
+        var numero = $('#numero').val();
+        var url = 'https://api.amxrest.net/viability/' + cep + '/' + numero;
+
+        $.ajax({
+          url: url,
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+			  // Exibir campos Logradouro, Number e Cidade em uma linha
+			  var resultado = '<p>Endereço: ' + data.data.logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
+
+			  for (var i = 0; i < data.data.technologies.length; i++) {
+				var technology = data.data.technologies[i];
+
+				// Verificar se o campo Name é "Cable" e o campo internet é true
+				if (technology.name === 'Cable' && technology.internet === true && technology.gpon === false) {
+				  resultado += '<span>INTERNET HFC DISPONÍVEL</span>';
+				}
+				// Verificar se o campo Name é "Cable" e o campo gpon é true
+				else if (technology.name === 'Cable' && technology.internet === true && technology.gpon === true) {
+				  resultado += '<p>INTERNET GPON DISPONÍVEL</p>';
+				}
+				else if (technology.name === 'Satellite'){
+					resultado += '<p>SERVIÇOS VIA SATELLITE/MOVEL DISPONIVEL</p>';
+				}
+				
+				// Geocodificação do endereço fornecido
+				var address = '' + data.data.logradouro + ', ' + data.data.number + ', ' + data.data.cidade + '';
+				var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address);
+
+				fetch(geocodingUrl)
+					.then(function(response) {
+						return response.json();
+					})
+					.then(function(data) {
+						if (data.length > 0) {
+							var firstResult = data[0];
+							var latitude = parseFloat(firstResult.lat);
+							var longitude = parseFloat(firstResult.lon);
+
+							var customIcon = L.icon({
+								iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+								iconSize: [25, 41],
+								iconAnchor: [12, 41],
+								popupAnchor: [0, -41]
+							});
+
+							var marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map);
+							marker.bindPopup(resultado);
+
+							// Ajustar o zoom e a posição do mapa para exibir o marcador
+							var bounds = L.latLngBounds([latitude, longitude]);
+							map.fitBounds(bounds);
+						} else {
+							console.error('Endereço não encontrado.');
+						}
+					})
+					.catch(function(error) {
+						console.error('Erro ao processar a solicitação de geocodificação.', error);
+					});
+					
+					
+			  }
+
+			  // Exibir o resultado no elemento com o ID 'resultado'
+			  //$('#resultado').html(resultado);
+			}
+        });
+      }
+
+      // Lidar com o envio do formulário
+      $('#formulario').submit(function(event) {
+        event.preventDefault();
+        consultarViabilidade();
+      });
+    });
+  </script>
 </body>
 </html>
