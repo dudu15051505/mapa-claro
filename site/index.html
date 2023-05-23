@@ -221,7 +221,7 @@
 							});
 
 							var marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map);
-							marker.bindPopup(resultado);
+							marker.bindPopup(resultado).openPopup();
 
 							// Ajustar o zoom e a posição do mapa para exibir o marcador
 							map.panTo(new L.LatLng(latitude, longitude));
