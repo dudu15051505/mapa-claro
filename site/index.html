@@ -38,9 +38,9 @@
         <div id="info">
             <h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
             <span>LEGENDA:</span>
-            <span>GPON <img height="20px" width="15px" src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png"/> -</span>
-            <span>HFC <img height="20px" width="15px" src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png"/> -</span>
-            <span>Sobreposição de HFC e GPON <img height="20px" width="15px" src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png"/></span>
+            <span>GPON <img height="20px" width="15px" src="./img/marker-icon-green.png"/> -</span>
+            <span>HFC <img height="20px" width="15px" src="./img/marker-icon-red.png"/> -</span>
+            <span>Sobreposição de HFC e GPON <img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></span>
             <div id="contagem">
                 <span>Somatório de cidades - </span> <!-- Texto adicionado -->
             </div>
@@ -66,8 +66,8 @@
     </div>
     <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="locations.js"></script>
+    <script src="./js/leaflet.js"></script>
+    <script src="./js/locations.js"></script>
     <script>
         var map = L.map('map').setView([-14.235004, -51.925280], 6);
 
@@ -108,7 +108,7 @@
 
         // Adicionar marcadores para cada localidade
         locations.forEach(function(location) {
-            var iconUrl = 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-' + location.color + '.png';
+            var iconUrl = './img/marker-icon-' + location.color + '.png';
 
             var customIcon = L.icon({
                 iconUrl: iconUrl,
@@ -146,8 +146,8 @@
 
         L.control.layers(baseLayers).addTo(map);
     </script>
-	<script src="https://unpkg.com/whatwg-fetch@latest"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./js/fetch.umd.js"></script>
+	<script src="./js/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
       // Função para validar os campos antes de fazer a consulta
@@ -232,7 +232,7 @@
 							var longitude = parseFloat(firstResult.lon);
 							
 							var customIcon = L.icon({
-								iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+								iconUrl: './img/marker-icon-blue.png',
 								iconSize: [25, 41],
 								iconAnchor: [12, 41],
 								popupAnchor: [0, -41]
