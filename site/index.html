@@ -43,8 +43,8 @@
             </div>
         </div>
         <div id="info">
-            <p>Informações coletadas na data 23/05/2023, apartir do site da CLARO</p>
-            <p>Este site não é afiliado a operadora CLARO</p>
+            <p>Informações coletadas na data 23/05/2023, a partir do site da CLARO</p>
+            <p>Este site não é afiliado à operadora CLARO</p>
             <p>Para realizar consultas oficiais, utilize o site da CLARO: <a href="https://planos.claro.com.br/cep" target="_blank">https://planos.claro.com.br/cep</a></p>
         </div>
     </div>
@@ -55,10 +55,40 @@
     <script>
         var map = L.map('map').setView([-14.235004, -51.925280], 6);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 18,
-        }).addTo(map);
+        });
+
+        var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Imagery &copy; <a href="https://www.arcgis.com/">ArcGIS</a>',
+            maxZoom: 18,
+        });
+
+        var cartoDarkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: 'Map data &copy; <a href="https://carto.com/">CARTO</a>',
+            maxZoom: 18,
+        });
+
+        var cartoVoyagerLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: 'Map data &copy; <a href="https://carto.com/">CARTO</a>',
+            maxZoom: 18,
+        });
+
+        var stamenTerrainLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
+            maxZoom: 18,
+        });
+
+        var baseLayers = {
+            "OpenStreetMap": osmLayer,
+            "Satélite": satelliteLayer,
+            "Carto Dark": cartoDarkLayer,
+            "Carto Voyager": cartoVoyagerLayer,
+            "Stamen Terrain": stamenTerrainLayer
+        };
+
+        osmLayer.addTo(map);
 
         // Adicionar marcadores para cada localidade
         locations.forEach(function(location) {
@@ -97,6 +127,8 @@
         }
 
         contagemDiv.innerHTML = contagemHTML;
+
+        L.control.layers(baseLayers).addTo(map);
     </script>
 </body>
 </html>
