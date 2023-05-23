@@ -1,5 +1,10 @@
 var locations = [
+/* CIDADES DICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'Piraquara, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.442171', longitude: '-49.062411' },
+{ name: 'Mogi das Cruzes, SP <br> Area Fibra Expansão', color: 'yellow', latitude: '-23.52082', longitude: '-46.18541' },
+{ name: 'Dois Irmãos, RS <br> GPON', color: 'green', latitude: '-29.58356', longitude: '-51.089776' },
+
+/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
 { name: 'Rio Branco, AC <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.97499', longitude: '-67.824348' },
 { name: 'Maceió, AL <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.665985', longitude: '-35.73496' },
 { name: 'Manaus, AM <br> Area Fibra Expansão', color: 'yellow', latitude: '-3.118662', longitude: '-60.02123' },
@@ -183,7 +188,6 @@ var locations = [
 { name: 'Caxias do Sul, RS <br> Area Fibra Expansão', color: 'yellow', latitude: '-29.162905', longitude: '-51.179161' },
 { name: 'Charqueadas, RS <br> GPON', color: 'green', latitude: '-29.962478', longitude: '-51.628872' },
 { name: 'Cruz Alta, RS <br> HFC', color: 'red', latitude: '-28.645001', longitude: '-53.604831' },
-{ name: 'Dois Irmãos, RS <br> GPON', color: 'green', latitude: '-29.58356', longitude: '-51.089776' },
 { name: 'Eldorado do Sul, RS <br> GPON', color: 'green', latitude: '-30.084676', longitude: '-51.618702' },
 { name: 'Encantado, RS <br> GPON', color: 'green', latitude: '-29.235141', longitude: '-51.870282' },
 { name: 'Erechim, RS <br> Area Fibra Expansão', color: 'yellow', latitude: '-27.63638', longitude: '-52.26969' },
