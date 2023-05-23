@@ -5,7 +5,7 @@ import random
 import time
 
 # Definir o caminho para o arquivo CSV
-csv_path = "arquivo.csv"
+csv_path = "saida_powershell.csv"
 
 # Criar a pasta "dados" se ela não existir
 folder_path = "dados"
@@ -28,7 +28,8 @@ consultas_por_intervalo = 20
 for i in range(len(cities)):
     city = cities[i]
     state = states[i]
-
+    estado = [0]
+    
     # Montar a URL com a cidade e o estado atual
     url = f"https://planos.claro.com.br/cobertura/api/promotions?city={city}&state={state}"
 
@@ -41,7 +42,7 @@ for i in range(len(cities)):
     
     # Obter os valores da tag "tecnologia" para cada promoção
     estado = [promo["estado"] for promo in json_data["promo"]]
-
+    
     if estado[0] == state:
         # Salvar os valores em um arquivo de texto dentro da pasta "dados"
         file_name = f"{state}-{city}.txt"
