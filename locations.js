@@ -1,9 +1,13 @@
 var locations = [
+{ name: 'Rio Branco, AC <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.97499', longitude: '-67.824348' },
 { name: 'Belém, AL <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.570472', longitude: '-36.490399' },
 { name: 'Campo Grande, AL <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.955423', longitude: '-36.792608' },
 { name: 'Maceió, AL <br> Area Fibra Expansão', color: 'yellow', latitude: '-9.665985', longitude: '-35.73496' },
 { name: 'São Sebastião, AL <br> GPON', color: 'green', latitude: '-9.930434', longitude: '-36.558967' },
 { name: 'Viçosa, AL <br> GPON', color: 'green', latitude: '-9.367631', longitude: '-36.243107' },
+{ name: 'Manaus, AM <br> Area Fibra Expansão', color: 'yellow', latitude: '-3.118662', longitude: '-60.02123' },
+{ name: 'Macapá, AP <br> GPON', color: 'green', latitude: '0.034934', longitude: '-51.069395' },
+{ name: 'Santana, AP <br> GPON', color: 'green', latitude: '-0.045434', longitude: '-51.172924' },
 { name: 'Alagoinhas, BA <br> GPON', color: 'green', latitude: '-12.133526', longitude: '-38.420772' },
 { name: 'Barreiras, BA <br> GPON', color: 'green', latitude: '-12.143864', longitude: '-44.996838' },
 { name: 'Camaçari, BA <br> GPON', color: 'green', latitude: '-12.699638', longitude: '-38.326265' },
@@ -82,6 +86,12 @@ var locations = [
 { name: 'Varginha, MG <br> HFC', color: 'red', latitude: '-21.555581', longitude: '-45.436424' },
 { name: 'Vespasiano, MG <br> GPON', color: 'green', latitude: '-19.688326', longitude: '-43.9239' },
 { name: 'Viçosa, MG <br> GPON', color: 'green', latitude: '-20.755916', longitude: '-42.87417' },
+{ name: 'Ananindeua, PA <br> Area Fibra Expansão', color: 'yellow', latitude: '-1.363914', longitude: '-48.374298' },
+{ name: 'Belém, PA <br> Area Fibra Expansão', color: 'yellow', latitude: '-1.455396', longitude: '-48.489756' },
+{ name: 'Castanhal, PA <br> GPON', color: 'green', latitude: '-1.297971', longitude: '-47.916742' },
+{ name: 'Marabá, PA <br> GPON', color: 'green', latitude: '-5.38075', longitude: '-49.132672' },
+{ name: 'Paragominas, PA <br> GPON', color: 'green', latitude: '-3.002116', longitude: '-47.352692' },
+{ name: 'Parauapebas, PA <br> GPON', color: 'green', latitude: '-6.067812', longitude: '-49.903733' },
 { name: 'Amparo, PB <br> GPON', color: 'green', latitude: '-7.555022', longitude: '-37.062838' },
 { name: 'Aparecida, PB <br> HFC', color: 'red', latitude: '-6.784657', longitude: '-38.080259' },
 { name: 'Belém, PB <br> Area Fibra Expansão', color: 'yellow', latitude: '-6.742614', longitude: '-35.51658' },
@@ -160,6 +170,10 @@ var locations = [
 { name: 'São Vicente, RN <br> HFC', color: 'red', latitude: '-6.218931', longitude: '-36.682696' },
 { name: 'Vera Cruz, RN <br> GPON', color: 'green', latitude: '-6.043989', longitude: '-35.427979' },
 { name: 'Viçosa, RN <br> GPON', color: 'green', latitude: '-5.982529', longitude: '-37.946236' },
+{ name: 'Ariquemes, RO <br> GPON', color: 'green', latitude: '-9.905711', longitude: '-63.032516' },
+{ name: 'Cacoal, RO <br> GPON', color: 'green', latitude: '-11.434271', longitude: '-61.456167' },
+{ name: 'Porto Velho, RO <br> Area Fibra Expansão', color: 'yellow', latitude: '-8.760772', longitude: '-63.899902' },
+{ name: 'Vilhena, RO <br> GPON', color: 'green', latitude: '-12.750183', longitude: '-60.148847' },
 { name: 'Aracaju, SE <br> Area Fibra Expansão', color: 'yellow', latitude: '-10.909133', longitude: '-37.06766' },
 { name: 'Adamantina, SP <br> GPON', color: 'green', latitude: '-21.682012', longitude: '-51.073695' },
 { name: 'Alumínio, SP <br> GPON', color: 'green', latitude: '-23.530553', longitude: '-47.254571' },
@@ -329,7 +343,12 @@ var locations = [
 { name: 'Vera Cruz, SP <br> GPON', color: 'green', latitude: '-22.218308', longitude: '-49.820735' },
 { name: 'Vinhedo, SP <br> HFC', color: 'red', latitude: '-23.030184', longitude: '-46.983312' },
 { name: 'Votorantim, SP <br> HFC', color: 'red', latitude: '-23.54459', longitude: '-47.438753' },
-{ name: 'Votuporanga, SP <br> GPON', color: 'green', latitude: '-20.423659', longitude: '-49.978112' }
+{ name: 'Votuporanga, SP <br> GPON', color: 'green', latitude: '-20.423659', longitude: '-49.978112' },
+{ name: 'Alvorada, TO <br> HFC', color: 'red', latitude: '-12.478465', longitude: '-49.124926' },
+{ name: 'Cachoeirinha, TO <br> HFC', color: 'red', latitude: '-6.115596', longitude: '-47.923399' },
+{ name: 'Lajeado, TO <br> HFC', color: 'red', latitude: '-9.749956', longitude: '-48.356482' },
+{ name: 'Palmas, TO <br> Area Fibra Expansão', color: 'yellow', latitude: '-10.239973', longitude: '-48.355751' },
+{ name: 'Paraíso do Tocantins, TO <br> GPON', color: 'green', latitude: '-10.174998', longitude: '-48.882269' }
 
 
 ];
