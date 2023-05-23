@@ -189,15 +189,31 @@
 				var technology = data.data.technologies[i];
 
 				// Verificar se o campo Name é "Cable" e o campo internet é true
-				if (technology.name === 'Cable' && technology.internet === true && technology.gpon === false) {
-				  resultado += '<span>INTERNET HFC DISPONÍVEL</span>';
+				if (technology.name === 'Cable' && technology.gpon === false) {
+					resultado += '<p>SERVIÇOS VIA HFC(COAXIAL): ';
+					if(technology.tv === true) { resultado += ' TV '; }
+					if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
+					if(technology.internet === true) { resultado += ' INTERNET '; }
+					resultado += '</p>';
+					
+				  //resultado += '<span>INTERNET HFC DISPONÍVEL</span>';
 				}
 				// Verificar se o campo Name é "Cable" e o campo gpon é true
-				else if (technology.name === 'Cable' && technology.internet === true && technology.gpon === true) {
-				  resultado += '<p>INTERNET GPON DISPONÍVEL</p>';
+				else if (technology.name === 'Cable' && technology.gpon === true) {
+					resultado += '<p>SERVIÇOS VIA GPON(FIBRA): ';
+					if(technology.tv === true) { resultado += ' TV '; }
+					if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
+					if(technology.internet === true) { resultado += ' INTERNET '; }
+					resultado += '</p>';
+					
+				  //resultado += '<p>INTERNET GPON DISPONÍVEL</p>';
 				}
 				else if (technology.name === 'Satellite'){
-					resultado += '<p>SERVIÇOS VIA SATELLITE/MOVEL DISPONIVEL</p>';
+					resultado += '<p>SERVIÇOS VIA SATELLITE/MOVEL: ';
+					if(technology.tv === true) { resultado += ' TV '; }
+					if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
+					if(technology.internet === true) { resultado += ' INTERNET '; }
+					resultado += '</p>';
 				}
 				
 				// Geocodificação do endereço fornecido
