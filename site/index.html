@@ -160,6 +160,17 @@
 								<span class="center">0</span>
 							</td>
 						</tr>
+						<tr>
+							<td class="tg-0lax">Sem serviços FIXO</td>
+							<td class="tg-0lax">
+								<span class="center">
+									<img height="20px" width="15px" src="./img/marker-icon-black.png" />
+								</span>
+							</td>
+							<td class="tg-0lax" id="somatorio-semservico">
+								<span class="center">0</span>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -221,7 +232,8 @@
 			        green: 'GPON',
 			        red: 'HFC',
 			        yellow: 'Sobreposição HFC e GPON',
-			        grey: 'NEUTRA GPON'
+			        grey: 'NEUTRA GPON',
+					black : 'Sem serviços FIXO'
 			    };
 			    var contagemDiv = document.getElementById('contagem');
 			    for (var color in colorCount) {
@@ -237,6 +249,8 @@
 			            $('#somatorio-sobre').html('<span class = "center" > ' + count + '</span>');
 			        case 'NEUTRA GPON':
 			            $('#somatorio-neutra').html('<span class = "center" > ' + count + '</span>');
+					case 'Sem serviços FIXO': 
+						$('#somatorio-semservico').html('<span class = "center" > ' + count + '</span>');
 			        }
 			    }
 			    L.control.layers(baseLayers).addTo(map);
