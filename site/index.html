@@ -255,8 +255,27 @@
           type: 'GET',
           dataType: 'json',
           success: function(data) {
+		  
+				//Realiza consulta nome logradouro em outra api, o resultado retornado da base da claro possue varios erros no cadastro do nome do logradouro 
+				var logradouro = '';			
+				$.ajax({
+				  url: 'https://viacep.com.br/ws/' + cep + '/json/',
+				  type: 'GET',
+				  dataType: 'json',
+				  async: false,
+				  success: function(data_viacep) {
+					if(data_viacep.logradouro != null)
+						logradouro += String(data_viacep.logradouro);
+					else
+						logradouro += data.data.logradouro;
+				  },
+				  error: function(){
+					logradouro += data.data.logradouro;
+				  }
+				});
+				
 			  // Exibir campos Logradouro, Number e Cidade em uma linha
-			  var resultado = '<p>Endereço: ' + data.data.logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
+			  var resultado = '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
 
 			  for (var i = 0; i < data.data.technologies.length; i++) {
 				var technology = data.data.technologies[i];
@@ -308,7 +327,7 @@
 				}
 				
 				// Geocodificação do endereço fornecido
-				var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&city='+encodeURIComponent(data.data.cidade)+'&state='+encodeURIComponent(data.data.uf)+'&street='+encodeURIComponent(data.data.number+' '+data.data.logradouro)+'&country=Brasil';
+				var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&city='+encodeURIComponent(data.data.cidade)+'&state='+encodeURIComponent(data.data.uf)+'&street='+encodeURIComponent(data.data.number+' '+logradouro)+'&country=Brasil';
 				
 				fetch(geocodingUrl)
 					.then(function(response) {
