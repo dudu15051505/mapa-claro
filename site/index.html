@@ -176,7 +176,6 @@
 			</div>
 		</div>
 		<script src="./js/leaflet/leaflet.js"></script>
-		<script src="./js/locations.js"></script>
 		<script src="./js/fetch.umd.js"></script>
 		<script src="./js/jquery-3.6.0.min.js"></script>
 		<script>
@@ -210,22 +209,29 @@
 			        "Stamen Terrain": stamenTerrainLayer
 			    };
 			    osmLayer.addTo(map);
-			    // Adicionar marcadores para cada localidade
-			    locations.forEach(function (location) {
-			        var iconUrl = './img/marker-icon-' + location.color + '.png';
-			        var customIcon = L.icon({
-			            iconUrl: iconUrl,
-			            iconSize: [25, 41],
-			            iconAnchor: [12, 41],
-			            popupAnchor: [0, -41]
-			        });
-					if(location.color != 'black') {
-						var marker = L.marker([location.latitude, location.longitude], {
-							icon: customIcon
-						}).addTo(map);
-						marker.bindPopup(location.name);
-					}
-			    });
+							    
+				function criarmarcador(arraylocation) {
+					arraylocation.forEach(function (location) {
+						var iconUrl = './img/marker-icon-' + location.color + '.png';
+						var customIcon = L.icon({
+							iconUrl: iconUrl,
+							iconSize: [25, 41],
+							iconAnchor: [12, 41],
+							popupAnchor: [0, -41]
+						});
+						if(location.color != 'black') {
+							var marker = L.marker([location.latitude, location.longitude], {
+								icon: customIcon
+							}).addTo(map);
+							marker.bindPopup(location.name);
+						}
+					});
+				}
+				// Adicionar marcadores para cada localidade
+				$.getScript('./js/locations-gpon.js', function() {
+					criarmarcador(locations-gpon);
+				});
+				
 			    // Calcular a contagem dinâmica
 			    var colors = locations.map(function (location) {
 			        return location.color;
