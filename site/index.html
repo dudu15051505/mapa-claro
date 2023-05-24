@@ -14,6 +14,7 @@
         }
         #map {
             height: calc(100% - 50px);
+			z-index: 9;
         }
         #top-bar {
             background-color: #f8f8f8;
@@ -60,46 +61,23 @@
 			text-align:left;
 			vertical-align:top;
 		}
+		
+		.modal {
+		  position: fixed;
+		  z-index: 1;
+		  padding-top: 100px;
+		  left: 10px;
+		  top: 0;
+		}
+
+		
     </style>
 </head>
 <body>
     <div id="top-bar">
         <div id="info">
             <h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
-            <span>
-				<table class="tg">
-					<thead>
-					  <tr>
-						<th class="tg-0lax">LEGENDA</th>
-						<th class="tg-0lax">ICONE</th>
-						<th class="tg-0lax">SOMATORIO DE CIDADES</th>
-					  </tr>
-					</thead>
-					<tbody>
-					  <tr>
-						<td class="tg-0lax">GPON</td>
-						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-green.png"/></td>
-						<td class="tg-0lax" id="somatorio-gpon">0</td>
-					  </tr>
-					  <tr>
-						<td class="tg-0lax">HFC</td>
-						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-red.png"/></td>
-						<td class="tg-0lax" id="somatorio-hfc">0</td>
-					  </tr>
-					  <tr>
-						<td class="tg-0lax">Sobreposição de HFC e GPON</td>
-						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></td>
-						<td class="tg-0lax" id="somatorio-sobre">0</td>
-					  </tr>
-					  <tr>
-						<td class="tg-0lax">REDE NEUTRA GPON</td>
-						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-grey.png"/></td>
-						<td class="tg-0lax" id="somatorio-neutra">0</td>
-					  </tr>
-					</tbody>
-				</table>
-			</span>
-			<div id="consulta-cep">
+            <div id="consulta-cep">
 				<h5 class="modal-title" id="cepModalLabel">Consulta dinamica por CEP e Numero:
 				  <form id="formulario">
 					<label for="cep">CEP:</label>
@@ -120,8 +98,43 @@
 			<p><a href="https://github.com/dudu15051505/mapa-claro" target="_blank">Codigo fonte do site disponivel no GitHub</a></p>
         </div>
     </div>
+	
     <div id="map"></div>
-
+	
+	<div class="modal">
+		<table class="tg">
+			<thead>
+				<tr>
+					<th class="tg-0lax">LEGENDA</th>
+					<th class="tg-0lax">ICONE</th>
+					<th class="tg-0lax">SOMATORIO DE CIDADES</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="tg-0lax">GPON</td>
+					<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-green.png"/></td>
+					<td class="tg-0lax" id="somatorio-gpon">0</td>
+				</tr>
+				<tr>
+					<td class="tg-0lax">HFC</td>
+					<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-red.png"/></td>
+					<td class="tg-0lax" id="somatorio-hfc">0</td>
+				</tr>
+				<tr>
+					<td class="tg-0lax">Sobreposição de HFC e GPON</td>
+					<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></td>
+					<td class="tg-0lax" id="somatorio-sobre">0</td>
+				</tr>
+				<tr>
+					<td class="tg-0lax">REDE NEUTRA GPON</td>
+					<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-grey.png"/></td>
+					<td class="tg-0lax" id="somatorio-neutra">0</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
     <script src="./js/leaflet.js"></script>
     <script src="./js/locations.js"></script>
 	<script src="./js/fetch.umd.js"></script>
