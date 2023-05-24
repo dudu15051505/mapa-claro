@@ -4,7 +4,7 @@
     <title>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="./js/leaflet/leaflet.css" />
     <style>
         body, html {
             margin: 0;
@@ -13,8 +13,7 @@
             font-family: Arial, sans-serif;
         }
         #map {
-            height: calc(100% - 50px);
-			z-index: 9;
+            height: calc(100% - 152px);
         }
         #top-bar {
             background-color: #f8f8f8;
@@ -64,12 +63,11 @@
 		
 		.modal {
 		  position: fixed;
-		  z-index: 1;
+		  z-index: 1 !important;
 		  padding-top: 100px;
 		  left: 10px;
 		  top: 0;
 		}
-
 		
     </style>
 </head>
@@ -101,7 +99,7 @@
 	
     <div id="map"></div>
 	
-	<div class="modal">
+	<div id="legenda" class="modal">
 		<table class="tg">
 			<thead>
 				<tr>
@@ -135,7 +133,9 @@
 		</table>
 	</div>
 	
-    <script src="./js/leaflet.js"></script>
+	
+	
+    <script src="./js/leaflet/leaflet.js"></script>
     <script src="./js/locations.js"></script>
 	<script src="./js/fetch.umd.js"></script>
 	<script src="./js/jquery-3.6.0.min.js"></script>
@@ -220,6 +220,10 @@
 			}
 			
 			L.control.layers(baseLayers).addTo(map);
+			
+			var div = L.DomUtil.get('legenda'); // this must be an ID, not class!
+			L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+			L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
     
       // Função para validar os campos antes de fazer a consulta
       function validarCampos() {
