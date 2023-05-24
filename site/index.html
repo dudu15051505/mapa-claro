@@ -108,23 +108,23 @@
 				<tbody>
 					<tr>
 						<td class="tg-0lax">GPON</td>
-						<td class="tg-0lax"><span class="center" ><img height="20px" width="15px" src="./img/marker-icon-green.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-gpon">0</td>
+						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-green.png"/></span></td>
+						<td class="tg-0lax" id="somatorio-gpon"><span class="center">0</span></td>
 					</tr>
 					<tr>
 						<td class="tg-0lax">HFC</td>
-						<td class="tg-0lax"><span class="center" ><img height="20px" width="15px" src="./img/marker-icon-red.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-hfc">0</td>
+						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-red.png"/></span></td>
+						<td class="tg-0lax" id="somatorio-hfc"><span class="center">0</span></td>
 					</tr>
 					<tr>
 						<td class="tg-0lax">Sobreposição de HFC e GPON</td>
-						<td class="tg-0lax"><span class="center" ><img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-sobre">0</td>
+						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></span></td>
+						<td class="tg-0lax" id="somatorio-sobre"><span class="center">0</span></td>
 					</tr>
 					<tr>
 						<td class="tg-0lax">REDE NEUTRA GPON</td>
-						<td class="tg-0lax"><span class="center" ><img height="20px" width="15px" src="./img/marker-icon-grey.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-neutra">0</td>
+						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-grey.png"/></span></td>
+						<td class="tg-0lax" id="somatorio-neutra"><span class="center">0</span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -208,10 +208,10 @@
 				}).length;
 				
 				switch(colorCount[color]) {
-					case 'GPON': $('#somatorio-gpon').html(count);
-					case 'HFC': $('#somatorio-hfc').html(count);
-					case 'Sobreposição de HFC e GPON': $('#somatorio-sobre').html(count);
-					case 'NEUTRA GPON': $('#somatorio-neutra').html(count);
+					case 'GPON': $('#somatorio-gpon').html('<span class="center">'+count+'</span>');
+					case 'HFC': $('#somatorio-hfc').html('<span class="center">'+count+'</span>');
+					case 'Sobreposição de HFC e GPON': $('#somatorio-sobre').html('<span class="center">'+count+'</span>');
+					case 'NEUTRA GPON': $('#somatorio-neutra').html('<span class="center">'+count+'</span>');
 				}
 			}
 			
