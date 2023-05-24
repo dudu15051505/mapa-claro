@@ -1,381 +1,408 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./js/leaflet/leaflet.css" />
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-        }
-        #map {
-            height: calc(100% - 152px);
-        }
-        #top-bar {
-            background-color: #f8f8f8;
-			padding-top: 0px;
-			padding-right: 10px;
-			padding-bottom: 0px;
-			padding-left: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-			height: 152px;
-        }
-        #info-direita {
-            text-align: right;
-        }
-		.tg {
-			border-collapse:collapse;
-			border-color:#ccc;
-			border-spacing:0;
-		}
-		.tg td {
-			background-color:#fff;
-			border-color:#ccc;
-			border-style:solid;
-			border-width:1px;
-			color:#333;
-			font-family:Arial, sans-serif;
-			font-size:14px;
-			overflow:hidden;
-			word-break:normal;
-		}
-		.tg th {
-			background-color:#f0f0f0;
-			border-color:#ccc;
-			border-style:solid;
-			border-width:1px;
-			color:#333;
-			font-family:Arial, sans-serif;
-			font-size:14px;
-			font-weight:normal;
-			overflow:hidden;
-			word-break:normal;
-		}
-		.tg .tg-0lax {
-			text-align:left;
-			vertical-align:top;
-		}
-		.center {
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-			width: 50%;
-		}
-    </style>
-</head>
-<body>
-    <div id="top-bar">
-        <div id="info">
-            <h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
-            <div id="consulta-cep">
-				<h5 class="modal-title" id="cepModalLabel">Consulta dinamica por CEP e Numero:
-				  <form id="formulario">
-					<label for="cep">CEP:</label>
-					<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
-					<label for="numero">Número:</label>
-					<input type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+	<head>
+		<title>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
+		<style>
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				font-family: Arial, sans-serif;
+			}
 
-					<button type="submit">Consultar</button>
-				  </form>
-				</h5>
-				  <div id="resultado"></div>
+			#map {
+				height: calc(100% - 152px);
+			}
+
+			#top-bar {
+				background-color: #f8f8f8;
+				padding-top: 0px;
+				padding-right: 10px;
+				padding-bottom: 0px;
+				padding-left: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				height: 152px;
+			}
+
+			#info-direita {
+				text-align: right;
+			}
+
+			.tg {
+				border-collapse: collapse;
+				border-color: #ccc;
+				border-spacing: 0;
+			}
+
+			.tg td {
+				background-color: #fff;
+				border-color: #ccc;
+				border-style: solid;
+				border-width: 1px;
+				color: #333;
+				font-family: Arial, sans-serif;
+				font-size: 14px;
+				overflow: hidden;
+				word-break: normal;
+			}
+
+			.tg th {
+				background-color: #f0f0f0;
+				border-color: #ccc;
+				border-style: solid;
+				border-width: 1px;
+				color: #333;
+				font-family: Arial, sans-serif;
+				font-size: 14px;
+				font-weight: normal;
+				overflow: hidden;
+				word-break: normal;
+			}
+
+			.tg .tg-0lax {
+				text-align: left;
+				vertical-align: top;
+			}
+
+			.center {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				width: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="top-bar">
+			<div id="info">
+				<h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
+				<div id="consulta-cep">
+					<h5 class="modal-title" id="cepModalLabel">Consulta dinamica por CEP e Numero: <form id="formulario">
+							<label for="cep">CEP:</label>
+							<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+							<label for="numero">Número:</label>
+							<input type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+							<button type="submit">Consultar</button>
+						</form>
+					</h5>
+					<div id="resultado"></div>
+				</div>
 			</div>
-        </div>
-        <div id="info">
-            <p>Informações coletadas na data 23/05/2023, a partir do site da CLARO</p>
-            <p>Este site não é afiliado à operadora CLARO</p>
-            <p>Para realizar consultas oficiais, utilize o site da CLARO: <a href="https://planos.claro.com.br/cep" target="_blank">https://planos.claro.com.br/cep</a></p>
-			<p><a href="https://github.com/dudu15051505/mapa-claro" target="_blank">Codigo fonte do site disponivel no GitHub</a></p>
-        </div>
-    </div>
-	
-    <div id="map">
-		<div id="legenda" class="leaflet-bottom leaflet-left" style="left: 10px; bottom: 10px;">
-			<table class="tg">
-				<thead>
-					<tr>
-						<th class="tg-0lax">LEGENDA</th>
-						<th class="tg-0lax">ICONE</th>
-						<th class="tg-0lax">SOMATORIO DE CIDADES</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="tg-0lax">GPON</td>
-						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-green.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-gpon"><span class="center">0</span></td>
-					</tr>
-					<tr>
-						<td class="tg-0lax">HFC</td>
-						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-red.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-hfc"><span class="center">0</span></td>
-					</tr>
-					<tr>
-						<td class="tg-0lax">Sobreposição HFC e GPON</td>
-						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-sobre"><span class="center">0</span></td>
-					</tr>
-					<tr>
-						<td class="tg-0lax">GPON Rede neutra</td>
-						<td class="tg-0lax"><span class="center"><img height="20px" width="15px" src="./img/marker-icon-grey.png"/></span></td>
-						<td class="tg-0lax" id="somatorio-neutra"><span class="center">0</span></td>
-					</tr>
-				</tbody>
-			</table>
+			<div id="info">
+				<p>Informações coletadas na data 23/05/2023, a partir do site da CLARO</p>
+				<p>Este site não é afiliado à operadora CLARO</p>
+				<p>Para realizar consultas oficiais, utilize o site da CLARO: <a href="https://planos.claro.com.br/cep" target="_blank">https://planos.claro.com.br/cep</a>
+				</p>
+				<p>
+					<a href="https://github.com/dudu15051505/mapa-claro" target="_blank">Codigo fonte do site disponivel no GitHub</a>
+				</p>
+			</div>
 		</div>
-	</div>
-	
-    <script src="./js/leaflet/leaflet.js"></script>
-    <script src="./js/locations.js"></script>
-	<script src="./js/fetch.umd.js"></script>
-	<script src="./js/jquery-3.6.0.min.js"></script>
-    <script>
-		$(document).ready(function() {
-			var map = L.map('map').setView([-14.235004, -51.925280], 6);
-
-			var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-				maxZoom: 18,
+		<div id="map">
+			<div id="legenda" class="leaflet-bottom leaflet-left" style="left: 10px; bottom: 10px;">
+				<table class="tg">
+					<thead>
+						<tr>
+							<th class="tg-0lax">LEGENDA</th>
+							<th class="tg-0lax">ICONE</th>
+							<th class="tg-0lax">SOMATORIO DE CIDADES</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tg-0lax">GPON</td>
+							<td class="tg-0lax">
+								<span class="center">
+									<img height="20px" width="15px" src="./img/marker-icon-green.png" />
+								</span>
+							</td>
+							<td class="tg-0lax" id="somatorio-gpon">
+								<span class="center">0</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">HFC</td>
+							<td class="tg-0lax">
+								<span class="center">
+									<img height="20px" width="15px" src="./img/marker-icon-red.png" />
+								</span>
+							</td>
+							<td class="tg-0lax" id="somatorio-hfc">
+								<span class="center">0</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">Sobreposição HFC e GPON</td>
+							<td class="tg-0lax">
+								<span class="center">
+									<img height="20px" width="15px" src="./img/marker-icon-yellow.png" />
+								</span>
+							</td>
+							<td class="tg-0lax" id="somatorio-sobre">
+								<span class="center">0</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">GPON Rede neutra</td>
+							<td class="tg-0lax">
+								<span class="center">
+									<img height="20px" width="15px" src="./img/marker-icon-grey.png" />
+								</span>
+							</td>
+							<td class="tg-0lax" id="somatorio-neutra">
+								<span class="center">0</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script src="./js/leaflet/leaflet.js"></script>
+		<script src="./js/locations.js"></script>
+		<script src="./js/fetch.umd.js"></script>
+		<script src="./js/jquery-3.6.0.min.js"></script>
+		<script>
+			$(document).ready(function () {
+			    var map = L.map('map').setView([-14.235004, -51.925280], 6);
+			    var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			        attribution: 'Map data &copy;  < a href = "https://www.openstreetmap.org/" > OpenStreetMap < /a> contributors',
+			        maxZoom: 18,
+			    });
+			    var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+			        attribution: 'Imagery &copy;  < a href = "https://www.arcgis.com/" > ArcGIS < /a>',
+			        maxZoom: 18,
+			    });
+			    var cartoDarkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+			        attribution: 'Map data &copy;  < a href = "https://carto.com/" > CARTO < /a>',
+			        maxZoom: 18,
+			    });
+			    var cartoVoyagerLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+			        attribution: 'Map data &copy;  < a href = "https://carto.com/" > CARTO < /a>',
+			        maxZoom: 18,
+			    });
+			    var stamenTerrainLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
+			        attribution: 'Map tiles by  < a href = "http://stamen.com" > Stamen Design < /a>, under  < a href = "http://creativecommons.org/licenses/by/3.0" > CC BY 3.0 < /a>. Data by  < a href = "http://openstreetmap.org" > OpenStreetMap < /a>, under  < a href = "http://creativecommons.org/licenses/by-sa/3.0" > CC BY SA < /a>',
+			        maxZoom: 18,
+			    });
+			    var baseLayers = {
+			        "OpenStreetMap": osmLayer,
+			        "Satélite": satelliteLayer,
+			        "Carto Dark": cartoDarkLayer,
+			        "Carto Voyager": cartoVoyagerLayer,
+			        "Stamen Terrain": stamenTerrainLayer
+			    };
+			    osmLayer.addTo(map);
+			    // Adicionar marcadores para cada localidade
+			    locations.forEach(function (location) {
+			        var iconUrl = './img/marker-icon-' + location.color + '.png';
+			        var customIcon = L.icon({
+			            iconUrl: iconUrl,
+			            iconSize: [25, 41],
+			            iconAnchor: [12, 41],
+			            popupAnchor: [0, -41]
+			        });
+			        var marker = L.marker([location.latitude, location.longitude], {
+			            icon: customIcon
+			        }).addTo(map);
+			        marker.bindPopup(location.name);
+			    });
+			    // Calcular a contagem dinâmica
+			    var colors = locations.map(function (location) {
+			        return location.color;
+			    });
+			    var colorCount = {
+			        green: 'GPON',
+			        red: 'HFC',
+			        yellow: 'Sobreposição HFC e GPON',
+			        grey: 'NEUTRA GPON'
+			    };
+			    var contagemDiv = document.getElementById('contagem');
+			    for (var color in colorCount) {
+			        var count = colors.filter(function (c) {
+			            return c === color;
+			        }).length;
+			        switch (colorCount[color]) {
+			        case 'GPON':
+			            $('#somatorio-gpon').html('<span class = "center"> ' + count + '</span>');
+			        case 'HFC':
+			            $('#somatorio-hfc').html('<span class = "center" > ' + count + '</span>');
+			        case 'Sobreposição HFC e GPON':
+			            $('#somatorio-sobre').html('<span class = "center" > ' + count + '</span>');
+			        case 'NEUTRA GPON':
+			            $('#somatorio-neutra').html('<span class = "center" > ' + count + '</span>');
+			        }
+			    }
+			    L.control.layers(baseLayers).addTo(map);
+			    var div = L.DomUtil.get('legenda'); // this must be an ID, not class!
+			    L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+			    L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+			    // Função para validar os campos antes de fazer a consulta
+			    function validarCampos() {
+			        var cep = $('#cep').val();
+			        var numero = $('#numero').val();
+			        // Verificar se os campos estão preenchidos corretamente
+			        if (cep.length !== 8) {
+			            alert('O campo CEP deve conter 8 números.');
+			            return false;
+			        }
+			        if (numero.length < 1 || numero.length > 9) {
+			            alert('O campo Número deve conter de 1 a 9 números.');
+			            return false;
+			        }
+			        return true;
+			    }
+			    // Função para fazer a consulta AJAX e exibir os resultados
+			    function consultarViabilidade() {
+			        if (!validarCampos()) {
+			            return;
+			        }
+			        var cep = $('#cep').val();
+			        var numero = $('#numero').val();
+			        var url = 'https://api.amxrest.net/viability/' + cep + '/' + numero;
+			        $.ajax({
+			            url: url,
+			            type: 'GET',
+			            dataType: 'json',
+			            success: function (data) {
+			                //Realiza consulta nome logradouro em outra api, o resultado retornado da base da claro possue varios erros no cadastro do nome do logradouro
+			                var logradouro = '';
+			                $.ajax({
+			                    url: 'https://viacep.com.br/ws/' + cep + '/json/',
+			                    type: 'GET',
+			                    dataType: 'json',
+			                    async: false,
+			                    success: function (data_viacep) {
+			                        if (data_viacep.logradouro != null)
+			                            logradouro += String(data_viacep.logradouro);
+			                        else
+			                            logradouro += data.data.logradouro;
+			                    },
+			                    error: function () {
+			                        logradouro += data.data.logradouro;
+			                    }
+			                });
+			                // Exibir campos Logradouro, Number e Cidade em uma linha
+			                var resultado = '<span> Localização aproximada <br> ';
+			                resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + ',Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" />< /a> </span>';
+			                resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
+			                for (var i = 0; i < data.data.technologies.length; i++) {
+			                    var technology = data.data.technologies[i];
+			                    //Verifica se é rede neutra
+			                    if (data.data.cableNodeID === 'GPONAVTAL') {
+			                        if (technology.name === 'Cable' && technology.gpon === false) {
+			                            resultado += '<p> SERVIÇOS VIA REDE NEUTRA VTAL: ';
+			                            if (technology.tv === true) {
+			                                resultado += ' TV ';
+			                            }
+			                            if (technology.phone === true) {
+			                                resultado += ' TELEFONE FIXO ';
+			                            }
+			                            if (technology.internet === true) {
+			                                resultado += ' INTERNET ';
+			                            }
+			                            resultado += '</p>';
+			                        } else if (technology.name === 'Satellite') {
+			                            resultado += '<p> SERVIÇOS VIA SATELLITE / MOVEL: ';
+			                            if (technology.tv === true) {
+			                                resultado += ' TV ';
+			                            }
+			                            if (technology.phone === true) {
+			                                resultado += ' TELEFONE FIXO ';
+			                            }
+			                            if (technology.internet === true) {
+			                                resultado += ' INTERNET ';
+			                            }
+			                            resultado += '</p>';
+			                        }
+			                    } else {
+			                        // Verificar se o campo Name é "Cable" e o campo internet é true
+			                        if (technology.name === 'Cable' && technology.gpon === false) {
+			                            resultado += '<p> SERVIÇOS VIA HFC(COAXIAL): ';
+			                            if (technology.tv === true) {
+			                                resultado += ' TV ';
+			                            }
+			                            if (technology.phone === true) {
+			                                resultado += ' TELEFONE FIXO ';
+			                            }
+			                            if (technology.internet === true) {
+			                                resultado += ' INTERNET ';
+			                            }
+			                            resultado += '</p>';
+			                        }
+			                        // Verificar se o campo Name é "Cable" e o campo gpon é true
+			                        else if (technology.name === 'Cable' && technology.gpon === true) {
+			                            resultado += '<p> SERVIÇOS VIA GPON(FIBRA): ';
+			                            if (technology.tv === true) {
+			                                resultado += ' TV ';
+			                            }
+			                            if (technology.phone === true) {
+			                                resultado += ' TELEFONE FIXO ';
+			                            }
+			                            if (technology.internet === true) {
+			                                resultado += ' INTERNET ';
+			                            }
+			                            resultado += '</p>';
+			                        } else if (technology.name === 'Satellite') {
+			                            resultado += '<p> SERVIÇOS VIA SATELLITE / MOVEL: ';
+			                            if (technology.tv === true) {
+			                                resultado += ' TV ';
+			                            }
+			                            if (technology.phone === true) {
+			                                resultado += ' TELEFONE FIXO ';
+			                            }
+			                            if (technology.internet === true) {
+			                                resultado += ' INTERNET ';
+			                            }
+			                            resultado += '</p>';
+			                        }
+			                    }
+			                    // Geocodificação do endereço fornecido
+			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&city=' + encodeURIComponent(data.data.cidade) + '&state=' + encodeURIComponent(data.data.uf) + '&street=' + encodeURIComponent(data.data.number + ' ' + logradouro) + '&country=Brasil';
+			                    fetch(geocodingUrl).then(function (response) {
+			                        return response.json();
+			                    }).then(function (data) {
+			                        if (data.length > 0) {
+			                            var firstResult = data[0];
+			                            var latitude = parseFloat(firstResult.lat);
+			                            var longitude = parseFloat(firstResult.lon);
+			                            var customIcon = L.icon({
+			                                iconUrl: './img/marker-icon-blue.png',
+			                                iconSize: [25, 41],
+			                                iconAnchor: [12, 41],
+			                                popupAnchor: [0, -41]
+			                            });
+			                            var marker = L.marker([latitude, longitude], {
+			                                icon: customIcon
+			                            }).addTo(map);
+			                            marker.bindPopup(resultado).openPopup();
+			                            // Ajustar o zoom e a posição do mapa para exibir o marcador
+			                            map.panTo(new L.LatLng(latitude, longitude));
+			                            map.setView([latitude, longitude], 16);
+			                            $('#resultado').html('');
+			                        } else {
+			                            console.error('Endereço não encontrado.');
+			                            $('#resultado').html('Endereço não encontrado.');
+			                        }
+			                    }).catch(function (error) {
+			                        console.error('Erro ao processar a solicitação de geocodificação.', error);
+			                        $('#resultado').html('Erro ao processar a solicitação de geocodificação.', error)
+			                    });
+			                }
+			            }
+			        });
+			    }
+			    // Lidar com o envio do formulário
+			    $('#formulario').submit(function (event) {
+			        event.preventDefault();
+			        consultarViabilidade();
+			    });
 			});
-
-			var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-				attribution: 'Imagery &copy; <a href="https://www.arcgis.com/">ArcGIS</a>',
-				maxZoom: 18,
-			});
-
-			var cartoDarkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-				attribution: 'Map data &copy; <a href="https://carto.com/">CARTO</a>',
-				maxZoom: 18,
-			});
-
-			var cartoVoyagerLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-				attribution: 'Map data &copy; <a href="https://carto.com/">CARTO</a>',
-				maxZoom: 18,
-			});
-
-			var stamenTerrainLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
-				attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
-				maxZoom: 18,
-			});
-
-			var baseLayers = {
-				"OpenStreetMap": osmLayer,
-				"Satélite": satelliteLayer,
-				"Carto Dark": cartoDarkLayer,
-				"Carto Voyager": cartoVoyagerLayer,
-				"Stamen Terrain": stamenTerrainLayer
-			};
-
-			osmLayer.addTo(map);
-
-			// Adicionar marcadores para cada localidade
-			locations.forEach(function(location) {
-				var iconUrl = './img/marker-icon-' + location.color + '.png';
-
-				var customIcon = L.icon({
-					iconUrl: iconUrl,
-					iconSize: [25, 41],
-					iconAnchor: [12, 41],
-					popupAnchor: [0, -41]
-				});
-
-				var marker = L.marker([location.latitude, location.longitude], { icon: customIcon }).addTo(map);
-				marker.bindPopup(location.name);
-			});
-
-			// Calcular a contagem dinâmica
-			var colors = locations.map(function(location) {
-				return location.color;
-			});
-			var colorCount = {
-				green: 'GPON',
-				red: 'HFC',
-				yellow: 'Sobreposição de HFC e GPON',
-				grey: 'NEUTRA GPON'
-			};
-
-			var contagemDiv = document.getElementById('contagem');
-
-			for (var color in colorCount) {
-				var count = colors.filter(function(c) {
-					return c === color;
-				}).length;
-				
-				switch(colorCount[color]) {
-					case 'GPON': $('#somatorio-gpon').html('<span class="center">'+count+'</span>');
-					case 'HFC': $('#somatorio-hfc').html('<span class="center">'+count+'</span>');
-					case 'Sobreposição de HFC e GPON': $('#somatorio-sobre').html('<span class="center">'+count+'</span>');
-					case 'NEUTRA GPON': $('#somatorio-neutra').html('<span class="center">'+count+'</span>');
-				}
-			}
-			
-			L.control.layers(baseLayers).addTo(map);
-			
-			var div = L.DomUtil.get('legenda'); // this must be an ID, not class!
-			L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
-			L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
-    
-      // Função para validar os campos antes de fazer a consulta
-      function validarCampos() {
-        var cep = $('#cep').val();
-        var numero = $('#numero').val();
-
-        // Verificar se os campos estão preenchidos corretamente
-        if (cep.length !== 8) {
-          alert('O campo CEP deve conter 8 números.');
-          return false;
-        }
-
-        if (numero.length < 1 || numero.length > 9) {
-          alert('O campo Número deve conter de 1 a 9 números.');
-          return false;
-        }
-
-        return true;
-      }
-
-      // Função para fazer a consulta AJAX e exibir os resultados
-      function consultarViabilidade() {
-        if (!validarCampos()) {
-          return;
-        }
-
-        var cep = $('#cep').val();
-        var numero = $('#numero').val();
-        var url = 'https://api.amxrest.net/viability/' + cep + '/' + numero;
-
-        $.ajax({
-          url: url,
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-		  
-				//Realiza consulta nome logradouro em outra api, o resultado retornado da base da claro possue varios erros no cadastro do nome do logradouro 
-				var logradouro = '';			
-				$.ajax({
-				  url: 'https://viacep.com.br/ws/' + cep + '/json/',
-				  type: 'GET',
-				  dataType: 'json',
-				  async: false,
-				  success: function(data_viacep) {
-					if(data_viacep.logradouro != null)
-						logradouro += String(data_viacep.logradouro);
-					else
-						logradouro += data.data.logradouro;
-				  },
-				  error: function(){
-					logradouro += data.data.logradouro;
-				  }
-				});
-				
-			  // Exibir campos Logradouro, Number e Cidade em uma linha
-			  var resultado = '<span>Localização aproximada<br>';			  
-			  resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + ',Brasil')+'" target="_blank">Google Maps <img src="./img/google_maps_icon.png"/></a></span>';
-			  resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
-
-			  for (var i = 0; i < data.data.technologies.length; i++) {
-				var technology = data.data.technologies[i];
-				
-				//Verifica se é rede neutra
-				if (data.data.cableNodeID === 'GPONAVTAL') {
-					if (technology.name === 'Cable' && technology.gpon === false) {
-						resultado += '<p>SERVIÇOS VIA REDE NEUTRA VTAL: ';
-						if(technology.tv === true) { resultado += ' TV '; }
-						if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
-						if(technology.internet === true) { resultado += ' INTERNET '; }
-						resultado += '</p>';
-						
-					}
-					else if (technology.name === 'Satellite'){
-						resultado += '<p>SERVIÇOS VIA SATELLITE/MOVEL: ';
-						if(technology.tv === true) { resultado += ' TV '; }
-						if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
-						if(technology.internet === true) { resultado += ' INTERNET '; }
-						resultado += '</p>';
-					}
-				}
-				else {
-					// Verificar se o campo Name é "Cable" e o campo internet é true
-					if (technology.name === 'Cable' && technology.gpon === false) {
-						resultado += '<p>SERVIÇOS VIA HFC(COAXIAL): ';
-						if(technology.tv === true) { resultado += ' TV '; }
-						if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
-						if(technology.internet === true) { resultado += ' INTERNET '; }
-						resultado += '</p>';
-						
-					}
-					// Verificar se o campo Name é "Cable" e o campo gpon é true
-					else if (technology.name === 'Cable' && technology.gpon === true) {
-						resultado += '<p>SERVIÇOS VIA GPON(FIBRA): ';
-						if(technology.tv === true) { resultado += ' TV '; }
-						if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
-						if(technology.internet === true) { resultado += ' INTERNET '; }
-						resultado += '</p>';
-						
-					}
-					else if (technology.name === 'Satellite'){
-						resultado += '<p>SERVIÇOS VIA SATELLITE/MOVEL: ';
-						if(technology.tv === true) { resultado += ' TV '; }
-						if(technology.phone === true) { resultado += ' TELEFONE FIXO '; }
-						if(technology.internet === true) { resultado += ' INTERNET '; }
-						resultado += '</p>';
-					}
-				}
-				
-				// Geocodificação do endereço fornecido
-				var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&city='+encodeURIComponent(data.data.cidade)+'&state='+encodeURIComponent(data.data.uf)+'&street='+encodeURIComponent(data.data.number+' '+logradouro)+'&country=Brasil';
-				
-				fetch(geocodingUrl)
-					.then(function(response) {
-						return response.json();
-					})
-					.then(function(data) {
-						if (data.length > 0) {
-							var firstResult = data[0];
-							var latitude = parseFloat(firstResult.lat);
-							var longitude = parseFloat(firstResult.lon);
-							
-							var customIcon = L.icon({
-								iconUrl: './img/marker-icon-blue.png',
-								iconSize: [25, 41],
-								iconAnchor: [12, 41],
-								popupAnchor: [0, -41]
-							});
-
-							var marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map);
-							marker.bindPopup(resultado).openPopup();
-
-							// Ajustar o zoom e a posição do mapa para exibir o marcador
-							map.panTo(new L.LatLng(latitude, longitude));
-							map.setView([latitude, longitude], 16);
-							$('#resultado').html('');
-							
-						} else {
-							console.error('Endereço não encontrado.');
-							$('#resultado').html('Endereço não encontrado.');
-						}
-					})
-					.catch(function(error) {
-						console.error('Erro ao processar a solicitação de geocodificação.', error);
-						$('#resultado').html('Erro ao processar a solicitação de geocodificação.', error)
-					});
-			  }
-			}
-        });
-      }
-
-      // Lidar com o envio do formulário
-      $('#formulario').submit(function(event) {
-        event.preventDefault();
-        consultarViabilidade();
-      });
-    });
-  </script>
-</body>
+		</script>
+	</body>
 </html>
