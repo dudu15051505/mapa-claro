@@ -289,8 +289,8 @@
 			                });
 			                // Exibir campos Logradouro, Number e Cidade em uma linha
 			                var resultado = '<span> Localização aproximada <br> ';
-			                resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + ',Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
-			                resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
+			                resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + data.data.number + ', ' + data.data.bairro + ', ' + data.data.cidade + ', ' + data.data.uf + ',Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
+			                resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + data.data.bairro + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
 			                for (var i = 0; i < data.data.technologies.length; i++) {
 			                    var technology = data.data.technologies[i];
 			                    //Verifica se é rede neutra
