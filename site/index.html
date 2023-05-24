@@ -28,9 +28,40 @@
         #info-direita {
             text-align: right;
         }
-        #info {
-            
-        }
+		.tg {
+			border-collapse:collapse;
+			border-color:#ccc;
+			border-spacing:0;
+		}
+		.tg td {
+			background-color:#fff;
+			border-color:#ccc;
+			border-style:solid;
+			border-width:1px;
+			color:#333;
+			font-family:Arial, sans-serif;
+			font-size:14px;
+			overflow:hidden;
+			padding:10px 5px;
+			word-break:normal;
+		}
+		.tg th {
+		background-color:#f0f0f0;
+		border-color:#ccc;
+		border-style:solid;
+		border-width:1px;
+		color:#333;
+		font-family:Arial, sans-serif;
+		font-size:14px;
+		font-weight:normal;
+		overflow:hidden;
+		padding:10px 5px;
+		word-break:normal;
+		}
+		.tg .tg-0lax {
+			text-align:left;
+			vertical-align:top;
+		}
     </style>
 </head>
 <body>
@@ -38,34 +69,34 @@
         <div id="info">
             <h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
             <span>
-				<table>
+				<table class="tg">
 					<thead>
 					  <tr>
-						<th>LEGENDA</th>
-						<th>ICONE</th>
-						<th>SOMATORIO DE CIDADES</th>
+						<th class="tg-0lax">LEGENDA</th>
+						<th class="tg-0lax">ICONE</th>
+						<th class="tg-0lax">SOMATORIO DE CIDADES</th>
 					  </tr>
 					</thead>
 					<tbody>
 					  <tr>
-						<td>GPON</td>
-						<td><img height="20px" width="15px" src="./img/marker-icon-green.png"/></td>
-						<td id="somatorio-gpon">0</td>
+						<td class="tg-0lax">GPON</td>
+						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-green.png"/></td>
+						<td class="tg-0lax" id="somatorio-gpon">0</td>
 					  </tr>
 					  <tr>
-						<td>HFC</td>
-						<td><img height="20px" width="15px" src="./img/marker-icon-red.png"/></td>
-						<td id="somatorio-hfc">0</td>
+						<td class="tg-0lax">HFC</td>
+						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-red.png"/></td>
+						<td class="tg-0lax" id="somatorio-hfc">0</td>
 					  </tr>
 					  <tr>
-						<td>Sobreposição de HFC e GPON</td>
-						<td><img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></td>
-						<td id="somatorio-sobre">0</td>
+						<td class="tg-0lax">Sobreposição de HFC e GPON</td>
+						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-yellow.png"/></td>
+						<td class="tg-0lax" id="somatorio-sobre">0</td>
 					  </tr>
 					  <tr>
-						<td>REDE NEUTRA GPON</td>
-						<td><img height="20px" width="15px" src="./img/marker-icon-grey.png"/></td>
-						<td id="somatorio-neutra">0</td>
+						<td class="tg-0lax">REDE NEUTRA GPON</td>
+						<td class="tg-0lax"><img height="20px" width="15px" src="./img/marker-icon-grey.png"/></td>
+						<td class="tg-0lax" id="somatorio-neutra">0</td>
 					  </tr>
 					</tbody>
 				</table>
