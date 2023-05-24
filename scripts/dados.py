@@ -5,7 +5,7 @@ import random
 import time
 
 # Definir o caminho para o arquivo CSV
-csv_path = "saida_powershell.csv"
+csv_path = "arquivo.csv"
 
 # Criar a pasta "dados" se ela não existir
 folder_path = "dados"
@@ -52,9 +52,17 @@ for i in range(len(cities)):
 
             print(f"Arquivo salvo para {city}, {state}: {file_path}")
         else:
-                print(f"A tag 'estado' não é igual a {state} em uma das promoções. O arquivo não será salvo.")
+            file_name = f"ERRO CADASTRO API {state}-{city}.txt"
+            file_path = os.path.join(folder_path, file_name)
+            with open(file_path, "w") as file:
+                file.write("\n".join(values))
+            print(f"A tag 'estado' não é igual a {state} em uma das promoções.")
     else:
-        print("estado vazio")
+        file_name = f"{state}-{city}.txt"
+        file_path = os.path.join(folder_path, file_name)
+        with open(file_path, "w") as file:
+            file.write("\n".join(values))
+        print(f"Arquivo salvo para {city}, {state}: {file_path}")
 
     # Verificar se é hora de definir um tempo de espera aleatório
     if (i + 1) % consultas_por_intervalo == 0:
