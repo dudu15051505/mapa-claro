@@ -219,10 +219,12 @@
 			            iconAnchor: [12, 41],
 			            popupAnchor: [0, -41]
 			        });
-			        var marker = L.marker([location.latitude, location.longitude], {
-			            icon: customIcon
-			        }).addTo(map);
-			        marker.bindPopup(location.name);
+					if(location.color != 'black') {
+						var marker = L.marker([location.latitude, location.longitude], {
+							icon: customIcon
+						}).addTo(map);
+						marker.bindPopup(location.name);
+					}
 			    });
 			    // Calcular a contagem dinâmica
 			    var colors = locations.map(function (location) {
