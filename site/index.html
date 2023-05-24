@@ -92,6 +92,7 @@
 						</form>
 					</h5>
 					<div id="resultado"></div>
+					<div id="resultado2"></div>
 				</div>
 			</div>
 			<div id="info">
@@ -363,8 +364,10 @@
 			                        }
 			                    }
 			                    // Geocodificação do endereço fornecido
-			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&city=' + encodeURIComponent(data.data.cidade) + '&state=' + encodeURIComponent(data.data.uf) + '&street=' + encodeURIComponent(data.data.number + ' ' + logradouro) + '&country=Brasil';
-			                    fetch(geocodingUrl).then(function (response) {
+			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + data.data.number + ', ' + data.data.bairro + ', ' + data.data.cidade + ', ' + data.data.uf + ', Brasil');
+								//Debug para ver url gerada no html
+								//$('#resultado2').html(geocodingUrl);
+								fetch(geocodingUrl).then(function (response) {
 			                        return response.json();
 			                    }).then(function (data) {
 			                        if (data.length > 0) {
