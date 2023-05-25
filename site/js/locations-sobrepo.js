@@ -1,8 +1,8 @@
-var locations_sobrepo = [
+var locations-sobrepo = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
-{ name: 'Mogi das Cruzes, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.52082', longitude: '-46.18541' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
+{ name: 'Mogi das Cruzes, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Rio Branco, AC <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-9.97499', longitude: '-67.824348' },
 { name: 'Maceió, AL <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-9.665985', longitude: '-35.73496' },
 { name: 'Manaus, AM <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-3.118662', longitude: '-60.02123' },
