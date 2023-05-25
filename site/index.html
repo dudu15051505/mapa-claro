@@ -184,6 +184,17 @@
 								<span class="center">0</span>
 							</td>
 						</tr>
+						<tr>
+							<td class="tg-0lax">ERRO Consulta API</td>
+							<td class="tg-0lax">
+								<span class="center">
+									<img height="20px" width="15px" src="./img/marker-icon-orange.png" />
+								</span>
+							</td>
+							<td class="tg-0lax" id="somatorio-erroapi">
+								<span class="center">0</span>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -197,6 +208,7 @@
 		<script src="./js/locations-neutrogpon.js"></script>
 		<script src="./js/locations-neutrohfc.js"></script>
 		<script src="./js/locations-sobrepo.js"></script>
+		<script src="./js/locations-erroapi.js"></script>
 		<script>
 			$(document).ready(function () {
 			    var map = L.map('map').setView([-14.235004, -51.925280], 6);
@@ -240,7 +252,7 @@
 					});
 					var marker = L.marker([location.latitude, location.longitude], {
 							icon: customIcon
-						});
+						}).bindPopup(location.name);
 					GPON.addLayer(marker);
 				});
 				
@@ -255,7 +267,7 @@
 					});
 					var marker = L.marker([location.latitude, location.longitude], {
 							icon: customIcon
-						});
+						}).bindPopup(location.name);
 					HFC.addLayer(marker);
 				});
 				
@@ -270,7 +282,7 @@
 					});
 					var marker = L.marker([location.latitude, location.longitude], {
 							icon: customIcon
-						});
+						}).bindPopup(location.name);
 					SOBREPO.addLayer(marker);
 				});
 				
@@ -285,7 +297,7 @@
 					});
 					var marker = L.marker([location.latitude, location.longitude], {
 							icon: customIcon
-						});
+						}).bindPopup(location.name);
 					GPONNEUTRO.addLayer(marker);
 				});
 				
@@ -300,7 +312,7 @@
 					});
 					var marker = L.marker([location.latitude, location.longitude], {
 							icon: customIcon
-						});
+						}).bindPopup(location.name);
 					HFCNEUTRO.addLayer(marker);
 				});
 				
@@ -315,8 +327,23 @@
 					});
 					var marker = L.marker([location.latitude, location.longitude], {
 							icon: customIcon
-						});
+						}).bindPopup(location.name);
 					SEMNADA.addLayer(marker);
+				});
+				
+				var ERROAPI = L.layerGroup();
+				locations_erroapi.forEach(function (location) {
+					var iconUrl = './img/marker-icon-' + location.color + '.png';
+					var customIcon = L.icon({
+						iconUrl: iconUrl,
+						iconSize: [25, 41],
+						iconAnchor: [12, 41],
+						popupAnchor: [0, -41]
+					});
+					var marker = L.marker([location.latitude, location.longitude], {
+							icon: customIcon
+						}).bindPopup(location.name);
+					ERROAPI.addLayer(marker);
 				});
 				
 				var controle_tecnologias = {
@@ -325,7 +352,8 @@
 					'Sobreposição <img height="20px" width="15px" src="./img/marker-icon-yellow.png" />' : SOBREPO,
 					'GPON Rede neutra <img height="20px" width="15px" src="./img/marker-icon-grey.png" />' : GPONNEUTRO,
 					'HFC Rede neutra <img height="20px" width="15px" src="./img/marker-icon-violet.png" />' : HFCNEUTRO,
-					'Sem serviço FIXO <img height="20px" width="15px" src="./img/marker-icon-black.png" />' : SEMNADA
+					'Sem serviço FIXO <img height="20px" width="15px" src="./img/marker-icon-black.png" />' : SEMNADA,
+					'ERRO Consulta API <img height="20px" width="15px" src="./img/marker-icon-orange.png" />' : ERROAPI
 				};
 				
 				L.control.layers(baseLayers, controle_tecnologias).addTo(map);4
@@ -337,6 +365,7 @@
 				$('#somatorio-neutragpon').html('<span class = "center" > ' + locations_neutrogpon.length + '</span>');
 				$('#somatorio-neutrahfc').html('<span class = "center" > ' + locations_neutrohfc.length + '</span>');
 				$('#somatorio-nada').html('<span class = "center" > ' + locations_nada.length + '</span>');
+				$('#somatorio-erroapi').html('<span class = "center" > ' + locations_erroapi.length + '</span>');
 				
 			    
 				

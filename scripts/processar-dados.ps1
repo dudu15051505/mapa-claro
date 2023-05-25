@@ -101,7 +101,7 @@ foreach($row_nomearquivos in $nomearquivos) {
 				$NEUTROHFC += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> HFC REDE NEUTRA', color: 'violet', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
 			}
 			if($tem_nada -eq 1) {
-				$NADA += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> Não tem serviço fixo', color: 'black', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$NADA += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> Sem serviço fixo', color: 'black', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
 			}
 		}
 	}	
@@ -127,6 +127,8 @@ foreach($row_nomearquivos in $nomearquivos_erro) {
 	
 	foreach($row_csv in $csv) {		
 		if($row_csv.uf -eq $arquivo_nome_inicio[3] -And $row_csv.municipio -eq $arquivo_nome[1]) {
+			$latitude = $row_csv.latitude;
+			$longitude = $row_csv.longitude;
 			$ERROAPI += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome_inicio[3]+" <br> ERRO na consulta API', color: 'orange', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
 		}
 	}	
