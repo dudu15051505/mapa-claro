@@ -9,6 +9,7 @@ csv_path = "arquivo.csv"
 
 # Criar a pasta "dados" se ela não existir
 folder_path = "dados"
+folder_path_errp = "erro consulta"
 os.makedirs(folder_path, exist_ok=True)
 
 # Ler o arquivo CSV e armazenar as siglas do estado e cidades em listas separadas
@@ -53,7 +54,7 @@ for i in range(len(cities)):
             print(f"Arquivo salvo para {city}, {state}: {file_path}")
         else:
             file_name = f"ERRO CADASTRO API {state}-{city}.txt"
-            file_path = os.path.join(folder_path, file_name)
+            file_path = os.path.join(folder_path_erro, file_name)
             with open(file_path, "w") as file:
                 file.write("\n".join(values))
             print(f"A tag 'estado' não é igual a {state} em uma das promoções.")

@@ -6,16 +6,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
 		<style>
-			body,
-			html {
+			body, html {
 				margin: 0;
 				padding: 0;
 				height: 100%;
 				font-family: Arial, sans-serif;
+				min-width: 1140px;
 			}
 
 			#map {
-				height: calc(100% - 152px);
+				height: calc(100% - 160px);
 			}
 
 			#top-bar {
@@ -27,7 +27,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				height: 152px;
+				height: 160px;
 			}
 
 			#info-direita {
@@ -82,8 +82,10 @@
 		<div id="top-bar">
 			<div id="info">
 				<h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
+				<span>As marcações exibidas, são retornadas de consulta de API, a exemplo "HFC Rede neutra" é retornada, mas nunca ninguém viu essa rede.</span><br>
+				<span>Faça uma consulta por CEP e Número, para um resultado de tecnologia mais preciso.</span>
 				<div id="consulta-cep">
-					<h5 class="modal-title" id="cepModalLabel">Consulta dinamica por CEP e Numero: <form id="formulario">
+					<h5 class="modal-title" id="cepModalLabel">Consulta dinamica por CEP e Número: <form id="formulario">
 							<label for="cep">CEP:</label>
 							<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
 							<label for="numero">Número:</label>
@@ -287,6 +289,21 @@
 					GPONNEUTRO.addLayer(marker);
 				});
 				
+				var HFCNEUTRO = L.layerGroup();
+				locations_neutrohfc.forEach(function (location) {
+					var iconUrl = './img/marker-icon-' + location.color + '.png';
+					var customIcon = L.icon({
+						iconUrl: iconUrl,
+						iconSize: [25, 41],
+						iconAnchor: [12, 41],
+						popupAnchor: [0, -41]
+					});
+					var marker = L.marker([location.latitude, location.longitude], {
+							icon: customIcon
+						});
+					HFCNEUTRO.addLayer(marker);
+				});
+				
 				var SEMNADA = L.layerGroup();
 				locations_nada.forEach(function (location) {
 					var iconUrl = './img/marker-icon-' + location.color + '.png';
@@ -302,28 +319,12 @@
 					SEMNADA.addLayer(marker);
 				});
 				
-				var HFCNEUTRO = L.layerGroup().addTo(map);
-				locations_neutrohfc.forEach(function (location) {
-					var iconUrl = './img/marker-icon-' + location.color + '.png';
-					var customIcon = L.icon({
-						iconUrl: iconUrl,
-						iconSize: [25, 41],
-						iconAnchor: [12, 41],
-						popupAnchor: [0, -41]
-					});
-					var marker = L.marker([location.latitude, location.longitude], {
-							icon: customIcon
-						});
-					HFCNEUTRO.addLayer(marker);
-				});
-				
-				
 				var controle_tecnologias = {
 					'GPON <img height="20px" width="15px" src="./img/marker-icon-green.png" />' : GPON,
 					'HFC <img height="20px" width="15px" src="./img/marker-icon-red.png" />' : HFC,
 					'Sobreposição <img height="20px" width="15px" src="./img/marker-icon-yellow.png" />' : SOBREPO,
 					'GPON Rede neutra <img height="20px" width="15px" src="./img/marker-icon-grey.png" />' : GPONNEUTRO,
-					'HFC Rede neutra <img height="20px" width="15px" src="./img/marker-icon-violet.png" />' : GPONNEUTRO,
+					'HFC Rede neutra <img height="20px" width="15px" src="./img/marker-icon-violet.png" />' : HFCNEUTRO,
 					'Sem serviço FIXO <img height="20px" width="15px" src="./img/marker-icon-black.png" />' : SEMNADA
 				};
 				
