@@ -167,7 +167,7 @@
 									<img height="20px" width="15px" src="./img/marker-icon-black.png" />
 								</span>
 							</td>
-							<td class="tg-0lax" id="somatorio-semservico">
+							<td class="tg-0lax" id="somatorio-nada">
 								<span class="center">0</span>
 							</td>
 						</tr>
@@ -216,7 +216,7 @@
 			    };
 			    osmLayer.addTo(map);
 							    
-				function criarmarcador(arraylocation) {
+				function criarmarcador(arraylocation, grupo) {
 					arraylocation.forEach(function (location) {
 						var iconUrl = './img/marker-icon-' + location.color + '.png';
 						var customIcon = L.icon({
@@ -225,56 +225,31 @@
 							iconAnchor: [12, 41],
 							popupAnchor: [0, -41]
 						});
-						if(location.color != 'black') {
-							var marker = L.marker([location.latitude, location.longitude], {
-								icon: customIcon
-							}).addTo(map);
-							marker.bindPopup(location.name);
-						}
+						var marker = L.marker([location.latitude, location.longitude], {
+							icon: customIcon
+						}).addTo(map);
+						
+						marker.bindPopup(location.name);
 					});
 				}
-				criarmarcador(locations_gpon);
-				criarmarcador(locations_hfc);
-				criarmarcador(locations_nada);
-				criarmarcador(locations_neutrogpon);
-				criarmarcador(locations_neutrohfc);
-				criarmarcador(locations_sobrepo);
+				criarmarcador(locations_gpon, 'GPON');
+				criarmarcador(locations_hfc, 'HFC');
+				//criarmarcador(locations_nada, 'Sem serviço');
+				criarmarcador(locations_neutrogpon, 'GPON Rede neutra');
+				criarmarcador(locations_neutrohfc, 'HFC Rede neutra');
+				criarmarcador(locations_sobrepo, 'Sobreposição');
 				
 				locations = [];
 				
 			    // Calcular a contagem dinâmica
-			    var colors = locations.map(function (location) {
-			        return location.color;
-			    });
-			    var colorCount = {
-			        green: 'GPON',
-			        red: 'HFC',
-			        yellow: 'Sobreposição HFC e GPON',
-			        grey: 'NEUTRA GPON',
-					black : 'Sem serviços FIXO'
-			    };
-			    var contagemDiv = document.getElementById('contagem');
-			    for (var color in colorCount) {
-			        var count = colors.filter(function (c) {
-			            return c === color;
-			        }).length;
-			        switch (colorCount[color]) {
-			        case 'GPON':
-			            $('#somatorio-gpon').html('<span class = "center"> ' + count + '</span>');
-			        case 'HFC':
-			            $('#somatorio-hfc').html('<span class = "center" > ' + count + '</span>');
-			        case 'Sobreposição HFC e GPON':
-			            $('#somatorio-sobre').html('<span class = "center" > ' + count + '</span>');
-			        case 'NEUTRA GPON':
-			            $('#somatorio-neutra').html('<span class = "center" > ' + count + '</span>');
-					case 'Sem serviços FIXO': 
-						$('#somatorio-semservico').html('<span class = "center" > ' + count + '</span>');
-			        }
-			    }
+				$('#somatorio-gpon').html('<span class = "center"> ' + locations_gpon.length + '</span>');
+				$('#somatorio-hfc').html('<span class = "center" > ' + locations_hfc.length + '</span>');
+				$('#somatorio-sobre').html('<span class = "center" > ' + locations_sobrepo.length + '</span>');
+				$('#somatorio-neutra').html('<span class = "center" > ' + locations_neutrogpon.length + '</span>');
+				$('#somatorio-nada').html('<span class = "center" > ' + locations_nada.length + '</span>');
+				
 			    L.control.layers(baseLayers).addTo(map);
-			    var div = L.DomUtil.get('legenda'); // this must be an ID, not class!
-			    L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
-			    L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+				
 			    // Função para validar os campos antes de fazer a consulta
 			    function validarCampos() {
 			        var cep = $('#cep').val();
