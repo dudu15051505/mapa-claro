@@ -85,12 +85,13 @@
 				<span>As marcações exibidas, são retornadas de consulta de API, a exemplo "HFC Rede neutra" é retornada, mas nunca ninguém viu essa rede.</span><br>
 				<span>Faça uma consulta por CEP e Número, para um resultado de tecnologia mais preciso.</span>
 				<div id="consulta-cep">
-					<h5 class="modal-title" id="cepModalLabel">Consulta dinamica por CEP e Número: <form id="formulario">
+					<h5 class="modal-title" id="cepModalLabel">Consulta dinamica por CEP e Número: 
+						<form id="formulario">
 							<label for="cep">CEP:</label>
 							<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
 							<label for="numero">Número:</label>
 							<input type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
-							<button type="submit">Consultar</button>
+							<input type="submit" value="Consultar" />
 						</form>
 					</h5>
 					<div id="resultado"></div>
@@ -397,8 +398,12 @@
 			            type: 'GET',
 			            dataType: 'json',
 			            success: function (data) {
-			                //Realiza consulta nome logradouro em outra api, o resultado retornado da base da claro possue varios erros no cadastro do nome do logradouro
+			                //Realiza consulta endereço em outra api, o resultado retornado da api claro possue varios erros no cadastro como nome do logradouro
+							//Caso api não retorne dados, fall back para dados api claro
 			                var logradouro = '';
+							var bairro = '';
+							var cidade = '';
+							var uf = '';
 			                $.ajax({
 			                    url: 'https://viacep.com.br/ws/' + cep + '/json/',
 			                    type: 'GET',
@@ -406,18 +411,37 @@
 			                    async: false,
 			                    success: function (data_viacep) {
 			                        if (data_viacep.logradouro != null)
-			                            logradouro += String(data_viacep.logradouro);
+			                            logradouro = String(data_viacep.logradouro);
 			                        else
-			                            logradouro += data.data.logradouro;
+			                            logradouro = data.data.logradouro;
+									
+									if (data_viacep.bairro != null)
+			                            bairro = String(data_viacep.bairro);
+			                        else
+			                            bairro = data.data.bairro;
+									
+									if (data_viacep.localidade != null)
+			                            cidade = String(data_viacep.localidade);
+			                        else
+			                            cidade = data.data.cidade;
+									
+									if (data_viacep.uf != null)
+			                            uf = String(data_viacep.uf);
+			                        else
+			                            uf = data.data.uf;
 			                    },
 			                    error: function () {
-			                        logradouro += data.data.logradouro;
+			                        logradouro = data.data.logradouro;
+									bairro = data.data.bairro;
+									cidade = data.data.cidade;
+									uf = data.data.uf;
+									numero = data.data.number;
 			                    }
 			                });
 			                // Exibir campos Logradouro, Number e Cidade em uma linha
 			                var resultado = '<span> Localização aproximada <br> ';
-			                resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + data.data.number + ', ' + data.data.bairro + ', ' + data.data.cidade + ', ' + data.data.uf + ',Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
-			                resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + data.data.bairro + ', ' + data.data.cidade + ', ' + data.data.uf + '</p>';
+			                resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
+			                resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil</p>';
 			                for (var i = 0; i < data.data.technologies.length; i++) {
 			                    var technology = data.data.technologies[i];
 			                    //Verifica se é rede neutra
@@ -490,7 +514,7 @@
 			                        }
 			                    }
 			                    // Geocodificação do endereço fornecido
-			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + data.data.number + ', ' + data.data.bairro + ', ' + data.data.cidade + ', ' + data.data.uf + ', Brasil');
+			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil');
 								//Debug para ver url gerada no html
 								//$('#resultado2').html(geocodingUrl);
 								fetch(geocodingUrl).then(function (response) {
