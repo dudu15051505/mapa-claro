@@ -214,23 +214,23 @@
 			$(document).ready(function () {
 			    var map = L.map('map').setView([-14.235004, -51.925280], 5);
 			    var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			        attribution: 'Map data &copy;  < a href = "https://www.openstreetmap.org/" > OpenStreetMap < /a> contributors',
+			        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
 			        maxZoom: 18,
 			    });
 			    var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-			        attribution: 'Imagery &copy;  < a href = "https://www.arcgis.com/" > ArcGIS < /a>',
+			        attribution: 'Imagery &copy; <a href="https://www.arcgis.com/">ArcGIS</a>',
 			        maxZoom: 18,
 			    });
 			    var cartoDarkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-			        attribution: 'Map data &copy;  < a href = "https://carto.com/" > CARTO < /a>',
+			        attribution: 'Map data &copy; <a href ="https://carto.com/">CARTO</a>',
 			        maxZoom: 18,
 			    });
 			    var cartoVoyagerLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-			        attribution: 'Map data &copy;  < a href = "https://carto.com/" > CARTO < /a>',
+			        attribution: 'Map data &copy; <a href="https://carto.com/">CARTO</a>',
 			        maxZoom: 18,
 			    });
 			    var stamenTerrainLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
-			        attribution: 'Map tiles by  < a href = "http://stamen.com" > Stamen Design < /a>, under  < a href = "http://creativecommons.org/licenses/by/3.0" > CC BY 3.0 < /a>. Data by  < a href = "http://openstreetmap.org" > OpenStreetMap < /a>, under  < a href = "http://creativecommons.org/licenses/by-sa/3.0" > CC BY SA < /a>',
+			        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA </a>',
 			        maxZoom: 18,
 			    });
 			    var baseLayers = {
