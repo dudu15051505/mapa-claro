@@ -1,5 +1,6 @@
 var locations_hfc = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
+{ name: 'Santa Branca, SP <br> HFC', color: 'red', latitude: '-23.393311', longitude: '-45.887521' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
 { name: 'Cachoeiro de Itapemirim, ES <br> HFC', color: 'red', latitude: '-20.846212', longitude: '-41.119829' },
