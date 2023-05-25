@@ -178,6 +178,12 @@
 		<script src="./js/leaflet/leaflet.js"></script>
 		<script src="./js/fetch.umd.js"></script>
 		<script src="./js/jquery-3.6.0.min.js"></script>
+		<script src="./js/locations-gpon.js"></script>
+		<script src="./js/locations-hfc.js"></script>
+		<script src="./js/locations-nada.js"></script>
+		<script src="./js/locations-neutrogpon.js"></script>
+		<script src="./js/locations-neutrohfc.js"></script>
+		<script src="./js/locations-sobrepo.js"></script>
 		<script>
 			$(document).ready(function () {
 			    var map = L.map('map').setView([-14.235004, -51.925280], 6);
@@ -227,10 +233,14 @@
 						}
 					});
 				}
-				// Adicionar marcadores para cada localidade
-				$.getScript('./js/locations-gpon.js', function() {
-					criarmarcador(locations-gpon);
-				});
+				criarmarcador(locations_gpon);
+				criarmarcador(locations_hfc);
+				criarmarcador(locations_nada);
+				criarmarcador(locations_neutrogpon);
+				criarmarcador(locations_neutrohfc);
+				criarmarcador(locations_sobrepo);
+				
+				locations = [];
 				
 			    // Calcular a contagem dinâmica
 			    var colors = locations.map(function (location) {
