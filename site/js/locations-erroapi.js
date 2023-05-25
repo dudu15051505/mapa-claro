@@ -34,7 +34,6 @@ var locations_erroapi = [
 { name: 'Várzea Grande, PI <br> ERRO na consulta API', color: 'orange', latitude: '-6.548993', longitude: '-42.247973' },
 { name: 'Guaíra, PR <br> ERRO na consulta API', color: 'orange', latitude: '-24.085005', longitude: '-54.257327' },
 { name: 'Palmas, PR <br> ERRO na consulta API', color: 'orange', latitude: '-26.483868', longitude: '-51.988812' },
-{ name: 'Piraquara, PR <br> ERRO na consulta API', color: 'orange', latitude: '-25.442171', longitude: '-49.062411' },
 { name: 'Rio Claro, RJ <br> ERRO na consulta API', color: 'orange', latitude: '-22.720001', longitude: '-44.141874' },
 { name: 'Santa Maria, RN <br> ERRO na consulta API', color: 'orange', latitude: '-5.838022', longitude: '-35.691409' },
 { name: 'São Vicente, RN <br> ERRO na consulta API', color: 'orange', latitude: '-6.218931', longitude: '-36.682696' },
