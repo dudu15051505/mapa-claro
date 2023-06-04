@@ -1,6 +1,7 @@
 var locations_hfc = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'Mogi das Cruzes, SP <br> HFC', color: 'red', latitude: '-23.52082', longitude: '-46.18541' },
+{ name: 'Santa Branca, SP <br> HFC', color: 'red', latitude: '-23.393311', longitude: '-45.887521' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
 { name: 'Rio Branco, AC <br> HFC', color: 'red', latitude: '-9.97499', longitude: '-67.824348' },
