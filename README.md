@@ -1,5 +1,7 @@
 # Mapa cobertura fixa e tecnologias operadora Claro no Brasil.
 
+# Para visualizar o mapa https://mapa-claro.dudu-lab.xyz/
+
 A um segundo repositório BETA, onde será feito o desenvolvimento do projeto sem o risco de afetar o mapa atual, sendo ele: https://github.com/dudu15051505/mapa-claro-beta
 
 Este projeto tem como objetivo a criação de um mapa nacional de tecnologias utilizadas por cidade pela operadora CLARO BR, utilizando apenas para exibição HTML, CSS e JS.
