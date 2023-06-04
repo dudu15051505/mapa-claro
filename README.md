@@ -5,8 +5,8 @@ Este projeto tem como objetivo a criação de um mapa nacional de tecnologias ut
 Para este objetivo, fora utilizados duas API json de consulta de planos e promoções utilizadas pelo site principal da operadora, www.claro.com.br
 
 Sendo elas:
-•	https://planos.claro.com.br/cobertura/api/promotions?city=<NOME DA CIDADE>
-•	https://api.amxrest.net/viability/<CEP>/<NUMERO>
+  https://planos.claro.com.br/cobertura/api/promotions?city=NOME_DA_CIDADE
+  https://api.amxrest.net/viability/CEP/NUMERO
 
 As duas API possuem erros no retorno informado, por erro (praticamente incompetência da operadora) no cadastro das informações na sua própria base de dados.
 
