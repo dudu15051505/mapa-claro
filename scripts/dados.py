@@ -4,13 +4,15 @@ import requests
 import random
 import time
 
-# Definir o caminho para o arquivo CSV
-csv_path = "arquivo.csv"
+diretorio_trabalho = "/home/runner/work/mapa-claro-beta/mapa-claro-beta/scripts/"
+
+csv_path = diretorio_trabalho + "arquivo.csv"
 
 # Criar a pasta "dados" se ela não existir
-folder_path = "dados"
-folder_path_errp = "erro consulta"
+folder_path = diretorio_trabalho + "dados"
+folder_path_erro = diretorio_trabalho + "erro consulta"
 os.makedirs(folder_path, exist_ok=True)
+os.makedirs(folder_path_erro, exist_ok=True)
 
 # Ler o arquivo CSV e armazenar as siglas do estado e cidades em listas separadas
 states = []
@@ -68,10 +70,19 @@ for i in range(len(cities)):
     # Verificar se é hora de definir um tempo de espera aleatório
     if (i + 1) % consultas_por_intervalo == 0:
         # Definir um tempo de espera aleatório entre 5 e 10 segundos
-        delay = random.uniform(5, 15)
+        delay = random.uniform(5, 10)
         print(f"Aguardando por {delay} segundos...")
         time.sleep(delay)
 
     else:
         # Aguardar 3 segundos antes da próxima solicitação
         time.sleep(3)
+
+f = open(diretorio_trabalho + "js/data-update.js", "w")
+from datetime import date
+today = date.today()
+# dd/mm/YY
+d1 = today.strftime("%d/%m/%Y")
+data_atual = 'var data_update = "{}"'.format(d1)
+f.write(data_atual)
+f.close()

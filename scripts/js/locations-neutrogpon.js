@@ -3,6 +3,7 @@ var locations_neutrogpon = [
 { name: 'Piraquara, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.442171', longitude: '-49.062411' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
+{ name: 'Foz do Iguaçu, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.542748', longitude: '-54.582689' },
 { name: 'Guaratuba, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.881672', longitude: '-48.575223' },
 { name: 'Ibiporã, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-23.265941', longitude: '-51.052243' },
 { name: 'Paiçandu, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-23.455534', longitude: '-52.046013' },

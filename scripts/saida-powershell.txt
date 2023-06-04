@@ -1,1 +1,0 @@
-{ name: 'Cruzeiro do Sul, AC <br> Não tem serviço fixo', color: 'black', latitude: '-7.627625', longitude: '-72.675582' },
