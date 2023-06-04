@@ -474,7 +474,35 @@
 			                            }
 			                            resultado += '</p>';
 			                        }
-			                    } else {
+			                    } 
+								else if (data.data.cableNodeID === 'GPONAATC') {
+			                        if (technology.name === 'Cable' && technology.gpon === false) {
+			                            resultado += '<p> SERVIÇOS VIA REDE NEUTRA ATC:<br>';
+			                            if (technology.tv === true) {
+			                                resultado += '&#9679; TV<br>';
+			                            }
+			                            if (technology.phone === true) {
+			                                resultado += '&#9679; TELEFONE FIXO<br>';
+			                            }
+			                            if (technology.internet === true) {
+			                                resultado += '&#9679; INTERNET<br>';
+			                            }
+			                            resultado += '</p>';
+			                        } else if (technology.name === 'Satellite') {
+			                            resultado += '<p> SERVIÇOS VIA SATELLITE / MOVEL:<br>';
+			                            if (technology.tv === true) {
+			                                resultado += '&#9679; TV<br>';
+			                            }
+			                            if (technology.phone === true) {
+			                                resultado += '&#9679; TELEFONE FIXO<br>';
+			                            }
+			                            if (technology.internet === true) {
+			                                resultado += '&#9679; INTERNET<br>';
+			                            }
+			                            resultado += '</p>';
+			                        }
+			                    } 
+								else {
 			                        // Verificar se o campo Name é "Cable" e o campo gpon é false
 			                        if (technology.name === 'Cable' && technology.gpon === false) {
 			                            resultado += '<p> SERVIÇOS VIA HFC(COAXIAL):<br>';
