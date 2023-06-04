@@ -1,5 +1,7 @@
 # Mapa cobertura fixa e tecnologias operadora Claro no Brasil.
 
+A um segundo repositório BETA, onde será feito o desenvolvimento do projeto sem o risco de afetar o mapa atual, sendo ele: https://github.com/dudu15051505/mapa-claro-beta
+
 Este projeto tem como objetivo a criação de um mapa nacional de tecnologias utilizadas por cidade pela operadora CLARO BR, utilizando apenas para exibição HTML, CSS e JS.
 
 Para este objetivo, fora utilizados duas API json de consulta de planos e promoções utilizadas pelo site principal da operadora, www.claro.com.br
@@ -17,4 +19,5 @@ Um segundo script feito em powershell, que analisa cada arquivo armazenado pelo 
 
 A segunda api de consulta direta cep + número, é implementada diretamente no HTML do mapa, é utilizado um serviço de terceiros ( https://viacep.com.br/ ) para consultar o nome das ruas, pois adivinhe, erro no cadastro nos nomes das ruas na base da operadora, caso este serviço não retorne dados é utilizado os dados da base da claro, com nome do logradouro mais os dados de número, cidade e estado, é feita um pedido de geolocalização na base de dados do OpenStreetMap, e com este retorno é pinado no mapa a localização aproximada exibindo os tipos de tecnologia e serviços habilitados retornados pela api para prestação de serviço neste endereço em especifico.
 
-O projeto esta programado para atualizar automaticamente as tecnologias por cidade semanalmente, no momento não a uma forma de comparar com dados antigos armazenados.
+O projeto está programado para atualizar automaticamente as tecnologias por cidade semanalmente, no momento não a uma forma de comparar com dados antigos armazenados.
+
