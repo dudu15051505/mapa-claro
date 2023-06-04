@@ -1,5 +1,4 @@
-# mapa-claro
-Mapa cobertura fixa e tecnologias operadora Claro no Brasil.
+# Mapa cobertura fixa e tecnologias operadora Claro no Brasil.
 
 Este projeto tem como objetivo a criação de um mapa nacional de tecnologias utilizadas por cidade pela operadora CLARO BR, utilizando apenas para exibição HTML, CSS e JS.
 
