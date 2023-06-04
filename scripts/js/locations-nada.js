@@ -1661,7 +1661,6 @@ var locations_nada = [
 { name: 'Jesuânia, MG <br> Sem serviço fixo', color: 'black', latitude: '-21.988655', longitude: '-45.291122' },
 { name: 'Joaíma, MG <br> Sem serviço fixo', color: 'black', latitude: '-16.652189', longitude: '-41.022873' },
 { name: 'Joanésia, MG <br> Sem serviço fixo', color: 'black', latitude: '-19.172897', longitude: '-42.677481' },
-{ name: 'João Monlevade, MG <br> Sem serviço fixo', color: 'black', latitude: '-19.812646', longitude: '-43.173463' },
 { name: 'João Pinheiro, MG <br> Sem serviço fixo', color: 'black', latitude: '-17.739768', longitude: '-46.17154' },
 { name: 'Joaquim Felício, MG <br> Sem serviço fixo', color: 'black', latitude: '-17.758022', longitude: '-44.164274' },
 { name: 'Jordânia, MG <br> Sem serviço fixo', color: 'black', latitude: '-15.900924', longitude: '-40.184051' },
