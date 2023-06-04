@@ -4,7 +4,7 @@ import requests
 import random
 import time
 
-diretorio_trabalho = "/home/runner/work/mapa-claro-beta/mapa-claro-beta/scripts/"
+diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts/"
 
 csv_path = diretorio_trabalho + "arquivo.csv"
 

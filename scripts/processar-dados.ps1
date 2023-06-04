@@ -1,5 +1,4 @@
-#$diretorio_trabalho = "/home/runner/work/mapa-claro-beta/mapa-claro-beta/scripts"
-$diretorio_trabalho = "F:\\Users\\Gustavo Ramos\\OneDrive\\Documentos2\\GitHub\\claro-mapa-privado\\scripts"
+$diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts"
 $diretorio_arquivos = "$diretorio_trabalho/dados"
 $diretorio_arquivos_manual = "$diretorio_trabalho/dados manuais"
 $diretorio_arquivos_erro = "$diretorio_trabalho/erro consulta"
