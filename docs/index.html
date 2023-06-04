@@ -545,7 +545,9 @@
 			                        }
 			                    }
 			                    // Geocodificação do endereço fornecido
-			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil');
+								// var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil');
+
+			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil');
 								//Debug para ver url gerada no html
 								//$('#resultado2').html(geocodingUrl);
 								fetch(geocodingUrl).then(function (response) {
