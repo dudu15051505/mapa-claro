@@ -4,7 +4,7 @@
 
 A um segundo repositório BETA, onde será feito o desenvolvimento do projeto sem o risco de afetar o mapa atual, sendo ele: https://github.com/dudu15051505/mapa-claro-beta
 
-Este projeto tem como objetivo a criação de um mapa nacional de tecnologias utilizadas por cidade pela operadora CLARO BR, utilizando apenas para exibição HTML, CSS e JS.
+Este projeto tem como objetivo a criação de um mapa nacional de tecnologias utilizadas por cidade pela operadora CLARO BR, utilizando apenas para HTML, CSS e JS para manter combatibilidade com host Github Pages.
 
 Para este objetivo, fora utilizados duas API json de consulta de planos e promoções utilizadas pelo site principal da operadora, www.claro.com.br
 
