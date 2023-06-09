@@ -11,8 +11,11 @@ csv_path = diretorio_trabalho + "arquivo.csv"
 # Criar a pasta "dados" se ela não existir
 folder_path = diretorio_trabalho + "dados"
 folder_path_erro = diretorio_trabalho + "erro consulta"
+shutil.rmtree(folder_path, ignore_errors=True)
+shutil.rmtree(folder_path_erro, ignore_errors=True)
 os.makedirs(folder_path, exist_ok=True)
 os.makedirs(folder_path_erro, exist_ok=True)
+
 
 # Ler o arquivo CSV e armazenar as siglas do estado e cidades em listas separadas
 states = []
