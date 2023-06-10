@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 	<head>
 		<title>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</title>
 		<meta charset="utf-8">
@@ -76,11 +76,16 @@
 				margin-right: auto;
 				width: 50%;
 			}
+			
+			#legenda {
+				left: 10px;
+				bottom: 10px;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="top-bar">
-			<div id="info">
+			<div id="info-esquerda">
 				<h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
 				<span>As marcações exibidas, são retornadas de consulta de API, a exemplo "HFC Rede neutra" é retornada, mas nunca ninguém viu essa rede.</span><br>
 				<span>Faça uma consulta por CEP e Número, para um resultado de tecnologia mais preciso.</span>
@@ -96,7 +101,7 @@
 					</h5>
 				</div>
 			</div>
-			<div id="info">
+			<div id="info-direita">
 				<p>Informações coletadas na data <span id="data-dados">00/00/0000</span>, a partir do site da CLARO</p>
 				<p><b>Este site não é afiliado à operadora CLARO</b></p>
 				<p>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a>
@@ -107,7 +112,7 @@
 			</div>
 		</div>
 		<div id="map">
-			<div id="legenda" class="leaflet-bottom leaflet-left" style="left: 10px; bottom: 10px;">
+			<div id="legenda" class="leaflet-bottom leaflet-left">
 				<table class="tg">
 					<thead>
 						<tr>
@@ -121,7 +126,7 @@
 							<td class="tg-0lax">GPON</td>
 							<td class="tg-0lax">
 								<span class="center">
-									<img height="20px" width="15px" src="./img/marker-icon-green.png" />
+									<img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>
 								</span>
 							</td>
 							<td class="tg-0lax" id="somatorio-gpon">
@@ -132,7 +137,7 @@
 							<td class="tg-0lax">HFC</td>
 							<td class="tg-0lax">
 								<span class="center">
-									<img height="20px" width="15px" src="./img/marker-icon-red.png" />
+									<img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>
 								</span>
 							</td>
 							<td class="tg-0lax" id="somatorio-hfc">
@@ -143,7 +148,7 @@
 							<td class="tg-0lax">Sobreposição HFC e GPON</td>
 							<td class="tg-0lax">
 								<span class="center">
-									<img height="20px" width="15px" src="./img/marker-icon-yellow.png" />
+									<img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>
 								</span>
 							</td>
 							<td class="tg-0lax" id="somatorio-sobre">
@@ -154,7 +159,7 @@
 							<td class="tg-0lax">GPON Rede neutra</td>
 							<td class="tg-0lax">
 								<span class="center">
-									<img height="20px" width="15px" src="./img/marker-icon-grey.png" />
+									<img height="20" width="15" src="./img/marker-icon-grey.png" alt="Marcador GPON Rede Neutra"/>
 								</span>
 							</td>
 							<td class="tg-0lax" id="somatorio-neutragpon">
@@ -165,7 +170,7 @@
 							<td class="tg-0lax">HFC Rede neutra</td>
 							<td class="tg-0lax">
 								<span class="center">
-									<img height="20px" width="15px" src="./img/marker-icon-violet.png" />
+									<img height="20" width="15" src="./img/marker-icon-violet.png" alt="Marcador HFC Rede Neutra"/>
 								</span>
 							</td>
 							<td class="tg-0lax" id="somatorio-neutrahfc">
@@ -176,7 +181,7 @@
 							<td class="tg-0lax">Sem serviços FIXO</td>
 							<td class="tg-0lax">
 								<span class="center">
-									<img height="20px" width="15px" src="./img/marker-icon-black.png" />
+									<img height="20" width="15" src="./img/marker-icon-black.png" alt="Marcador Sem serviço FIXO"/>
 								</span>
 							</td>
 							<td class="tg-0lax" id="somatorio-nada">
@@ -187,7 +192,7 @@
 							<td class="tg-0lax">ERRO Consulta API</td>
 							<td class="tg-0lax">
 								<span class="center">
-									<img height="20px" width="15px" src="./img/marker-icon-orange.png" />
+									<img height="20" width="15" src="./img/marker-icon-orange.png" alt="Marcador ERRO Consulta API"/>
 								</span>
 							</td>
 							<td class="tg-0lax" id="somatorio-erroapi">
@@ -357,13 +362,13 @@
 				
 				// Cria menu layers com cada tecnologia e seus marcadores previamente carregados
 				var controle_tecnologias = {
-					'GPON <img height="20px" width="15px" src="./img/marker-icon-green.png" />' : GPON,
-					'HFC <img height="20px" width="15px" src="./img/marker-icon-red.png" />' : HFC,
-					'Sobreposição <img height="20px" width="15px" src="./img/marker-icon-yellow.png" />' : SOBREPO,
-					'GPON Rede neutra <img height="20px" width="15px" src="./img/marker-icon-grey.png" />' : GPONNEUTRO,
-					'HFC Rede neutra <img height="20px" width="15px" src="./img/marker-icon-violet.png" />' : HFCNEUTRO,
-					'Sem serviço FIXO <img height="20px" width="15px" src="./img/marker-icon-black.png" />' : SEMNADA,
-					'ERRO Consulta API <img height="20px" width="15px" src="./img/marker-icon-orange.png" />' : ERROAPI
+					'GPON <img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>' : GPON,
+					'HFC <img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>' : HFC,
+					'Sobreposição <img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>' : SOBREPO,
+					'GPON Rede neutra <img height="20" width="15" src="./img/marker-icon-grey.png" alt="Marcador GPON Rede Neutra"/>' : GPONNEUTRO,
+					'HFC Rede neutra <img height="20" width="15" src="./img/marker-icon-violet.png" alt="Marcador HFC Rede Neutra"/>' : HFCNEUTRO,
+					'Sem serviço FIXO <img height="20" width="15" src="./img/marker-icon-black.png" alt="Marcador Sem serviço FIXO"/>' : SEMNADA,
+					'ERRO Consulta API <img height="20" width="15" src="./img/marker-icon-orange.png" alt="Marcador ERRO Consulta API"/>' : ERROAPI
 				};
 				
 				// Inicia a layers dos varios tipos mapa e marcadores de tecnologia 
@@ -407,194 +412,206 @@
 			            type: 'GET',
 			            dataType: 'json',
 			            success: function (data) {
-			                //Realiza consulta endereço em outra api, o resultado retornado da api claro possue varios erros no cadastro como nome do logradouro
-							//Caso api não retorne dados, fall back para dados api claro
-			                var logradouro = '';
-							var bairro = '';
-							var cidade = '';
-							var uf = '';
-			                $.ajax({
-			                    url: 'https://viacep.com.br/ws/' + cep + '/json/',
-			                    type: 'GET',
-			                    dataType: 'json',
-			                    async: false,
-			                    success: function (data_viacep) {
-			                        if (data_viacep.logradouro != null) {
-			                            logradouro = String(data_viacep.logradouro);
-									}
-			                        else {
-			                            logradouro = data.data.logradouro;
-									}
-									
-									if (data_viacep.bairro != null) {
-			                            bairro = String(data_viacep.bairro);
-									}
-			                        else {
-			                            bairro = data.data.bairro;
-									}
-									
-									if (data_viacep.localidade != null) {
-			                            cidade = String(data_viacep.localidade);
-									}
-			                        else {
-			                            cidade = data.data.cidade;
-									}
-									
-									if (data_viacep.uf != null) {
-			                            uf = String(data_viacep.uf);
-									}
-			                        else {
-			                            uf = data.data.uf;
-									}
-			                    },
-			                    error: function () {
-			                        logradouro = data.data.logradouro;
-									bairro = data.data.bairro;
-									cidade = data.data.cidade;
-									uf = data.data.uf;
-									numero = data.data.number;
-			                    }
-			                });
-			                // Exibir campos Logradouro, Number e Cidade em uma linha, mais dados consulta tecnologia bia api cep
-			                var resultado = '<span> Localização aproximada <br> ';
-			                resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
-			                resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil</p>';
 							
-							for (var i = 0; i < data.data.technologies.length; i++) {
-			                    var technology = data.data.technologies[i];
-								// Verifica se a rede utilizada é da VTAL
-								if (data.data.cableNodeID === 'GPONAVTAL') {
-			                        if (technology.name === 'Cable' && technology.gpon === false) {
-										if(technology.tv != false || technology.phone != false || technology.internet != false) {
-											resultado += '<p> SERVIÇOS VIA REDE NEUTRA VTAL:<br>';
-											if (technology.tv === true) {
-												resultado += '&#9679; TV<br>';
-											}
-											if (technology.phone === true) {
-												resultado += '&#9679; TELEFONE FIXO<br>';
-											}
-											if (technology.internet === true) {
-												resultado += '&#9679; INTERNET<br>';
-											}
-											resultado += '</p>';
-										}
-			                        }
-			                    } 
-								// Verifica se a rede utilizada é da ATC
-								else if (data.data.cableNodeID === 'GPONAATC') {
-			                        if (technology.name === 'Cable' && technology.gpon === false) {
-										if(technology.tv != false || technology.phone != false || technology.internet != false) {
-											resultado += '<p> SERVIÇOS VIA REDE NEUTRA ATC:<br>';
-											if (technology.tv === true) {
-												resultado += '&#9679; TV<br>';
-											}
-											if (technology.phone === true) {
-												resultado += '&#9679; TELEFONE FIXO<br>';
-											}
-											if (technology.internet === true) {
-												resultado += '&#9679; INTERNET<br>';
-											}
-											resultado += '</p>';
-										}
-			                        }
-			                    } 
-								// A rede é propria
-								else {
-			                        // Verificar se é rede HFC
-			                        if (technology.name === 'Cable' && technology.gpon === false) {
-										if(technology.tv != false || technology.phone != false || technology.internet != false) {
-											resultado += '<p> SERVIÇOS VIA HFC(COAXIAL):<br>';
-											if (technology.tv === true) {
-												resultado += '&#9679; TV<br>';
-											}
-											if (technology.phone === true) {
-												resultado += '&#9679; TELEFONE FIXO<br>';
-											}
-											if (technology.internet === true) {
-												resultado += '&#9679; INTERNET<br>';
-											}
-											resultado += '</p>';
-										}
-			                        }
-			                        // Verificar se é rede GPON
-			                        else if (technology.name === 'Cable' && technology.gpon === true) {
-										if(technology.tv != false || technology.phone != false || technology.internet != false) {
-											resultado += '<p> SERVIÇOS VIA GPON(FIBRA):<br>';
-											if (technology.tv === true) {
-												resultado += '&#9679; TV<br>';
-											}
-											if (technology.phone === true) {
-												resultado += '&#9679; TELEFONE FIXO<br>';
-											}
-											if (technology.internet === true) {
-												resultado += '&#9679; INTERNET<br>';
-											}
-											resultado += '</p>';
-										}
-			                        } 
-									// Verificar se é rede Satellite
-									else if (technology.name === 'Satellite') {
-			                            resultado += '<p> SERVIÇOS VIA SATELLITE / MOVEL:<br>';
-			                            if (technology.tv === true) {
-			                                resultado += '&#9679; TV<br>';
-			                            }
-			                            if (technology.phone === true) {
-			                                resultado += '&#9679; TELEFONE FIXO<br>';
-			                            }
-			                            if (technology.internet === true) {
-			                                resultado += '&#9679; INTERNET<br>';
-			                            }
-			                            resultado += '</p>';
-			                        }
-									// Deu ruim, solicita usuario reportar no GITHUB
-									else {
-										resultado += '<span> Ocorreu algum erro, se possivel reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/">GITHUB<img src="./img/google_maps_icon.png" /></a> informando o CEP e Numero pesquisado para futura verificação.</span>';
-									}									
-			                    }
-			                    // Gera URL para pegar geocodificação do endereço fornecido
-								// var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil');
-			                    var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ' ' + numero + ', ' + cidade + ', ' + uf + ', Brasil');
-
-								//Debug para ver url gerada
-								console.info('URL geolocation: ' + geocodingUrl);
+							if(data.statusCode == 200) {
 								
-								// Consulta URL e gera marcador no mapa
-								fetch(geocodingUrl).then(function (response) {
-			                        return response.json();
-			                    }).then(function (data) {
-									// Caso tenha algum url
-			                        if (data.length > 0) {
-			                            var firstResult = data[0];
-			                            var latitude = parseFloat(firstResult.lat);
-			                            var longitude = parseFloat(firstResult.lon);
-			                            var customIcon = L.icon({
-			                                iconUrl: './img/marker-icon-blue.png',
-			                                iconSize: [25, 41],
-			                                iconAnchor: [12, 41],
-			                                popupAnchor: [0, -41]
-			                            });
-										// Cria marcador e adiciona no mapa
-			                            var marker = L.marker([latitude, longitude], {
-			                                icon: customIcon
-			                            }).addTo(map);
-										// Abre popup do marcador
-			                            marker.bindPopup(resultado).openPopup();
-			                            // Ajustar o zoom e a posição do mapa para exibir o marcador
-			                            map.panTo(new L.LatLng(latitude, longitude));
-			                            map.setView([latitude, longitude], 16);				
-			                        }
-									// Caso não retorno nada na url
+								//Realiza consulta endereço em outra api, o resultado retornado da api claro possue varios erros no cadastro como nome do logradouro
+								//Caso api não retorne dados, fall back para dados api claro
+								var logradouro = '';
+								var bairro = '';
+								var cidade = '';
+								var uf = '';
+								$.ajax({
+									url: 'https://viacep.com.br/ws/' + cep + '/json/',
+									type: 'GET',
+									dataType: 'json',
+									async: false,
+									success: function (data_viacep) {
+										if (data_viacep.logradouro != null) {
+											logradouro = String(data_viacep.logradouro);
+										}
+										else {
+											logradouro = data.data.logradouro;
+										}
+										
+										if (data_viacep.bairro != null) {
+											bairro = String(data_viacep.bairro);
+										}
+										else {
+											bairro = data.data.bairro;
+										}
+										
+										if (data_viacep.localidade != null) {
+											cidade = String(data_viacep.localidade);
+										}
+										else {
+											cidade = data.data.cidade;
+										}
+										
+										if (data_viacep.uf != null) {
+											uf = String(data_viacep.uf);
+										}
+										else {
+											uf = data.data.uf;
+										}
+									},
+									error: function () {
+										logradouro = data.data.logradouro;
+										bairro = data.data.bairro;
+										cidade = data.data.cidade;
+										uf = data.data.uf;
+										numero = data.data.number;
+									}
+								});
+								// Exibir campos Logradouro, Number e Cidade em uma linha, mais dados consulta tecnologia bia api cep
+								var resultado = '<span> Localização aproximada <br> ';
+								resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
+								resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil</p>';
+								
+								for (var i = 0; i < data.data.technologies.length; i++) {
+									var technology = data.data.technologies[i];
+									// Verifica se a rede utilizada é da VTAL
+									if (data.data.cableNodeID === 'GPONAVTAL') {
+										if (technology.name === 'Cable' && technology.gpon === false) {
+											if(technology.tv != false || technology.phone != false || technology.internet != false) {
+												resultado += '<p> SERVIÇOS VIA REDE NEUTRA VTAL:<br>';
+												if (technology.tv === true) {
+													resultado += '&#9679; TV<br>';
+												}
+												if (technology.phone === true) {
+													resultado += '&#9679; TELEFONE FIXO<br>';
+												}
+												if (technology.internet === true) {
+													resultado += '&#9679; INTERNET<br>';
+												}
+												resultado += '</p>';
+											}
+										}
+									} 
+									// Verifica se a rede utilizada é da ATC
+									else if (data.data.cableNodeID === 'GPONAATC') {
+										if (technology.name === 'Cable' && technology.gpon === false) {
+											if(technology.tv != false || technology.phone != false || technology.internet != false) {
+												resultado += '<p> SERVIÇOS VIA REDE NEUTRA ATC:<br>';
+												if (technology.tv === true) {
+													resultado += '&#9679; TV<br>';
+												}
+												if (technology.phone === true) {
+													resultado += '&#9679; TELEFONE FIXO<br>';
+												}
+												if (technology.internet === true) {
+													resultado += '&#9679; INTERNET<br>';
+												}
+												resultado += '</p>';
+											}
+										}
+									} 
+									// A rede é propria
 									else {
-			                            console.info('Endereço não encontrado.');
-										alert('Endereço não encontrado.');
-			                        }
-			                    }).catch(function (error) {
-									// Caso falhe consulta a url por algum erro de conexão/servidor
-			                        console.info('Erro ao processar a solicitação de geocodificação: ', error);
-									alert('Erro ao processar a solicitação de geocodificação.');
-			                    });
-			                }
-			            }
+										// Verificar se é rede HFC
+										if (technology.name === 'Cable' && technology.gpon === false) {
+											if(technology.tv != false || technology.phone != false || technology.internet != false) {
+												resultado += '<p> SERVIÇOS VIA HFC(COAXIAL):<br>';
+												if (technology.tv === true) {
+													resultado += '&#9679; TV<br>';
+												}
+												if (technology.phone === true) {
+													resultado += '&#9679; TELEFONE FIXO<br>';
+												}
+												if (technology.internet === true) {
+													resultado += '&#9679; INTERNET<br>';
+												}
+												resultado += '</p>';
+											}
+										}
+										// Verificar se é rede GPON
+										else if (technology.name === 'Cable' && technology.gpon === true) {
+											if(technology.tv != false || technology.phone != false || technology.internet != false) {
+												resultado += '<p> SERVIÇOS VIA GPON(FIBRA):<br>';
+												if (technology.tv === true) {
+													resultado += '&#9679; TV<br>';
+												}
+												if (technology.phone === true) {
+													resultado += '&#9679; TELEFONE FIXO<br>';
+												}
+												if (technology.internet === true) {
+													resultado += '&#9679; INTERNET<br>';
+												}
+												resultado += '</p>';
+											}
+										} 
+										// Verificar se é rede Satellite
+										else if (technology.name === 'Satellite') {
+											resultado += '<p> SERVIÇOS VIA SATELLITE / MOVEL:<br>';
+											if (technology.tv === true) {
+												resultado += '&#9679; TV<br>';
+											}
+											if (technology.phone === true) {
+												resultado += '&#9679; TELEFONE FIXO<br>';
+											}
+											if (technology.internet === true) {
+												resultado += '&#9679; INTERNET<br>';
+											}
+											resultado += '</p>';
+										}
+										// Deu ruim, solicita usuario reportar no GITHUB
+										else {
+											resultado += '<span> Ocorreu algum erro, se possivel reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/">GITHUB<img src="./img/google_maps_icon.png" /></a> informando o CEP e Numero pesquisado para futura verificação.</span>';
+										}									
+									}
+									// Gera URL para pegar geocodificação do endereço fornecido
+									// var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil');
+									var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ' ' + numero + ', ' + cidade + ', ' + uf + ', Brasil');
+
+									//Debug para ver url gerada
+									console.info('URL geolocation: ' + geocodingUrl);
+									
+									// Consulta URL e gera marcador no mapa
+									fetch(geocodingUrl).then(function (response) {
+										return response.json();
+									}).then(function (data) {
+										// Caso tenha algum url
+										if (data.length > 0) {
+											var firstResult = data[0];
+											var latitude = parseFloat(firstResult.lat);
+											var longitude = parseFloat(firstResult.lon);
+											var customIcon = L.icon({
+												iconUrl: './img/marker-icon-blue.png',
+												iconSize: [25, 41],
+												iconAnchor: [12, 41],
+												popupAnchor: [0, -41]
+											});
+											// Cria marcador e adiciona no mapa
+											var marker = L.marker([latitude, longitude], {
+												icon: customIcon
+											}).addTo(map);
+											// Abre popup do marcador
+											marker.bindPopup(resultado).openPopup();
+											// Ajustar o zoom e a posição do mapa para exibir o marcador
+											map.panTo(new L.LatLng(latitude, longitude));
+											map.setView([latitude, longitude], 16);				
+										}
+										// Caso não retorno nada na url
+										else {
+											console.warn('Endereço não encontrado.');
+											alert('Endereço não encontrado.');
+										}
+									}).catch(function (error) {
+										// Caso falhe consulta a url por algum erro de conexão/servidor
+										console.error('Erro ao processar a solicitação de geocodificação: ', error);
+										alert('Erro ao processar a solicitação de geocodificação.');
+									});
+								}
+							}
+							else {
+								console.error('Resultado não esperado, codigo: Erro: ' + JSON.stringify(data, null, 9));
+								alert('Resultado não esperado no retorno da API.');
+							}
+			            },
+						error: function (data) {
+							console.error('Resultado não esperado no retorno da API, Erro: \n' + JSON.stringify(data, null, 9));
+							alert('Resultado não esperado no retorno da API.');
+						}
 			        });
 			    }
 			    // Lidar com o envio do formulário
