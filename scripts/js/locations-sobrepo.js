@@ -100,7 +100,6 @@ var locations_sobrepo = [
 { name: 'Jundiaí, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.185218', longitude: '-46.897358' },
 { name: 'Limeira, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-22.56605', longitude: '-47.396987' },
 { name: 'Marília, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-22.217108', longitude: '-49.95006' },
-{ name: 'Mogi Das Cruzes, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Osasco, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.53239', longitude: '-46.791555' },
 { name: 'Paulínia, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-22.754178', longitude: '-47.148776' },
 { name: 'Pindamonhangaba, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-22.92463', longitude: '-45.461264' },

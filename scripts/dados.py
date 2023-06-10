@@ -3,6 +3,7 @@ import os
 import requests
 import random
 import time
+import shutil
 
 diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts/"
 
@@ -15,7 +16,6 @@ shutil.rmtree(folder_path, ignore_errors=True)
 shutil.rmtree(folder_path_erro, ignore_errors=True)
 os.makedirs(folder_path, exist_ok=True)
 os.makedirs(folder_path_erro, exist_ok=True)
-
 
 # Ler o arquivo CSV e armazenar as siglas do estado e cidades em listas separadas
 states = []

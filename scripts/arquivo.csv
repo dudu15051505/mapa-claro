@@ -1,4 +1,4 @@
-﻿RO,Alta Floresta D´oeste
+﻿RO,Alta Floresta D'oeste
 RO,Ariquemes
 RO,Cabixi
 RO,Cacoal
@@ -6,23 +6,22 @@ RO,Cerejeiras
 RO,Colorado do Oeste
 RO,Corumbiara
 RO,Costa Marques
-RO,Espigão D´oeste
+RO,Espigão D'oeste
 RO,Guajará-mirim
 RO,Jaru
-RO,Ji-paraná
-RO,Machadinho D´oeste
-RO,Nova Brasilândia D´oeste
+RO,Machadinho D'oeste
+RO,Nova Brasilândia D'oeste
 RO,Ouro Preto do Oeste
 RO,Pimenta Bueno
 RO,Porto Velho
 RO,Presidente Médici
 RO,Rio Crespo
 RO,Rolim de Moura
-RO,Santa Luzia D´oeste
+RO,Santa Luzia D'oeste
 RO,Vilhena
 RO,São Miguel do Guaporé
 RO,Nova Mamoré
-RO,Alvorada D´oeste
+RO,Alvorada D'oeste
 RO,Alto Alegre Dos Parecis
 RO,Alto Paraíso
 RO,Buritis
@@ -42,7 +41,7 @@ RO,Nova União
 RO,Parecis
 RO,Pimenteiras do Oeste
 RO,Primavera de Rondônia
-RO,São Felipe D´oeste
+RO,São Felipe D'oeste
 RO,São Francisco do Guaporé
 RO,Seringueiras
 RO,Teixeirópolis
@@ -239,7 +238,7 @@ PA,Pacajá
 PA,Palestina do Pará
 PA,Paragominas
 PA,Parauapebas
-PA,Pau D´arco
+PA,Pau D'arco
 PA,Peixe-boi
 PA,Piçarra
 PA,Placas
@@ -320,7 +319,6 @@ TO,Aparecida do Rio Negro
 TO,Aragominas
 TO,Araguacema
 TO,Araguaçu
-TO,Araguaína
 TO,Araguanã
 TO,Araguatins
 TO,Arapoema
@@ -366,7 +364,6 @@ TO,Fortaleza do Tabocão
 TO,Goianorte
 TO,Goiatins
 TO,Guaraí
-TO,Gurupi
 TO,Ipueiras
 TO,Itacajá
 TO,Itaguatins
@@ -401,7 +398,7 @@ TO,Palmeirante
 TO,Palmeirópolis
 TO,Paraíso do Tocantins
 TO,Paranã
-TO,Pau D´arco
+TO,Pau D'arco
 TO,Pedro Afonso
 TO,Peixe
 TO,Pequizeiro
@@ -575,7 +572,7 @@ MA,Nina Rodrigues
 MA,Nova Colinas
 MA,Nova Iorque
 MA,Nova Olinda do Maranhão
-MA,Olho D´água Das Cunhãs
+MA,Olho D'água Das Cunhãs
 MA,Olinda Nova do Maranhão
 MA,Paço do Lumiar
 MA,Palmeirândia
@@ -683,7 +680,7 @@ PI,Arraial
 PI,Assunção do Piauí
 PI,Avelino Lopes
 PI,Baixa Grande do Ribeiro
-PI,Barra D´alcântara
+PI,Barra D'alcântara
 PI,Barras
 PI,Barreiras do Piauí
 PI,Barro Duro
@@ -807,7 +804,7 @@ PI,Nossa Senhora Dos Remédios
 PI,Novo Oriente do Piauí
 PI,Novo Santo Antônio
 PI,Oeiras
-PI,Olho D´água do Piauí
+PI,Olho D'água do Piauí
 PI,Padre Marcos
 PI,Paes Landim
 PI,Pajeú do Piauí
@@ -818,7 +815,7 @@ PI,Parnaguá
 PI,Parnaíba
 PI,Passagem Franca do Piauí
 PI,Patos do Piauí
-PI,Pau D´arco do Piauí
+PI,Pau D'arco do Piauí
 PI,Paulistana
 PI,Pavussu
 PI,Pedro ii
@@ -1141,7 +1138,7 @@ RN,João Dias
 RN,José da Penha
 RN,Jucurutu
 RN,Jundiá
-RN,Lagoa D´anta
+RN,Lagoa D'anta
 RN,Lagoa de Pedras
 RN,Lagoa de Velhos
 RN,Lagoa Nova
@@ -1164,7 +1161,7 @@ RN,Mossoró
 RN,Natal
 RN,Nísia Floresta
 RN,Nova Cruz
-RN,Olho-d´água do Borges
+RN,Olho-d'água do Borges
 RN,Ouro Branco
 RN,Paraná
 RN,Paraú
@@ -1348,7 +1345,7 @@ PB,Lastro
 PB,Livramento
 PB,Logradouro
 PB,Lucena
-PB,Mãe D´água
+PB,Mãe D'água
 PB,Malta
 PB,Mamanguape
 PB,Manaíra
@@ -1370,7 +1367,7 @@ PB,Nazarezinho
 PB,Nova Floresta
 PB,Nova Olinda
 PB,Nova Palmeira
-PB,Olho D´água
+PB,Olho D'água
 PB,Olivedos
 PB,Ouro Velho
 PB,Parari
@@ -1650,7 +1647,6 @@ PE,Vitória de Santo Antão
 PE,Xexéu
 AL,Água Branca
 AL,Anadia
-AL,Arapiraca
 AL,Atalaia
 AL,Barra de Santo Antônio
 AL,Barra de São Miguel
@@ -1708,9 +1704,9 @@ AL,Minador do Negrão
 AL,Monteirópolis
 AL,Murici
 AL,Novo Lino
-AL,Olho D´água Das Flores
-AL,Olho D´água do Casado
-AL,Olho D´água Grande
+AL,Olho D'água Das Flores
+AL,Olho D'água do Casado
+AL,Olho D'água Grande
 AL,Olivença
 AL,Ouro Branco
 AL,Palestina
@@ -1744,7 +1740,7 @@ AL,São Miguel Dos Milagres
 AL,São Sebastião
 AL,Satuba
 AL,Senador Rui Palmeira
-AL,Tanque D´arca
+AL,Tanque D'arca
 AL,Taquarana
 AL,Teotônio Vilela
 AL,Traipu
@@ -1779,7 +1775,7 @@ SE,Indiaroba
 SE,Itabaiana
 SE,Itabaianinha
 SE,Itabi
-SE,Itaporanga D´ajuda
+SE,Itaporanga D'ajuda
 SE,Japaratuba
 SE,Japoatã
 SE,Lagarto
@@ -1944,7 +1940,7 @@ BA,Cristópolis
 BA,Cruz Das Almas
 BA,Curaçá
 BA,Dário Meira
-BA,Dias D´ávila
+BA,Dias D'ávila
 BA,Dom Basílio
 BA,Dom Macedo Costa
 BA,Elísio Medrado
@@ -2285,7 +2281,6 @@ MG,Araponga
 MG,Araporã
 MG,Arapuá
 MG,Araújos
-MG,Araxá
 MG,Arceburgo
 MG,Arcos
 MG,Areado
@@ -2609,7 +2604,6 @@ MG,Itacambira
 MG,Itacarambi
 MG,Itaguara
 MG,Itaipé
-MG,Itajubá
 MG,Itamarandiba
 MG,Itamarati de Minas
 MG,Itambacuri
@@ -2770,7 +2764,7 @@ MG,Novo Cruzeiro
 MG,Novo Oriente de Minas
 MG,Novorizonte
 MG,Olaria
-MG,Olhos-d´água
+MG,Olhos-d'água
 MG,Olímpio Noronha
 MG,Oliveira
 MG,Oliveira Fortes
@@ -2831,7 +2825,7 @@ MG,Piedade de Ponte Nova
 MG,Piedade do Rio Grande
 MG,Piedade Dos Gerais
 MG,Pimenta
-MG,Pingo-d´água
+MG,Pingo-d'água
 MG,Pintópolis
 MG,Piracema
 MG,Pirajuba
@@ -3223,7 +3217,6 @@ RJ,Niterói
 RJ,Nova Friburgo
 RJ,Nova Iguaçu
 RJ,Paracambi
-RJ,Paraíba do Sul
 RJ,Parati
 RJ,Paty do Alferes
 RJ,Petrópolis
@@ -3244,7 +3237,6 @@ RJ,Santa Maria Madalena
 RJ,Santo Antônio de Pádua
 RJ,São Francisco de Itabapoana
 RJ,São Fidélis
-RJ,São Gonçalo
 RJ,São João da Barra
 RJ,São João de Meriti
 RJ,São José de Ubá
@@ -3271,7 +3263,6 @@ SP,Águas da Prata
 SP,Águas de Lindóia
 SP,Águas de Santa Bárbara
 SP,Águas de São Pedro
-SP,Agudos
 SP,Alambari
 SP,Alfredo Marcondes
 SP,Altair
@@ -3292,7 +3283,7 @@ SP,Angatuba
 SP,Anhembi
 SP,Anhumas
 SP,Aparecida
-SP,Aparecida D´oeste
+SP,Aparecida D'oeste
 SP,Apiaí
 SP,Araçariguama
 SP,Araçatuba
@@ -3387,7 +3378,6 @@ SP,Capivari
 SP,Caraguatatuba
 SP,Carapicuíba
 SP,Cardoso
-SP,Casa Branca
 SP,Cássia Dos Coqueiros
 SP,Castilho
 SP,Catanduva
@@ -3437,7 +3427,7 @@ SP,Emilianópolis
 SP,Engenheiro Coelho
 SP,Espírito Santo do Pinhal
 SP,Espírito Santo do Turvo
-SP,Estrela D´oeste
+SP,Estrela D'oeste
 SP,Estrela do Norte
 SP,Euclides da Cunha Paulista
 SP,Fartura
@@ -3468,7 +3458,7 @@ SP,Guapiara
 SP,Guará
 SP,Guaraçaí
 SP,Guaraci
-SP,Guarani D´oeste
+SP,Guarani D'oeste
 SP,Guarantã
 SP,Guararapes
 SP,Guararema
@@ -3485,7 +3475,6 @@ SP,Hortolândia
 SP,Iacanga
 SP,Iacri
 SP,Iaras
-SP,Ibaté
 SP,Ibirá
 SP,Ibirarema
 SP,Ibitinga
@@ -3544,7 +3533,6 @@ SP,Jaboticabal
 SP,Jacareí
 SP,Jaci
 SP,Jacupiranga
-SP,Jaguariúna
 SP,Jales
 SP,Jambeiro
 SP,Jandira
@@ -3659,7 +3647,7 @@ SP,Ouro Verde
 SP,Pacaembu
 SP,Palestina
 SP,Palmares Paulista
-SP,Palmeira D´oeste
+SP,Palmeira D'oeste
 SP,Palmital
 SP,Panorama
 SP,Paraguaçu Paulista
@@ -3688,7 +3676,6 @@ SP,Pereira Barreto
 SP,Pereiras
 SP,Peruíbe
 SP,Piacatu
-SP,Piedade
 SP,Pilar do Sul
 SP,Pindamonhangaba
 SP,Pindorama
@@ -3776,11 +3763,10 @@ SP,Salto Grande
 SP,Sandovalina
 SP,Santa Adélia
 SP,Santa Albertina
-SP,Santa Bárbara D´oeste
-SP,Santa Clara D´oeste
+SP,Santa Bárbara D'oeste
+SP,Santa Clara D'oeste
 SP,Santa Cruz da Conceição
 SP,Santa Cruz da Esperança
-SP,Santa Cruz Das Palmeiras
 SP,Santa Cruz do Rio Pardo
 SP,Santa Ernestina
 SP,Santa fé do Sul
@@ -3791,7 +3777,7 @@ SP,Santa Maria da Serra
 SP,Santa Mercedes
 SP,Santana da Ponte Pensa
 SP,Santana de Parnaíba
-SP,Santa Rita D´oeste
+SP,Santa Rita D'oeste
 SP,Santa Rita do Passa Quatro
 SP,Santa Rosa de Viterbo
 SP,Santa Salete
@@ -3813,7 +3799,7 @@ SP,São Francisco
 SP,São João da Boa Vista
 SP,São João Das Duas Pontes
 SP,São João de Iracema
-SP,São João do Pau D´alho
+SP,São João do Pau D'alho
 SP,São Joaquim da Barra
 SP,São José da Bela Vista
 SP,São José do Barreiro
@@ -3855,7 +3841,6 @@ SP,Taciba
 SP,Taguaí
 SP,Taiaçu
 SP,Taiúva
-SP,Tambaú
 SP,Tanabi
 SP,Tapiraí
 SP,Tapiratiba
@@ -4004,7 +3989,7 @@ PR,Curitiba
 PR,Curiúva
 PR,Diamante do Norte
 PR,Diamante do Sul
-PR,Diamante D´oeste
+PR,Diamante D'oeste
 PR,Dois Vizinhos
 PR,Douradina
 PR,Doutor Camargo
@@ -4065,7 +4050,7 @@ PR,Itaguajé
 PR,Itaipulândia
 PR,Itambaracá
 PR,Itambé
-PR,Itapejara D´oeste
+PR,Itapejara D'oeste
 PR,Itaperuçu
 PR,Itaúna do Sul
 PR,Ivaí
@@ -4169,7 +4154,7 @@ PR,Paulo Frontin
 PR,Peabiru
 PR,Perobal
 PR,Pérola
-PR,Pérola D´oeste
+PR,Pérola D'oeste
 PR,Piên
 PR,Pinhais
 PR,Pinhalão
@@ -4202,7 +4187,7 @@ PR,Quinta do Sol
 PR,Quitandinha
 PR,Ramilândia
 PR,Rancho Alegre
-PR,Rancho Alegre D´oeste
+PR,Rancho Alegre D'oeste
 PR,Realeza
 PR,Rebouças
 PR,Renascença
@@ -4250,7 +4235,7 @@ PR,São João
 PR,São João do Caiuá
 PR,São João do Ivaí
 PR,São João do Triunfo
-PR,São Jorge D´oeste
+PR,São Jorge D'oeste
 PR,São Jorge do Ivaí
 PR,São Jorge do Patrocínio
 PR,São José da Boa Vista
@@ -4379,7 +4364,6 @@ SC,Coronel Freitas
 SC,Coronel Martins
 SC,Corupá
 SC,Correia Pinto
-SC,Criciúma
 SC,Cunha Porã
 SC,Cunhataí
 SC,Curitibanos
@@ -4409,11 +4393,10 @@ SC,Guaraciaba
 SC,Guaramirim
 SC,Guarujá do Sul
 SC,Guatambú
-SC,Herval D´oeste
+SC,Herval D'oeste
 SC,Ibiam
 SC,Ibicaré
 SC,Ibirama
-SC,Içara
 SC,Ilhota
 SC,Imaruí
 SC,Imbituba
@@ -4665,7 +4648,6 @@ RS,Cachoeirinha
 RS,Cacique Doble
 RS,Caibaté
 RS,Caiçara
-RS,Camaquã
 RS,Camargo
 RS,Cambará do Sul
 RS,Campestre da Serra
@@ -4842,7 +4824,6 @@ RS,Mampituba
 RS,Manoel Viana
 RS,Maquiné
 RS,Maratá
-RS,Marau
 RS,Marcelino Ramos
 RS,Mariana Pimentel
 RS,Mariano Moro
@@ -5073,7 +5054,6 @@ RS,Ubiretama
 RS,União da Serra
 RS,Unistalda
 RS,Uruguaiana
-RS,Vacaria
 RS,Vale Verde
 RS,Vale do Sol
 RS,Vale Real
@@ -5210,7 +5190,7 @@ MT,Colíder
 MT,Colniza
 MT,Comodoro
 MT,Confresa
-MT,Conquista D´oeste
+MT,Conquista D'oeste
 MT,Cotriguaçu
 MT,Cuiabá
 MT,Curvelândia
@@ -5218,10 +5198,10 @@ MT,Denise
 MT,Diamantino
 MT,Dom Aquino
 MT,Feliz Natal
-MT,Figueirópolis D´oeste
+MT,Figueirópolis D'oeste
 MT,Gaúcha do Norte
 MT,General Carneiro
-MT,Glória D´oeste
+MT,Glória D'oeste
 MT,Guarantã do Norte
 MT,Guiratinga
 MT,Indiavaí
@@ -5236,13 +5216,13 @@ MT,Juara
 MT,Juína
 MT,Juruena
 MT,Juscimeira
-MT,Lambari D´oeste
+MT,Lambari D'oeste
 MT,Lucas do Rio Verde
 MT,Luciára
 MT,Vila Bela da Santíssima Trindade
 MT,Marcelândia
 MT,Matupá
-MT,Mirassol D´oeste
+MT,Mirassol D'oeste
 MT,Nobres
 MT,Nortelândia
 MT,Nossa Senhora do Livramento
@@ -5531,7 +5511,7 @@ GO,Santo Antônio de Goiás
 GO,Santo Antônio do Descoberto
 GO,São Domingos
 GO,São Francisco de Goiás
-GO,São João D´aliança
+GO,São João D'aliança
 GO,São João da Paraúna
 GO,São Luís de Montes Belos
 GO,São Luíz do Norte
@@ -5543,12 +5523,11 @@ GO,Senador Canedo
 GO,Serranópolis
 GO,Silvânia
 GO,Simolândia
-GO,Sítio D´abadia
+GO,Sítio D'abadia
 GO,Taquaral de Goiás
 GO,Teresina de Goiás
 GO,Terezópolis de Goiás
 GO,Três Ranchos
-GO,Trindade
 GO,Trombas
 GO,Turvânia
 GO,Turvelândia

@@ -15,7 +15,6 @@ var locations_erroapi = [
 { name: 'Cascavel, CE <br> ERRO na consulta API', color: 'orange', latitude: '-4.129666', longitude: '-38.241178' },
 { name: 'Lagoa Santa, GO <br> ERRO na consulta API', color: 'orange', latitude: '-19.185113', longitude: '-51.399333' },
 { name: 'Santa Isabel, GO <br> ERRO na consulta API', color: 'orange', latitude: '-15.295849', longitude: '-49.425931' },
-{ name: 'Trindade, GO <br> ERRO na consulta API', color: 'orange', latitude: '-16.651708', longitude: '-49.492667' },
 { name: 'Santa Luzia, MA <br> ERRO na consulta API', color: 'orange', latitude: '-4.068726', longitude: '-45.690026' },
 { name: 'Itapeva, MG <br> ERRO na consulta API', color: 'orange', latitude: '-22.766488', longitude: '-46.224053' },
 { name: 'Mesquita, MG <br> ERRO na consulta API', color: 'orange', latitude: '-19.224022', longitude: '-42.607877' },

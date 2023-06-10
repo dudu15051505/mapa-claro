@@ -43,6 +43,7 @@ jobs:
         run: ./scripts/copiar-js-site.ps1
           
       - name: commit files
+        if: success()
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -50,6 +51,7 @@ jobs:
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
           
       - name: push changes
+        if: success()
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

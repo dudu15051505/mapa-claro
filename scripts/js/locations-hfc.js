@@ -1,5 +1,7 @@
 var locations_hfc = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
+{ name: 'São Gonçalo, RJ <br> HFC', color: 'red', latitude: '-22.82679', longitude: '-43.063351' },
+{ name: 'Criciúma, SC <br> HFC', color: 'red', latitude: '-28.672267', longitude: '-49.372887' },
 { name: 'Mogi das Cruzes, SP <br> HFC', color: 'red', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Santa Branca, SP <br> HFC', color: 'red', latitude: '-23.393311', longitude: '-45.887521' },
 
@@ -162,7 +164,6 @@ var locations_hfc = [
 { name: 'Lorena, SP <br> HFC', color: 'red', latitude: '-22.73338', longitude: '-45.11968' },
 { name: 'Marília, SP <br> HFC', color: 'red', latitude: '-22.217108', longitude: '-49.95006' },
 { name: 'Mauá, SP <br> HFC', color: 'red', latitude: '-23.66767', longitude: '-46.461263' },
-{ name: 'Mogi Das Cruzes, SP <br> HFC', color: 'red', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Mogi Guaçu, SP <br> HFC', color: 'red', latitude: '-22.367453', longitude: '-46.9428' },
 { name: 'Monte Mor, SP <br> HFC', color: 'red', latitude: '-22.945043', longitude: '-47.312182' },
 { name: 'Nova Odessa, SP <br> HFC', color: 'red', latitude: '-22.783186', longitude: '-47.294059' },
