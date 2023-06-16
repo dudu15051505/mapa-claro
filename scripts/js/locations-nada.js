@@ -3192,7 +3192,6 @@ var locations_nada = [
 { name: 'Manfrinópolis, PR <br> Sem serviço fixo', color: 'black', latitude: '-26.147968', longitude: '-53.315257' },
 { name: 'Mangueirinha, PR <br> Sem serviço fixo', color: 'black', latitude: '-25.942102', longitude: '-52.174275' },
 { name: 'Manoel Ribas, PR <br> Sem serviço fixo', color: 'black', latitude: '-24.514363', longitude: '-51.665822' },
-{ name: 'Marechal Cândido Rondon, PR <br> Sem serviço fixo', color: 'black', latitude: '-24.557891', longitude: '-54.056115' },
 { name: 'Maria Helena, PR <br> Sem serviço fixo', color: 'black', latitude: '-23.615754', longitude: '-53.205333' },
 { name: 'Marialva, PR <br> Sem serviço fixo', color: 'black', latitude: '-23.484316', longitude: '-51.792802' },
 { name: 'Marilândia do Sul, PR <br> Sem serviço fixo', color: 'black', latitude: '-23.742534', longitude: '-51.313737' },
