@@ -1,6 +1,7 @@
 var locations_sobrepo = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'Mogi das Cruzes, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.52082', longitude: '-46.18541' },
+{ name: 'Palmas, TO <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-10.239973', longitude: '-48.355751' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
 { name: 'Rio Branco, AC <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-9.97499', longitude: '-67.824348' },
@@ -116,6 +117,5 @@ var locations_sobrepo = [
 { name: 'São Paulo, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.532905', longitude: '-46.63952' },
 { name: 'Sorocaba, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-23.496886', longitude: '-47.445073' },
 { name: 'Sumaré, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-22.820416', longitude: '-47.272823' },
-{ name: 'Valinhos, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-22.969805', longitude: '-46.997367' },
-{ name: 'Palmas, TO <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-10.239973', longitude: '-48.355751' }
+{ name: 'Valinhos, SP <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '-22.969805', longitude: '-46.997367' }
 ];

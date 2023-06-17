@@ -1,6 +1,7 @@
 var locations_neutrogpon = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'João Monlevade, MG <br> GPON REDE NEUTRA', color: 'grey', latitude: '-19.812646', longitude: '-43.173463' },
+{ name: 'Palmas, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-26.483868', longitude: '-51.988812' },
 { name: 'Piraquara, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.442171', longitude: '-49.062411' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
@@ -11,6 +12,5 @@ var locations_neutrogpon = [
 { name: 'Paiçandu, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-23.455534', longitude: '-52.046013' },
 { name: 'Quatro Barras, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-25.367317', longitude: '-49.076306' },
 { name: 'Telêmaco Borba, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-24.32452', longitude: '-50.617585' },
-{ name: 'União da Vitória, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-26.227319', longitude: '-51.087313' },
-{ name: 'Palmas, TO <br> GPON REDE NEUTRA', color: 'grey', latitude: '-10.239973', longitude: '-48.355751' }
+{ name: 'União da Vitória, PR <br> GPON REDE NEUTRA', color: 'grey', latitude: '-26.227319', longitude: '-51.087313' }
 ];
