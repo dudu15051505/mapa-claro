@@ -4,6 +4,7 @@ var locations_hfc = [
 { name: 'Criciúma, SC <br> HFC', color: 'red', latitude: '-28.672267', longitude: '-49.372887' },
 { name: 'Mogi das Cruzes, SP <br> HFC', color: 'red', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Santa Branca, SP <br> HFC', color: 'red', latitude: '-23.393311', longitude: '-45.887521' },
+{ name: 'Palmas, TO <br> HFC', color: 'red', latitude: '-10.239973', longitude: '-48.355751' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
 { name: 'Rio Branco, AC <br> HFC', color: 'red', latitude: '-9.97499', longitude: '-67.824348' },
@@ -200,6 +201,5 @@ var locations_hfc = [
 { name: 'Valinhos, SP <br> HFC', color: 'red', latitude: '-22.969805', longitude: '-46.997367' },
 { name: 'Vargem Grande Paulista, SP <br> HFC', color: 'red', latitude: '-23.599338', longitude: '-47.022038' },
 { name: 'Vinhedo, SP <br> HFC', color: 'red', latitude: '-23.030184', longitude: '-46.983312' },
-{ name: 'Votorantim, SP <br> HFC', color: 'red', latitude: '-23.54459', longitude: '-47.438753' },
-{ name: 'Palmas, TO <br> HFC', color: 'red', latitude: '-10.239973', longitude: '-48.355751' }
+{ name: 'Votorantim, SP <br> HFC', color: 'red', latitude: '-23.54459', longitude: '-47.438753' }
 ];
