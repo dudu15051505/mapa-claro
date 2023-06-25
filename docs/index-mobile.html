@@ -5,21 +5,15 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
-		<link rel="stylesheet" href="./css/css.css" />
+		<link rel="stylesheet" href="./css/css-mobile.css" />
 		<script>
-			if (navigator.userAgent.match(/Android/i) || 
-				navigator.userAgent.match(/webOS/i) || 
-				navigator.userAgent.match(/iPhone/i) || 
-				navigator.userAgent.match(/iPad/i) || 
-				navigator.userAgent.match(/iPod/i) || 
-				navigator.userAgent.match(/BlackBerry/i) || 
-				navigator.userAgent.match(/Windows Phone/i)) {
-					window.location = "./index-mobile.html";
-			}
+			alert("Informações coletadas a partir do site da CLARO \nEste site não é afiliado à operadora CLARO \nPara realizar consultas oficiais, utilize o site da CLARO");
+			alert("No momento para realizar consulta de CEP e Numero, entre no site apartir de um computador");
+			alert("As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.");
 		</script>
 	</head>
 	<body>
-		<div id="top-bar">
+		<!--<div id="top-bar">
 			<div id="info-esquerda">
 				<h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
 				<span>As marcações exibidas, são retornadas de consulta de API, a exemplo "HFC Rede neutra" é retornada, mas nunca ninguém viu essa rede.</span><br>
@@ -45,7 +39,7 @@
 					Codigo fonte do site disponivel no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a>
 				</p>
 			</div>
-		</div>
+		</div>-->
 		<div id="map">
 			<div id="legenda" class="leaflet-bottom leaflet-left">
 				<table class="tg">
