@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
-		<link rel="stylesheet" href="./css/css.css" />
+		<link rel="stylesheet" href="./css/css-mobile.css" />
 		<script src="./js/jquery-3.6.0.min.js"></script>
 		<script>
 			if (!(navigator.userAgent.match(/Android/i) || 
@@ -162,102 +162,102 @@
 			</div>
 		</div>-->
 		<div id="map">
-			<div id="legenda" class="leaflet-bottom leaflet-left">
-				<table class="tg">
-					<thead>
-						<tr>
-							<td>
-								Informações coletadas <br>
-								na data <span id="data-dados">00/00/0000</span>
-							</td>
-						</tr>
-						<tr>
-							<th class="tg-0lax">LEGENDA</th>
-							<th class="tg-0lax">ICONE</th>
-							<th class="tg-0lax">TOTAL</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="tg-0lax">GPON</td>
-							<td class="tg-0lax">
-								<span class="center">
-									<img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>
-								</span>
-							</td>
-							<td class="tg-0lax" id="somatorio-gpon">
-								<span class="center">0</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="tg-0lax">HFC</td>
-							<td class="tg-0lax">
-								<span class="center">
-									<img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>
-								</span>
-							</td>
-							<td class="tg-0lax" id="somatorio-hfc">
-								<span class="center">0</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="tg-0lax">Sobreposição HFC e GPON</td>
-							<td class="tg-0lax">
-								<span class="center">
-									<img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>
-								</span>
-							</td>
-							<td class="tg-0lax" id="somatorio-sobre">
-								<span class="center">0</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="tg-0lax">GPON Rede neutra</td>
-							<td class="tg-0lax">
-								<span class="center">
-									<img height="20" width="15" src="./img/marker-icon-grey.png" alt="Marcador GPON Rede Neutra"/>
-								</span>
-							</td>
-							<td class="tg-0lax" id="somatorio-neutragpon">
-								<span class="center">0</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="tg-0lax">HFC Rede neutra</td>
-							<td class="tg-0lax">
-								<span class="center">
-									<img height="20" width="15" src="./img/marker-icon-violet.png" alt="Marcador HFC Rede Neutra"/>
-								</span>
-							</td>
-							<td class="tg-0lax" id="somatorio-neutrahfc">
-								<span class="center">0</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="tg-0lax">Sem serviços FIXO</td>
-							<td class="tg-0lax">
-								<span class="center">
-									<img height="20" width="15" src="./img/marker-icon-black.png" alt="Marcador Sem serviço FIXO"/>
-								</span>
-							</td>
-							<td class="tg-0lax" id="somatorio-nada">
-								<span class="center">0</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="tg-0lax">ERRO Consulta API</td>
-							<td class="tg-0lax">
-								<span class="center">
-									<img height="20" width="15" src="./img/marker-icon-orange.png" alt="Marcador ERRO Consulta API"/>
-								</span>
-							</td>
-							<td class="tg-0lax" id="somatorio-erroapi">
-								<span class="center">0</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+		</div>
+		<div id="legenda" class="leaflet-control">
+			<table class="tg">
+				<thead>
+					<tr>
+						<td>
+							Informações coletadas <br>
+							na data <select name="lista-data-dados" id="lista-data-dados"></select>
+						</td>
+					</tr>
+					<tr>
+						<th class="tg-0lax">LEGENDA</th>
+						<th class="tg-0lax">ICONE</th>
+						<th class="tg-0lax">TOTAL</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="tg-0lax">GPON</td>
+						<td class="tg-0lax">
+							<span class="center">
+							<img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>
+							</span>
+						</td>
+						<td class="tg-0lax" id="somatorio-gpon">
+							<span class="center">0</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tg-0lax">HFC</td>
+						<td class="tg-0lax">
+							<span class="center">
+							<img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>
+							</span>
+						</td>
+						<td class="tg-0lax" id="somatorio-hfc">
+							<span class="center">0</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tg-0lax">Sobreposição HFC e GPON</td>
+						<td class="tg-0lax">
+							<span class="center">
+							<img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>
+							</span>
+						</td>
+						<td class="tg-0lax" id="somatorio-sobre">
+							<span class="center">0</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tg-0lax">GPON Rede neutra</td>
+						<td class="tg-0lax">
+							<span class="center">
+							<img height="20" width="15" src="./img/marker-icon-grey.png" alt="Marcador GPON Rede Neutra"/>
+							</span>
+						</td>
+						<td class="tg-0lax" id="somatorio-neutragpon">
+							<span class="center">0</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tg-0lax">HFC Rede neutra</td>
+						<td class="tg-0lax">
+							<span class="center">
+							<img height="20" width="15" src="./img/marker-icon-violet.png" alt="Marcador HFC Rede Neutra"/>
+							</span>
+						</td>
+						<td class="tg-0lax" id="somatorio-neutrahfc">
+							<span class="center">0</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tg-0lax">Sem serviços FIXO</td>
+						<td class="tg-0lax">
+							<span class="center">
+							<img height="20" width="15" src="./img/marker-icon-black.png" alt="Marcador Sem serviço FIXO"/>
+							</span>
+						</td>
+						<td class="tg-0lax" id="somatorio-nada">
+							<span class="center">0</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tg-0lax">ERRO Consulta API</td>
+						<td class="tg-0lax">
+							<span class="center">
+							<img height="20" width="15" src="./img/marker-icon-orange.png" alt="Marcador ERRO Consulta API"/>
+							</span>
+						</td>
+						<td class="tg-0lax" id="somatorio-erroapi">
+							<span class="center">0</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<script defer src="./js/leaflet/leaflet.js"></script>
 		<script defer src="./js/fetch.umd.js"></script>

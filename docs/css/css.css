@@ -1,75 +1,76 @@
 body, html {
-				margin: 0;
-				padding: 0;
-				height: 100%;
-				font-family: Arial, sans-serif;
-				min-width: 1140px;
-			}
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: Arial, sans-serif;
+	min-width: 1140px;
+}
 
-			#map {
-				height: calc(100% - 160px);
-			}
+#map {
+	height: calc(100% - 160px);
+}
 
-			#top-bar {
-				background-color: #f8f8f8;
-				padding-top: 0px;
-				padding-right: 10px;
-				padding-bottom: 0px;
-				padding-left: 10px;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				height: 160px;
-			}
+#top-bar {
+	background-color: #f8f8f8;
+	padding-top: 0px;
+	padding-right: 10px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 160px;
+}
 
-			#info-direita {
-				text-align: right;
-			}
+#info-direita {
+	text-align: right;
+}
 
-			.tg {
-				border-collapse: collapse;
-				border-color: #ccc;
-				border-spacing: 0;
-			}
+.tg {
+	border-collapse: collapse;
+	border-color: #ccc;
+	border-spacing: 0;
+}
 
-			.tg td {
-				background-color: #fff;
-				border-color: #ccc;
-				border-style: solid;
-				border-width: 1px;
-				color: #333;
-				font-family: Arial, sans-serif;
-				font-size: 14px;
-				overflow: hidden;
-				word-break: normal;
-			}
+.tg td {
+	background-color: #fff;
+	border-color: #ccc;
+	border-style: solid;
+	border-width: 1px;
+	color: #333;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	word-break: normal;
+}
 
-			.tg th {
-				background-color: #f0f0f0;
-				border-color: #ccc;
-				border-style: solid;
-				border-width: 1px;
-				color: #333;
-				font-family: Arial, sans-serif;
-				font-size: 14px;
-				font-weight: normal;
-				overflow: hidden;
-				word-break: normal;
-			}
+.tg th {
+	background-color: #f0f0f0;
+	border-color: #ccc;
+	border-style: solid;
+	border-width: 1px;
+	color: #333;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	overflow: hidden;
+	word-break: normal;
+}
 
-			.tg .tg-0lax {
-				text-align: left;
-				vertical-align: top;
-			}
+.tg .tg-0lax {
+	text-align: left;
+	vertical-align: top;
+}
 
-			.center {
-				display: block;
-				margin-left: auto;
-				margin-right: auto;
-				width: 50%;
-			}
-			
-			#legenda {
-				left: 10px;
-				bottom: 10px;
-			}
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#legenda {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+}
