@@ -129,8 +129,10 @@
 			
 		</script>
 		<script>
-			alert("Informações coletadas a partir do site da CLARO \nEste site não é afiliado à operadora CLARO \nPara realizar consultas oficiais, utilize o site da CLARO \n\nNo momento para realizar consulta de CEP e Numero, entre no site apartir de um computador");
-			alert("As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.");
+			$(window).on('load', function() {
+				alert("Informações coletadas a partir do site da CLARO \nEste site não é afiliado à operadora CLARO \nPara realizar consultas oficiais, utilize o site da CLARO \n\nNo momento para realizar consulta de CEP e Numero, entre no site apartir de um computador");
+				alert("As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.");
+			});
 		</script>
 	</head>
 	<body>
