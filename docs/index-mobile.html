@@ -130,8 +130,7 @@
 		</script>
 		<script>
 			$(window).on('load', function() {
-				alert("Informações coletadas a partir do site da CLARO \nEste site não é afiliado à operadora CLARO \nPara realizar consultas oficiais, utilize o site da CLARO \n\nNo momento para realizar consulta de CEP e Numero, entre no site apartir de um computador");
-				alert("As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.");
+				alert("Informações coletadas a partir do site da CLARO \nEste site não é afiliado à operadora CLARO \nPara realizar consultas oficiais, utilize o site da CLARO \n\nAs marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.");
 			});
 		</script>
 	</head>
@@ -168,6 +167,17 @@
 		<div id="legenda" class="leaflet-control">
 			<table class="tg">
 				<thead>
+					<tr>
+						<td>
+							<form id="formulario">
+								<label for="cep">CEP:</label>
+								<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required> <br>
+								<label for="numero">Número:</label>
+								<input type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required> <br>
+								<input type="submit" value="Consultar" />
+							</form>
+						</td>
+					</tr>
 					<tr>
 						<td>
 							Informações coletadas <br>
