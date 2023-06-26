@@ -3,12 +3,11 @@ body, html {
 	padding: 0;
 	height: 100%;
 	font-family: Arial, sans-serif;
-	width: 100%;
+	min-width: 1140px;
 }
 
 #map {
-	height: 100%;
-	width: 100%;
+	height: calc(100% - 160px);
 }
 
 #top-bar {

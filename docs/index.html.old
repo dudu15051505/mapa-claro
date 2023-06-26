@@ -5,17 +5,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
-		<link rel="stylesheet" href="./css/css-mobile.css" />
+		<link rel="stylesheet" href="./css/css.css" />
 		<script src="./js/jquery-3.6.0.min.js"></script>
 		<script>
-			if (!(navigator.userAgent.match(/Android/i) || 
+			if (navigator.userAgent.match(/Android/i) || 
 				navigator.userAgent.match(/webOS/i) || 
 				navigator.userAgent.match(/iPhone/i) || 
 				navigator.userAgent.match(/iPad/i) || 
 				navigator.userAgent.match(/iPod/i) || 
 				navigator.userAgent.match(/BlackBerry/i) || 
-				navigator.userAgent.match(/Windows Phone/i))) {
-					window.location = "./index.html";
+				navigator.userAgent.match(/Windows Phone/i)) {
+					window.location = "./index-mobile.html";
 			}
 			
 			const queryString = window.location.search;
@@ -122,24 +122,16 @@
 			$(document).ready(function() {	
 				$('#lista-data-dados').on('change', function() {
 					var value = $(this).val();
-					$(location).prop('href', './index-mobile.html?ver-data='+value);
+					$(location).prop('href', './index.html?ver-data='+value);
 				});
-				
-			});
-			
-		</script>
-		<script>
-			$(window).on('load', function() {
-				alert("Informações coletadas a partir do site da CLARO \nEste site não é afiliado à operadora CLARO \nPara realizar consultas oficiais, utilize o site da CLARO \n\nAs marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.");
-			});
+			});			
 		</script>
 	</head>
 	<body>
-		<!--<div id="top-bar">
+		<div id="top-bar">
 			<div id="info-esquerda">
 				<h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
 				<span>As marcações exibidas, são retornadas de consulta de API, a exemplo "HFC Rede neutra" é retornada, mas nunca ninguém viu essa rede.</span><br>
-				<span>Faça uma consulta por CEP e Número, para um resultado de tecnologia mais preciso.</span>
 				<div id="consulta-cep">
 					<h5 class="modal-title" id="cepModalLabel">Consulta por CEP e Número: 
 						<form id="formulario">
@@ -153,31 +145,16 @@
 				</div>
 			</div>
 			<div id="info-direita">
-				<p>Informações coletadas na data <span id="data-dados">00/00/0000</span>, a partir do site da CLARO</p>
 				<p><b>Este site não é afiliado à operadora CLARO</b></p>
-				<p>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a>
-				</p>
-				<p>
-					Codigo fonte do site disponivel no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a>
-				</p>
+				<p>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a></p>
+				<p>Codigo fonte do site disponivel no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a></p>
 			</div>
-		</div>-->
+		</div>
 		<div id="map">
 		</div>
 		<div id="legenda" class="leaflet-control">
 			<table class="tg">
 				<thead>
-					<tr>
-						<td>
-							<form id="formulario">
-								<label for="cep">CEP:</label>
-								<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required style="width: 70px;"> <br>
-								<label for="numero">Número:</label>
-								<input type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required style="width: 70px;"> <br>
-								<input type="submit" value="Consultar" />
-							</form>
-						</td>
-					</tr>
 					<tr>
 						<td>
 							Informações coletadas <br>

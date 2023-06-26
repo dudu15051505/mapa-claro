@@ -3,11 +3,12 @@ body, html {
 	padding: 0;
 	height: 100%;
 	font-family: Arial, sans-serif;
-	min-width: 1140px;
+	width: 100%;
 }
 
 #map {
-	height: calc(100% - 160px);
+	height: 100%;
+	width: 100%;
 }
 
 #top-bar {
@@ -73,4 +74,13 @@ body, html {
 	position: absolute;
 	left: 10px;
 	bottom: 10px;
+}
+
+#aviso {
+	background-color: #ffffff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
 }
