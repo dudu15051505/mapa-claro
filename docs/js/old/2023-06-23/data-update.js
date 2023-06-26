@@ -1,0 +1,1 @@
+var data_update = "23/06/2023"

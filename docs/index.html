@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
 		<link rel="stylesheet" href="./css/css.css" />
+		<script src="./js/jquery-3.6.0.min.js"></script>
+		
 		<script>
 			if (navigator.userAgent.match(/Android/i) || 
 				navigator.userAgent.match(/webOS/i) || 
@@ -16,14 +18,155 @@
 				navigator.userAgent.match(/Windows Phone/i)) {
 					window.location = "./index-mobile.html";
 			}
+			
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const ver_data = urlParams.get('ver-data');
+			
+			let myScript1 = document.createElement("script");
+			let myScript2 = document.createElement("script");
+			let myScript3 = document.createElement("script");
+			let myScript4 = document.createElement("script");
+			let myScript5 = document.createElement("script");
+			let myScript6 = document.createElement("script");
+			let myScript7 = document.createElement("script");
+			let myScript8 = document.createElement("script");
+			let myScript9 = document.createElement("script");
+			
+			if(ver_data) {
+				myScript1.setAttribute("src", "./js/old/"+ver_data+"/data-update.js");
+				document.head.appendChild(myScript1);
+				myScript2.setAttribute("src", "./js/old/"+ver_data+"/locations-gpon.js");
+				document.head.appendChild(myScript2);
+				myScript3.setAttribute("src", "./js/old/"+ver_data+"/locations-hfc.js");
+				document.head.appendChild(myScript3);
+				myScript4.setAttribute("src", "./js/old/"+ver_data+"/locations-nada.js");
+				document.head.appendChild(myScript4);
+				myScript5.setAttribute("src", "./js/old/"+ver_data+"/locations-neutrogpon.js");
+				document.head.appendChild(myScript5);
+				myScript6.setAttribute("src", "./js/old/"+ver_data+"/locations-neutrohfc.js");
+				document.head.appendChild(myScript6);
+				myScript7.setAttribute("src", "./js/old/"+ver_data+"/locations-neutrohfc.js");
+				document.head.appendChild(myScript7);
+				myScript8.setAttribute("src", "./js/old/"+ver_data+"/locations-sobrepo.js");
+				document.head.appendChild(myScript8);
+				myScript9.setAttribute("src", "./js/old/"+ver_data+"/locations-erroapi.js");
+				document.head.appendChild(myScript9);
+			}
+			else {
+				myScript1.setAttribute("src", "./js/data-update.js");
+				document.head.appendChild(myScript1);
+				myScript2.setAttribute("src", "./js/locations-gpon.js");
+				document.head.appendChild(myScript2);
+				myScript3.setAttribute("src", "./js/locations-hfc.js");
+				document.head.appendChild(myScript3);
+				myScript4.setAttribute("src", "./js/locations-nada.js");
+				document.head.appendChild(myScript4);
+				myScript5.setAttribute("src", "./js/locations-neutrogpon.js");
+				document.head.appendChild(myScript5);
+				myScript6.setAttribute("src", "./js/locations-neutrohfc.js");
+				document.head.appendChild(myScript6);
+				myScript7.setAttribute("src", "./js/locations-neutrohfc.js");
+				document.head.appendChild(myScript7);
+				myScript8.setAttribute("src", "./js/locations-sobrepo.js");
+				document.head.appendChild(myScript8);
+				myScript9.setAttribute("src", "./js/locations-erroapi.js");
+				document.head.appendChild(myScript9);
+			}
+			
+			//$(document).ready(function() {
+			
+				$.get('./js/data-lista.txt', function(data) {
+					var dados = data.split("\n");
+					var len = dados.length;
+					
+					if(ver_data) {
+						$.each(dados,function(index,value){
+							if (ver_data.toString() === value.toString()) {								
+								if (index === (len - 1)) {
+									var tempDate = new Date(value);
+									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+								
+									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
+								}
+								else {
+									var tempDate = new Date(value);
+									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+								
+									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
+								}
+							}
+							else if (ver_data.toString() === value.toString()) {								
+								if (index === (len - 1)) {
+									var tempDate = new Date(value);
+									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+								
+									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
+								}
+								else {
+									var tempDate = new Date(value);
+									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+								
+									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
+								}
+							}
+							else {							
+								if (index === (len - 1)) {
+									var tempDate = new Date(value);
+									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+								
+									$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate)); 
+								}
+								else {
+									var tempDate = new Date(value);
+									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+								
+									$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate)); 
+								}
+							}
+						});
+					}
+					else {
+						$.each(dados,function(index,value){
+							
+							if (index === (len - 1)) {
+								var tempDate = new Date(value);
+								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+							
+								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
+							}
+							else {
+								var tempDate = new Date(value);
+								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+							
+								$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate)); 
+							}
+						});
+					}
+				}, 'text');
+				
+			$(document).ready(function() {	
+				$('#lista-data-dados').on('change', function() {
+					var value = $(this).val();
+					$(location).prop('href', './index.html?ver-data='+value);
+				});
+				
+			});
+			
 		</script>
 	</head>
 	<body>
 		<div id="top-bar">
 			<div id="info-esquerda">
 				<h3>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</h3>
-				<span>As marcações exibidas, são retornadas de consulta de API, a exemplo "HFC Rede neutra" é retornada, mas nunca ninguém viu essa rede.</span><br>
-				<span>Faça uma consulta por CEP e Número, para um resultado de tecnologia mais preciso.</span>
+				
+				<label for="lista-data-dados">Data dos dados consultados na API:</label>
+				<select name="lista-data-dados" id="lista-data-dados">
+				</select>
+
+				<!-- <span>As marcações exibidas, são retornadas de consulta de API, a exemplo "HFC Rede neutra" é retornada, mas nunca ninguém viu essa rede.</span><br>
+				<span>Faça uma consulta por CEP e Número, para um resultado de tecnologia mais preciso.</span> -->
+				
 				<div id="consulta-cep">
 					<h5 class="modal-title" id="cepModalLabel">Consulta por CEP e Número: 
 						<form id="formulario">
@@ -37,7 +180,6 @@
 				</div>
 			</div>
 			<div id="info-direita">
-				<p>Informações coletadas na data <span id="data-dados">00/00/0000</span>, a partir do site da CLARO</p>
 				<p><b>Este site não é afiliado à operadora CLARO</b></p>
 				<p>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a>
 				</p>
@@ -50,6 +192,12 @@
 			<div id="legenda" class="leaflet-bottom leaflet-left">
 				<table class="tg">
 					<thead>
+						<tr>
+							<td>
+								Informações coletadas <br>
+								na data <span id="data-dados">00/00/0000</span>
+							</td>
+						</tr>
 						<tr>
 							<th class="tg-0lax">LEGENDA</th>
 							<th class="tg-0lax">ICONE</th>
@@ -138,17 +286,8 @@
 				</table>
 			</div>
 		</div>
-		<script src="./js/leaflet/leaflet.js"></script>
-		<script src="./js/fetch.umd.js"></script>
-		<script src="./js/jquery-3.6.0.min.js"></script>
-		<script src="./js/data-update.js"></script>
-		<script src="./js/locations-gpon.js"></script>
-		<script src="./js/locations-hfc.js"></script>
-		<script src="./js/locations-nada.js"></script>
-		<script src="./js/locations-neutrogpon.js"></script>
-		<script src="./js/locations-neutrohfc.js"></script>
-		<script src="./js/locations-sobrepo.js"></script>
-		<script src="./js/locations-erroapi.js"></script>
-		<script src="./js/script.js"></script>
+		<script defer src="./js/leaflet/leaflet.js"></script>
+		<script defer src="./js/fetch.umd.js"></script>
+		<script defer src="./js/script.js"></script>
 	</body>
 </html>

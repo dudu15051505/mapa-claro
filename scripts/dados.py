@@ -4,6 +4,7 @@ import requests
 import random
 import time
 import shutil
+from datetime import date
 
 diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts/"
 
@@ -82,10 +83,16 @@ for i in range(len(cities)):
         time.sleep(3)
 
 f = open(diretorio_trabalho + "js/data-update.js", "w")
-from datetime import date
+
 today = date.today()
-# dd/mm/YY
+# dd/mm/YYYY
 d1 = today.strftime("%d/%m/%Y")
 data_atual = 'var data_update = "{}"'.format(d1)
 f.write(data_atual)
 f.close()
+
+# YYYY-mm-dd
+today = date.today()
+d2 = today.strftime("%Y-%m-%d")
+with open(diretorio_trabalho + 'js/data-lista.txt', 'a') as my_file:
+    my_file.write('\n' + d2)
