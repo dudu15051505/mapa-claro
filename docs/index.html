@@ -23,127 +23,102 @@
 			const urlParams = new URLSearchParams(queryString);
 			const ver_data = urlParams.get('ver-data');
 			
-			let myScript1 = document.createElement("script");
-			let myScript2 = document.createElement("script");
-			let myScript3 = document.createElement("script");
-			let myScript4 = document.createElement("script");
-			let myScript5 = document.createElement("script");
-			let myScript6 = document.createElement("script");
-			let myScript7 = document.createElement("script");
-			let myScript8 = document.createElement("script");
-			let myScript9 = document.createElement("script");
+			function load_script(arquivo, old = false) {
+				if (old) {
+					let Script = document.createElement("script");
+					Script.setAttribute("src", "./js/old/"+ver_data+"/" + arquivo);
+					document.head.appendChild(Script);
+				}
+				else {
+					let Script = document.createElement("script");
+					Script.setAttribute("src", "./js/" + arquivo);
+					document.head.appendChild(Script);
+				}
+			}
 			
 			if(ver_data) {
-				myScript1.setAttribute("src", "./js/old/"+ver_data+"/data-update.js");
-				document.head.appendChild(myScript1);
-				myScript2.setAttribute("src", "./js/old/"+ver_data+"/locations-gpon.js");
-				document.head.appendChild(myScript2);
-				myScript3.setAttribute("src", "./js/old/"+ver_data+"/locations-hfc.js");
-				document.head.appendChild(myScript3);
-				myScript4.setAttribute("src", "./js/old/"+ver_data+"/locations-nada.js");
-				document.head.appendChild(myScript4);
-				myScript5.setAttribute("src", "./js/old/"+ver_data+"/locations-neutrogpon.js");
-				document.head.appendChild(myScript5);
-				myScript6.setAttribute("src", "./js/old/"+ver_data+"/locations-neutrohfc.js");
-				document.head.appendChild(myScript6);
-				myScript7.setAttribute("src", "./js/old/"+ver_data+"/locations-neutrohfc.js");
-				document.head.appendChild(myScript7);
-				myScript8.setAttribute("src", "./js/old/"+ver_data+"/locations-sobrepo.js");
-				document.head.appendChild(myScript8);
-				myScript9.setAttribute("src", "./js/old/"+ver_data+"/locations-erroapi.js");
-				document.head.appendChild(myScript9);
+				load_script("data-update.js", true);
+				load_script("locations-gpon.js", true);
+				load_script("locations-hfc.js", true);
+				load_script("locations-nada.js", true);
+				load_script("locations-neutrogpon.js", true);
+				load_script("locations-neutrohfc.js", true);
+				load_script("locations-neutrohfc.js", true);
+				load_script("locations-sobrepo.js", true);
+				load_script("locations-erroapi.js", true);
 			}
 			else {
-				myScript1.setAttribute("src", "./js/data-update.js");
-				document.head.appendChild(myScript1);
-				myScript2.setAttribute("src", "./js/locations-gpon.js");
-				document.head.appendChild(myScript2);
-				myScript3.setAttribute("src", "./js/locations-hfc.js");
-				document.head.appendChild(myScript3);
-				myScript4.setAttribute("src", "./js/locations-nada.js");
-				document.head.appendChild(myScript4);
-				myScript5.setAttribute("src", "./js/locations-neutrogpon.js");
-				document.head.appendChild(myScript5);
-				myScript6.setAttribute("src", "./js/locations-neutrohfc.js");
-				document.head.appendChild(myScript6);
-				myScript7.setAttribute("src", "./js/locations-neutrohfc.js");
-				document.head.appendChild(myScript7);
-				myScript8.setAttribute("src", "./js/locations-sobrepo.js");
-				document.head.appendChild(myScript8);
-				myScript9.setAttribute("src", "./js/locations-erroapi.js");
-				document.head.appendChild(myScript9);
+				load_script("data-update.js");
+				load_script("locations-gpon.js");
+				load_script("locations-hfc.js");
+				load_script("locations-nada.js");
+				load_script("locations-neutrogpon.js");
+				load_script("locations-neutrohfc.js");
+				load_script("locations-neutrohfc.js");
+				load_script("locations-sobrepo.js");
+				load_script("locations-erroapi.js");
 			}
 			
-			//$(document).ready(function() {
-			
-				$.get('./js/data-lista.txt', function(data) {
-					var dados = data.split("\n");
-					var len = dados.length;
-					
-					if(ver_data) {
-						$.each(dados,function(index,value){
-							if (ver_data.toString() === value.toString()) {								
-								if (index === (len - 1)) {
-									var tempDate = new Date(value);
-									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-								
-									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
-								}
-								else {
-									var tempDate = new Date(value);
-									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-								
-									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
-								}
-							}
-							else if (ver_data.toString() === value.toString()) {								
-								if (index === (len - 1)) {
-									var tempDate = new Date(value);
-									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-								
-									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
-								}
-								else {
-									var tempDate = new Date(value);
-									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-								
-									$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
-								}
-							}
-							else {							
-								if (index === (len - 1)) {
-									var tempDate = new Date(value);
-									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-								
-									$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate)); 
-								}
-								else {
-									var tempDate = new Date(value);
-									var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-								
-									$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate)); 
-								}
-							}
-						});
-					}
-					else {
-						$.each(dados,function(index,value){
-							
+			$.get('./js/data-lista.txt', function (data) {
+				var dados = data.split("\n");
+				var len = dados.length;
+
+				if (ver_data) {
+					$.each(dados, function (index, value) {
+						if (ver_data.toString() === value.toString()) {
 							if (index === (len - 1)) {
 								var tempDate = new Date(value);
 								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-							
-								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate)); 
-							}
-							else {
+
+								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
+							} else {
 								var tempDate = new Date(value);
 								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-							
-								$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate)); 
+
+								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
 							}
-						});
-					}
-				}, 'text');
+						} else if (ver_data.toString() === value.toString()) {
+							if (index === (len - 1)) {
+								var tempDate = new Date(value);
+								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+
+								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
+							} else {
+								var tempDate = new Date(value);
+								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+
+								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
+							}
+						} else {
+							if (index === (len - 1)) {
+								var tempDate = new Date(value);
+								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+
+								$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate));
+							} else {
+								var tempDate = new Date(value);
+								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+
+								$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate));
+							}
+						}
+					});
+				} else {
+					$.each(dados, function (index, value) {
+						if (index === (len - 1)) {
+							var tempDate = new Date(value);
+							var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+
+							$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
+						} else {
+							var tempDate = new Date(value);
+							var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+
+							$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate));
+						}
+					});
+				}
+			}, 'text');
 				
 			$(document).ready(function() {	
 				$('#lista-data-dados').on('change', function() {
