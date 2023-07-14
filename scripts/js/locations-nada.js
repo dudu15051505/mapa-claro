@@ -1670,7 +1670,6 @@ var locations_nada = [
 { name: 'Juvenília, MG <br> Sem serviço fixo', color: 'black', latitude: '-14.266238', longitude: '-44.159656' },
 { name: 'Ladainha, MG <br> Sem serviço fixo', color: 'black', latitude: '-17.627886', longitude: '-41.748824' },
 { name: 'Lagamar, MG <br> Sem serviço fixo', color: 'black', latitude: '-18.175918', longitude: '-46.806343' },
-{ name: 'Lagoa da Prata, MG <br> Sem serviço fixo', color: 'black', latitude: '-20.023728', longitude: '-45.540149' },
 { name: 'Lagoa Dos Patos, MG <br> Sem serviço fixo', color: 'black', latitude: '-16.977954', longitude: '-44.575374' },
 { name: 'Lagoa Dourada, MG <br> Sem serviço fixo', color: 'black', latitude: '-20.913858', longitude: '-44.079717' },
 { name: 'Lagoa Formosa, MG <br> Sem serviço fixo', color: 'black', latitude: '-18.771489', longitude: '-46.401236' },

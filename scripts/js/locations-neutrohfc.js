@@ -5,6 +5,7 @@ var locations_neutrohfc = [
 { name: 'Piraquara, PR <br> HFC REDE NEUTRA', color: 'violet', latitude: '-25.442171', longitude: '-49.062411' },
 
 /* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */
+{ name: 'Lagoa da Prata, MG <br> HFC REDE NEUTRA', color: 'violet', latitude: '-20.023728', longitude: '-45.540149' },
 { name: 'Pedro Leopoldo, MG <br> HFC REDE NEUTRA', color: 'violet', latitude: '-19.630811', longitude: '-44.038258' },
 { name: 'Foz do Iguaçu, PR <br> HFC REDE NEUTRA', color: 'violet', latitude: '-25.542748', longitude: '-54.582689' },
 { name: 'Guaratuba, PR <br> HFC REDE NEUTRA', color: 'violet', latitude: '-25.881672', longitude: '-48.575223' },
