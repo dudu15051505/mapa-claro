@@ -66,18 +66,6 @@
 
 								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
 							}
-						} else if (ver_data.toString() === value.toString()) {
-							if (index === (len - 1)) {
-								var tempDate = new Date(value);
-								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-
-								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
-							} else {
-								var tempDate = new Date(value);
-								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-
-								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
-							}
 						} else {
 							if (index === (len - 1)) {
 								var tempDate = new Date(value);
