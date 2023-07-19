@@ -6,108 +6,116 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
 		<link rel="stylesheet" href="./css/css.css" />
+		<link rel="prefetch" href="./img/loading.gif" />
+		<link rel="prefetch" href="./img/loading2.gif" />
+		<link rel="prefetch" href="./img/loading3.gif" />
 		<script src="./js/jquery-3.6.0.min.js"></script>
-		<script>			
+		<script src="./js/jquery.csv.min.js"></script>
+		<script>
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const ver_data = urlParams.get('ver-data');
-			
-			function load_script(arquivo, old = false) {
-				if (old) {
-					let Script = document.createElement("script");
-					Script.setAttribute("src", "./js/old/"+ver_data+"/" + arquivo);
-					document.head.appendChild(Script);
-				}
-				else {
-					let Script = document.createElement("script");
-					Script.setAttribute("src", "./js/" + arquivo);
-					document.head.appendChild(Script);
-				}
-			}
-			
-			if(ver_data) {
-				load_script("data-update.js", true);
-				load_script("locations-gpon.js", true);
-				load_script("locations-hfc.js", true);
-				load_script("locations-nada.js", true);
-				load_script("locations-neutrogpon.js", true);
-				load_script("locations-neutrohfc.js", true);
-				load_script("locations-neutrohfc.js", true);
-				load_script("locations-sobrepo.js", true);
-				load_script("locations-erroapi.js", true);
-			}
-			else {
-				load_script("data-update.js");
-				load_script("locations-gpon.js");
-				load_script("locations-hfc.js");
-				load_script("locations-nada.js");
-				load_script("locations-neutrogpon.js");
-				load_script("locations-neutrohfc.js");
-				load_script("locations-neutrohfc.js");
-				load_script("locations-sobrepo.js");
-				load_script("locations-erroapi.js");
-			}
-			
-			$.get('./js/data-lista.txt', function (data) {
-				var dados = data.split("\n");
-				var len = dados.length;
 
-				if (ver_data) {
-					$.each(dados, function (index, value) {
-						if (ver_data.toString() === value.toString()) {
-							if (index === (len - 1)) {
-								var tempDate = new Date(value);
-								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+			function loadScript(arquivo, old = false) {
+				let script = document.createElement("script");
+				let path = old ? `./js/old/${ver_data}/${arquivo}` : `./js/${arquivo}`;
+				script.src = path;
+				document.head.appendChild(script);
+			}
 
-								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
+			if (ver_data) {
+				const scripts = [
+					"data-update.js",
+					"locations-gpon.js",
+					"locations-hfc.js",
+					"locations-nada.js",
+					"locations-neutrogpon.js",
+					"locations-neutrohfc.js",
+					"locations-neutrohfc.js",
+					"locations-sobrepo.js",
+					"locations-erroapi.js"
+				];
+				scripts.forEach((script) => {
+					loadScript(script, true);
+				});
+			} else {
+				const scripts = [
+					"data-update.js",
+					"locations-gpon.js",
+					"locations-hfc.js",
+					"locations-nada.js",
+					"locations-neutrogpon.js",
+					"locations-neutrohfc.js",
+					"locations-neutrohfc.js",
+					"locations-sobrepo.js",
+					"locations-erroapi.js"
+				];
+				scripts.forEach((script) => {
+					loadScript(script);
+				});
+			}
+
+			$.get('./js/data-lista.txt', function(data) {
+				let arrydados = $.csv.toArrays(data);
+				let len = arrydados.length;
+
+				$.each(arrydados, function(index, value) {
+					let tempDate = new Date(value[0]);
+					let formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+					let option = $("<option></option>").attr("value", value[1]).text(value[4] ? `${formattedDate} - ${value[4]}` : `${formattedDate}`);
+
+					if (ver_data) {
+						if (ver_data.toString() === value[1].toString()) {
+							option.attr("selected", true);
+							if(value[4]) {
+								$('#dados-info').html(`<a href="${value[3]}" target="_blank">${value[2]}</a>`);
 							} else {
-								var tempDate = new Date(value);
-								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-
-								$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
-							}
-						} else {
-							if (index === (len - 1)) {
-								var tempDate = new Date(value);
-								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-
-								$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate));
-							} else {
-								var tempDate = new Date(value);
-								var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-
-								$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate));
+								$('#dados-info').html(value[2]);
 							}
 						}
-					});
-				} else {
-					$.each(dados, function (index, value) {
-						if (index === (len - 1)) {
-							var tempDate = new Date(value);
-							var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-
-							$('#lista-data-dados').append($("<option selected></option>").attr("value", value).text(formattedDate));
+					} else if (index === (len - 1)) {
+						option.attr("selected", true);
+						if(value[4]) {
+							$('#dados-info').html(`<a href="${value[3]}">${value[2]}</a>`);
 						} else {
-							var tempDate = new Date(value);
-							var formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
-
-							$('#lista-data-dados').append($("<option></option>").attr("value", value).text(formattedDate));
+							$('#dados-info').html(value[2]);
 						}
-					});
-				}
-			}, 'text');
-				
-			$(document).ready(function() {	
+					}
+
+					$('#lista-data-dados').append(option);
+				});
+			}).fail(function() {
+				console.error('Erro ao carregar lista de dados passados.');
+				//alert('Erro ao carregar lista de dados passados.');
+			});
+
+			$(document).ready(function() {
 				$('#lista-data-dados').on('change', function() {
-					var value = $(this).val();
-					$(location).prop('href', './index.html?ver-data='+value);
+					let value = $(this).val();
+					$(location).prop('href', './index.html?ver-data=' + value);
 				});
-				
+
 				//window.setTimeout($("aviso-fechar").on(), 1000);
-				
-				$("#aviso-fechar").click(function(){
+
+				$("#aviso-fechar").click(function() {
 					$("#aviso").fadeOut("slow");
-				});
+				});				
+			});
+
+			$(document).ajaxStart(function() {
+				// Pela zueira, carrega uma img de load diferente aleatoriamente
+				let urls = [
+					'./img/loading.gif', 
+					'./img/loading2.gif',
+					'./img/loading3.gif'
+				];
+				$("#loadAjaxImg").attr('src', urls[Math.round(Math.random() * urls.length)]);
+
+				// Mostra janela load em ação ajax
+				$("#loadAjax").css("display","block");
+			}).ajaxComplete(function() {
+				// Esconde janela load em ação ajax ao termino
+				$("#loadAjax").css("display","none");
 			});
 		</script>
 	</head>
@@ -129,9 +137,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="width: 175.078px;">
 							Informações coletadas <br>
-							na data <select name="lista-data-dados" id="lista-data-dados"></select>
+							na data <select name="lista-data-dados" id="lista-data-dados" style="width: 84px;"></select> <br>
+							<span id="dados-info"></span>
 						</td>
 					</tr>
 					<tr>
@@ -230,6 +239,10 @@
 			<button id="aviso-fechar">FECHAR</button>
 			<br>
 			<span>&nbsp;</span>
+		</div>
+		<div id="loadAjax" class="leaflet-control">
+			<h3>&nbsp;Carregando dados API Claro&nbsp;</h3>
+			<img id="loadAjaxImg" src="./img/loading.gif" />
 		</div>
 		<script defer src="./js/leaflet/leaflet.js"></script>
 		<script defer src="./js/fetch.umd.js"></script>

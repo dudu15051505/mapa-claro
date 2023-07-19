@@ -3,30 +3,30 @@ $(window).on('load', function() {
     $('#data-dados').html(data_update);
 
     // Inicia mapa centralizado no Brasil
-    var map = L.map('map').setView([-14.235004, -51.925280], 5);
+    let map = L.map('map').setView([-14.235004, -51.925280], 5);
 
     // Adiciona layers de diferentes tipos de mapa
-    var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    let osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors',
         maxZoom: 18,
     });
-    var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    let satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Imagery &copy; <a href="https://www.arcgis.com/" target="_blank">ArcGIS</a>',
         maxZoom: 18,
     });
-    var cartoDarkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    let cartoDarkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: 'Map data &copy; <a href ="https://carto.com/" target="_blank">CARTO</a>',
         maxZoom: 18,
     });
-    var cartoVoyagerLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    let cartoVoyagerLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: 'Map data &copy; <a href="https://carto.com/" target="_blank">CARTO</a>',
         maxZoom: 18,
     });
-    var stamenTerrainLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
+    let stamenTerrainLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
         attribution: 'Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0" target="_blank">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_blank">CC BY SA</a>',
         maxZoom: 18,
     });
-    var baseLayers = {
+    let baseLayers = {
         "OpenStreetMap": osmLayer,
         "Satélite": satelliteLayer,
         "Carto Dark": cartoDarkLayer,
@@ -38,40 +38,40 @@ $(window).on('load', function() {
     osmLayer.addTo(map);
 
     // Carrega um marcador para cada tipo de tecnologia como uma layer diferente, com base nos dados JS carregados
-    var GPON = L.layerGroup().addTo(map);
+    let GPON = L.layerGroup().addTo(map);
     locations_gpon.forEach(function (location) {
-        var iconUrl = './img/marker-icon-' + location.color + '.png';
-        var customIcon = L.icon({
+        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
         });
-        var marker = L.marker([location.latitude, location.longitude], {
+        let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
         GPON.addLayer(marker);
     });
 
-    var HFC = L.layerGroup().addTo(map);
+    let HFC = L.layerGroup().addTo(map);
     locations_hfc.forEach(function (location) {
-        var iconUrl = './img/marker-icon-' + location.color + '.png';
-        var customIcon = L.icon({
+        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
         });
-        var marker = L.marker([location.latitude, location.longitude], {
+        let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
         HFC.addLayer(marker);
     });
 
-    var SOBREPO = L.layerGroup().addTo(map);
+    let SOBREPO = L.layerGroup().addTo(map);
     locations_sobrepo.forEach(function (location) {
-        var iconUrl = './img/marker-icon-' + location.color + '.png';
-        var customIcon = L.icon({
+        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -83,10 +83,10 @@ $(window).on('load', function() {
         SOBREPO.addLayer(marker);
     });
 
-    var GPONNEUTRO = L.layerGroup().addTo(map);
+    let GPONNEUTRO = L.layerGroup().addTo(map);
     locations_neutrogpon.forEach(function (location) {
-        var iconUrl = './img/marker-icon-' + location.color + '.png';
-        var customIcon = L.icon({
+        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -98,53 +98,53 @@ $(window).on('load', function() {
         GPONNEUTRO.addLayer(marker);
     });
 
-    var HFCNEUTRO = L.layerGroup();
+    let HFCNEUTRO = L.layerGroup();
     locations_neutrohfc.forEach(function (location) {
-        var iconUrl = './img/marker-icon-' + location.color + '.png';
-        var customIcon = L.icon({
+        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
         });
-        var marker = L.marker([location.latitude, location.longitude], {
+        let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
         HFCNEUTRO.addLayer(marker);
     });
 
-    var SEMNADA = L.layerGroup();
+    let SEMNADA = L.layerGroup();
     locations_nada.forEach(function (location) {
-        var iconUrl = './img/marker-icon-' + location.color + '.png';
-        var customIcon = L.icon({
+        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
         });
-        var marker = L.marker([location.latitude, location.longitude], {
+        let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
         SEMNADA.addLayer(marker);
     });
 
-    var ERROAPI = L.layerGroup();
+    let ERROAPI = L.layerGroup();
     locations_erroapi.forEach(function (location) {
-        var iconUrl = './img/marker-icon-' + location.color + '.png';
-        var customIcon = L.icon({
+        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
         });
-        var marker = L.marker([location.latitude, location.longitude], {
+        let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
         ERROAPI.addLayer(marker);
     });
 
     // Cria menu layers com cada tecnologia e seus marcadores previamente carregados
-    var controle_tecnologias = {
+    let controle_tecnologias = {
         'GPON <img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>': GPON,
         'HFC <img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>': HFC,
         'Sobreposição <img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>': SOBREPO,
@@ -158,18 +158,18 @@ $(window).on('load', function() {
     L.control.layers(baseLayers, controle_tecnologias).addTo(map);
 
     // Calcular a contagem numerica da legenda
-    $('#somatorio-gpon').html('<span class = "center"> ' + locations_gpon.length + '</span>');
-    $('#somatorio-hfc').html('<span class = "center" > ' + locations_hfc.length + '</span>');
-    $('#somatorio-sobre').html('<span class = "center" > ' + locations_sobrepo.length + '</span>');
-    $('#somatorio-neutragpon').html('<span class = "center" > ' + locations_neutrogpon.length + '</span>');
-    $('#somatorio-neutrahfc').html('<span class = "center" > ' + locations_neutrohfc.length + '</span>');
-    $('#somatorio-nada').html('<span class = "center" > ' + locations_nada.length + '</span>');
-    $('#somatorio-erroapi').html('<span class = "center" > ' + locations_erroapi.length + '</span>');
+    $('#somatorio-gpon').html(`<span class = "center"> ${locations_gpon.length}</span>`);
+    $('#somatorio-hfc').html(`<span class = "center" > ${locations_hfc.length}</span>`);
+    $('#somatorio-sobre').html(`<span class = "center" > ${locations_sobrepo.length}</span>`);
+    $('#somatorio-neutragpon').html(`<span class = "center" > ${locations_neutrogpon.length}</span>`);
+    $('#somatorio-neutrahfc').html(`<span class = "center" > ${locations_neutrohfc.length}</span>`);
+    $('#somatorio-nada').html(`<span class = "center" > ${locations_nada.length}</span>`);
+    $('#somatorio-erroapi').html(`<span class = "center" > ${locations_erroapi.length}</span>`);
 
     // Função para validar os campos antes de fazer a consulta CEP e Numero
     function validarCampos() {
-        var cep = $('#cep').val();
-        var numero = $('#numero').val();
+        let cep = $('#cep').val();
+        let numero = $('#numero').val();
         // Verificar se os campos estão preenchidos corretamente
         if (cep.length !== 8) {
             alert('O campo CEP deve conter 8 números.');
@@ -187,9 +187,9 @@ $(window).on('load', function() {
         if (!validarCampos()) {
             return;
         }
-        var cep = $('#cep').val();
-        var numero = $('#numero').val();
-        var url = 'https://api.amxrest.net/viability/' + cep + '/' + numero;
+        let cep = $('#cep').val();
+        let numero = $('#numero').val();
+        let url = 'https://api.amxrest.net/viability/' + cep + '/' + numero;
         $.ajax({
             url: url,
             type: 'GET',
@@ -200,10 +200,10 @@ $(window).on('load', function() {
 
                     //Realiza consulta endereço em outra api, o resultado retornado da api claro possue varios erros no cadastro como nome do logradouro
                     //Caso api não retorne dados, fall back para dados api claro
-                    var logradouro = '';
-                    var bairro = '';
-                    var cidade = '';
-                    var uf = '';
+                    let logradouro = '';
+                    let bairro = '';
+                    let cidade = '';
+                    let uf = '';
                     $.ajax({
                         url: 'https://viacep.com.br/ws/' + cep + '/json/',
                         type: 'GET',
@@ -243,12 +243,12 @@ $(window).on('load', function() {
                         }
                     });
                     // Exibir campos Logradouro, Number e Cidade em uma linha, mais dados consulta tecnologia bia api cep
-                    var resultado = '<span> Localização aproximada <br> ';
+                    let resultado = '<span> Localização aproximada <br> ';
                     resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
                     resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil</p>';
 
-                    for (var i = 0; i < data.data.technologies.length; i++) {
-                        var technology = data.data.technologies[i];
+                    for (let i = 0; i < data.data.technologies.length; i++) {
+                        let technology = data.data.technologies[i];
                         // Verifica se a rede utilizada é da VTAL
                         if (data.data.cableNodeID === 'GPONAVTAL') {
                             if (technology.name === 'Cable' && technology.gpon === false) {
@@ -340,7 +340,7 @@ $(window).on('load', function() {
                         }
                         // Gera URL para pegar geocodificação do endereço fornecido
                         // var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil');
-                        var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ' ' + numero + ', ' + cidade + ', ' + uf + ', Brasil');
+                        let geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ' ' + numero + ', ' + cidade + ', ' + uf + ', Brasil');
 
                         //Debug para ver url gerada
                         console.info('URL geolocation: ' + geocodingUrl);
@@ -351,17 +351,17 @@ $(window).on('load', function() {
                         }).then(function (data) {
                             // Caso tenha algum url
                             if (data.length > 0) {
-                                var firstResult = data[0];
-                                var latitude = parseFloat(firstResult.lat);
-                                var longitude = parseFloat(firstResult.lon);
-                                var customIcon = L.icon({
+                                let firstResult = data[0];
+                                let latitude = parseFloat(firstResult.lat);
+                                let longitude = parseFloat(firstResult.lon);
+                                let customIcon = L.icon({
                                     iconUrl: './img/marker-icon-blue.png',
                                     iconSize: [25, 41],
                                     iconAnchor: [12, 41],
                                     popupAnchor: [0, -41]
                                 });
                                 // Cria marcador e adiciona no mapa
-                                var marker = L.marker([latitude, longitude], {
+                                let marker = L.marker([latitude, longitude], {
                                     icon: customIcon
                                 }).addTo(map);
                                 // Abre popup do marcador
@@ -372,7 +372,7 @@ $(window).on('load', function() {
                             }
                             // Caso não retorno nada na url
                             else {
-                                console.warn('Endereço não encontrado.');
+                                console.error('Endereço não encontrado.');
                                 alert('Endereço não encontrado.');
                             }
                         }).catch(function (error) {

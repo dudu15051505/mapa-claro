@@ -24,6 +24,7 @@ cities = []
 
 with open(csv_path, "r") as csvfile:
     reader = csv.reader(csvfile)
+    header = next(reader)
     for row in reader:
         states.append(row[0])
         cities.append(row[1])
@@ -95,4 +96,6 @@ f.close()
 today = date.today()
 d2 = today.strftime("%Y-%m-%d")
 with open(diretorio_trabalho + 'js/data-lista.txt', 'a') as my_file:
-    my_file.write('\n' + d2)
+    my_file.write('\n "' + d2 + '","' + d2 + '","","#","Consulta automática"')
+    
+    
