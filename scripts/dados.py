@@ -5,8 +5,12 @@ import random
 import time
 import shutil
 from datetime import date
+from unidecode import unidecode
 
-diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts/"
+def remover_acentos(texto):
+    return unidecode(texto)
+
+diretorio_trabalho = "/home/runner/work/mapa-claro-beta/mapa-claro-beta/scripts/"
 
 csv_path = diretorio_trabalho + "arquivo.csv"
 
@@ -38,7 +42,9 @@ for i in range(len(cities)):
     state = states[i]
     
     # Montar a URL com a cidade e o estado atual
-    url = f"https://planos.claro.com.br/cobertura/api/promotions?city={city}&state={state}"
+    # A partir da semana 17/07/2023 api da claro, o nome das cidades foram retirados todas os caracteres de acentuação
+    url = f"https://planos.claro.com.br/cobertura/api/promotions?city={remover_acentos(city)}&state={state}"
+    #url = f"https://planos.claro.com.br/cobertura/api/promotions?city={city}&state={state}"
 
     # Realizar a solicitação GET
     response = requests.get(url)
@@ -96,6 +102,6 @@ f.close()
 today = date.today()
 d2 = today.strftime("%Y-%m-%d")
 with open(diretorio_trabalho + 'js/data-lista.txt', 'a') as my_file:
-    my_file.write('\n "' + d2 + '","' + d2 + '","","#","Consulta automática"')
+    my_file.write('\n"' + d2 + '","' + d2 + '","","#","Consulta automática"')
     
     

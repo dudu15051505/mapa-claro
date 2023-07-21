@@ -1,5 +1,7 @@
 var locations_hfc = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
+{ name: 'São Gonçalo, RJ <br> HFC', color: 'red', latitude: '-22.82679', longitude: '-43.063351' },
+{ name: 'Criciúma, SC <br> HFC', color: 'red', latitude: '-28.672267', longitude: '-49.372887' },
 { name: 'Mogi das Cruzes, SP <br> HFC', color: 'red', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Santa Branca, SP <br> HFC', color: 'red', latitude: '-23.393311', longitude: '-45.887521' },
 
@@ -77,7 +79,6 @@ var locations_hfc = [
 { name: 'Resende, RJ <br> HFC', color: 'red', latitude: '-22.470473', longitude: '-44.45091' },
 { name: 'Rio Das Ostras, RJ <br> HFC', color: 'red', latitude: '-22.517378', longitude: '-41.947509' },
 { name: 'Rio de Janeiro, RJ <br> HFC', color: 'red', latitude: '-22.912897', longitude: '-43.200295' },
-{ name: 'São João de Meriti, RJ <br> HFC', color: 'red', latitude: '-22.805776', longitude: '-43.37292' },
 { name: 'Teresópolis, RJ <br> HFC', color: 'red', latitude: '-22.416464', longitude: '-42.97519' },
 { name: 'Volta Redonda, RJ <br> HFC', color: 'red', latitude: '-22.520212', longitude: '-44.099555' },
 { name: 'Natal, RN <br> HFC', color: 'red', latitude: '-5.793567', longitude: '-35.198604' },
@@ -164,6 +165,7 @@ var locations_hfc = [
 { name: 'Mauá, SP <br> HFC', color: 'red', latitude: '-23.66767', longitude: '-46.461263' },
 { name: 'Mogi Das Cruzes, SP <br> HFC', color: 'red', latitude: '-23.52082', longitude: '-46.18541' },
 { name: 'Mogi Guaçu, SP <br> HFC', color: 'red', latitude: '-22.367453', longitude: '-46.9428' },
+{ name: 'Mogi Mirim, SP <br> HFC', color: 'red', latitude: '-22.431878', longitude: '-46.950514' },
 { name: 'Monte Mor, SP <br> HFC', color: 'red', latitude: '-22.945043', longitude: '-47.312182' },
 { name: 'Nova Odessa, SP <br> HFC', color: 'red', latitude: '-22.783186', longitude: '-47.294059' },
 { name: 'Osasco, SP <br> HFC', color: 'red', latitude: '-23.53239', longitude: '-46.791555' },

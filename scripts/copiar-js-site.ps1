@@ -1,4 +1,4 @@
-$diretorio_raiz = "/home/runner/work/mapa-claro/mapa-claro"
+$diretorio_raiz = "/home/runner/work/mapa-claro-beta/mapa-claro-beta"
 $diretorio_trabalho = "$diretorio_raiz/scripts"
 $diretorio_site = "$diretorio_raiz/docs"
 
