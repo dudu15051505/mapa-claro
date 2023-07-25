@@ -87,6 +87,8 @@
 			}).fail(function() {
 				console.error('Erro ao carregar lista de dados passados.');
 				//alert('Erro ao carregar lista de dados passados.');
+				$('#telaerro-conteudo').html(`Erro ao carregar lista de dados passados.`);
+           		$('#telaerro').css('display','block');
 			});
 
 			$(document).ready(function() {
@@ -99,7 +101,11 @@
 
 				$("#aviso-fechar").click(function() {
 					$("#aviso").fadeOut("slow");
-				});				
+				});
+				
+				$("#telaerro-fechar").click(function() {
+					$("#telaerro").fadeOut("slow");
+				});		
 			});
 
 			$(document).ajaxStart(function() {
@@ -243,6 +249,13 @@
 		<div id="loadAjax" class="leaflet-control">
 			<h3>&nbsp;Carregando dados API Claro&nbsp;</h3>
 			<img id="loadAjaxImg" src="./img/loading.gif" />
+		</div>
+		<div id="telaerro" class="leaflet-control">
+			<span style="float: right; margin: 5px;">
+				<button id="telaerro-fechar">FECHAR</button> <br>
+			</span>
+			<div id="telaerro-conteudo">
+			</div>
 		</div>
 		<script defer src="./js/leaflet/leaflet.js"></script>
 		<script defer src="./js/fetch.umd.js"></script>
