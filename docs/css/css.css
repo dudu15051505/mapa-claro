@@ -96,3 +96,17 @@ body, html {
 	display: none;
 	border-radius: 10px;
 }
+
+#telaerro {
+	background-color: #ffffff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+	border-radius: 10px;
+}
+
+#telaerro-conteudo {
+	margin: 20px;
+}
