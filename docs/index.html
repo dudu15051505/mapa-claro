@@ -107,6 +107,7 @@
 				$("#loadAjaxImg").attr('src', urls[Math.round(Math.random() * urls.length)]);
 
 				// Mostra janela load em ação ajax
+				$("#telaerro").css("display","none");
 				$("#loadAjax").css("display","block");
 			}).ajaxComplete(function() {
 				// Esconde janela load em ação ajax ao termino
