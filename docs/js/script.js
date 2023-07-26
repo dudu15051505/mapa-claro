@@ -40,7 +40,7 @@ $(window).on('load', function() {
     // Carrega um marcador para cada tipo de tecnologia como uma layer diferente, com base nos dados JS carregados
     let GPON = L.layerGroup().addTo(map);
     locations_gpon.forEach(function (location) {
-        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
@@ -55,7 +55,7 @@ $(window).on('load', function() {
 
     let HFC = L.layerGroup().addTo(map);
     locations_hfc.forEach(function (location) {
-        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
@@ -70,7 +70,7 @@ $(window).on('load', function() {
 
     let SOBREPO = L.layerGroup().addTo(map);
     locations_sobrepo.forEach(function (location) {
-        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
@@ -85,7 +85,7 @@ $(window).on('load', function() {
 
     let GPONNEUTRO = L.layerGroup().addTo(map);
     locations_neutrogpon.forEach(function (location) {
-        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
@@ -100,7 +100,7 @@ $(window).on('load', function() {
 
     let HFCNEUTRO = L.layerGroup();
     locations_neutrohfc.forEach(function (location) {
-        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
@@ -115,7 +115,7 @@ $(window).on('load', function() {
 
     let SEMNADA = L.layerGroup();
     locations_nada.forEach(function (location) {
-        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
@@ -130,7 +130,7 @@ $(window).on('load', function() {
 
     let ERROAPI = L.layerGroup();
     locations_erroapi.forEach(function (location) {
-        let iconUrl = './img/marker-icon-' + location.color + '.png';
+        let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
             iconSize: [25, 41],
@@ -193,7 +193,7 @@ $(window).on('load', function() {
         }
         let cep = $('#cep').val();
         let numero = $('#numero').val();
-        let url = 'https://api.amxrest.net/viability/' + cep + '/' + numero;
+        let url = `https://api.amxrest.net/viability/${cep}/${numero}`;
         $.ajax({
             url: url,
             type: 'GET',
@@ -209,7 +209,7 @@ $(window).on('load', function() {
                     let cidade = '';
                     let uf = '';
                     $.ajax({
-                        url: 'https://viacep.com.br/ws/' + cep + '/json/',
+                        url: `https://viacep.com.br/ws/${cep}/json/`,
                         type: 'GET',
                         dataType: 'json',
                         async: false,
@@ -248,8 +248,9 @@ $(window).on('load', function() {
                     });
                     // Exibir campos Logradouro, Number e Cidade em uma linha, mais dados consulta tecnologia bia api cep
                     let resultado = '<span> Localização aproximada <br> ';
-                    resultado += 'Ver no <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil') + '" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span>';
-                    resultado += '<p>Endereço: ' + logradouro + ', ' + data.data.number + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil</p>';
+                    resultado += `Ver no <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${logradouro}, ${numero}, ${cidade}, ${uf}, Brasil`)}" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span> <br>`;
+                    resultado += `Consulta oficial disponível na <a href="https://planos.claro.com.br/monte-sua-combinacao?cep=${cep}&number=${numero}" target="_blank">CLARO</a>`;
+                    resultado += `<p>Endereço: ${logradouro}, ${data.data.number}, ${bairro}, ${cidade}, ${uf}, Brasil</p>`;
 
                     for (let i = 0; i < data.data.technologies.length; i++) {
                         let technology = data.data.technologies[i];
@@ -343,11 +344,11 @@ $(window).on('load', function() {
                             }
                         }
                         // Gera URL para pegar geocodificação do endereço fornecido
-                        // var geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ', ' + numero + ', ' + bairro + ', ' + cidade + ', ' + uf + ', Brasil');
-                        let geocodingUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(logradouro + ' ' + numero + ', ' + cidade + ', ' + uf + ', Brasil');
+                        // var geocodingUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(`${logradouro} ${numero}, ${bairro}, ${cidade}, ${uf}, Brasil`)}`;
+                        let geocodingUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(`${logradouro} ${numero}, ${cidade}, ${uf}, Brasil`)}`;
 
                         //Debug para ver url gerada
-                        console.info('URL geolocation: ' + geocodingUrl);
+                        console.info(`URL geolocation: ${geocodingUrl}`);
 
                         // Consulta URL e gera marcador no mapa
                         fetch(geocodingUrl).then(function (response) {
@@ -377,7 +378,7 @@ $(window).on('load', function() {
                             // Caso não retorno nada na url
                             else {
                                 console.error('Endereço não encontrado.');
-                                $('#telaerro-conteudo').html(`Endereço não encontrado na base de geolocalização do <a href="https://www.openstreetmap.org/search?query=${encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil')}#map=5/-13.240/-50.383'" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a> <br>
+                                $('#telaerro-conteudo').html(`<b>Endereço não encontrado na base de geolocalização <a href="https://www.openstreetmap.org/search?query=${encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil')}#map=5/-13.240/-50.383'" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br>
                                 <br>                                                               
                                 Dados retornados pela API Claro: <br>
                                 <br>
@@ -389,20 +390,20 @@ $(window).on('load', function() {
                         }).catch(function (error) {
                             // Caso falhe consulta a url por algum erro de conexão/servidor
                             console.error('Erro ao processar a solicitação de geocodificação: ', error);
-                            $('#telaerro-conteudo').html(`Erro ao processar a solicitação de geocodificação.`);
+                            $('#telaerro-conteudo').html(`Erro ao processar a solicitação de geocodificação. <br> ${error}`);
                             $('#telaerro').css('display','block');
                             //alert('Erro ao processar a solicitação de geocodificação.');
                         });
                     }
                 } else {
-                    console.error('Resultado não esperado, codigo: Erro: \n' + JSON.stringify(data, null, 9));
+                    console.error(`Resultado não esperado no retorno da API, Erro: \n ${JSON.stringify(data, null, 9)}`);
                     $('#telaerro-conteudo').html(`Resultado não esperado no retorno da API. <br> ${JSON.stringify(data, null, 9)}`);
                     $('#telaerro').css('display','block');
                     //alert('Resultado não esperado no retorno da API.');
                 }
             },
             error: function (data) {
-                console.error('Resultado não esperado no retorno da API, Erro: \n' + JSON.stringify(data, null, 9));
+                console.error(`Resultado não esperado no retorno da API, Erro: \n ${JSON.stringify(data, null, 9)}`);
                 $('#telaerro-conteudo').html(`Resultado não esperado no retorno da API. <br> ${JSON.stringify(data, null, 9)}`);
                 $('#telaerro').css('display','block');
                 //alert('Resultado não esperado no retorno da API.');

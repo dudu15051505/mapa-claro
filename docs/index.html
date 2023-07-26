@@ -15,41 +15,30 @@
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const ver_data = urlParams.get('ver-data');
+			const scripts = [
+				"data-update.js",
+				"locations-gpon.js",
+				"locations-hfc.js",
+				"locations-nada.js",
+				"locations-neutrogpon.js",
+				"locations-neutrohfc.js",
+				"locations-neutrohfc.js",
+				"locations-sobrepo.js",
+				"locations-erroapi.js"
+			];
 
 			function loadScript(arquivo, old = false) {
 				let script = document.createElement("script");
 				let path = old ? `./js/old/${ver_data}/${arquivo}` : `./js/${arquivo}`;
 				script.src = path;
 				document.head.appendChild(script);
-			}
-
+			}			
+			
 			if (ver_data) {
-				const scripts = [
-					"data-update.js",
-					"locations-gpon.js",
-					"locations-hfc.js",
-					"locations-nada.js",
-					"locations-neutrogpon.js",
-					"locations-neutrohfc.js",
-					"locations-neutrohfc.js",
-					"locations-sobrepo.js",
-					"locations-erroapi.js"
-				];
 				scripts.forEach((script) => {
 					loadScript(script, true);
 				});
 			} else {
-				const scripts = [
-					"data-update.js",
-					"locations-gpon.js",
-					"locations-hfc.js",
-					"locations-nada.js",
-					"locations-neutrogpon.js",
-					"locations-neutrohfc.js",
-					"locations-neutrohfc.js",
-					"locations-sobrepo.js",
-					"locations-erroapi.js"
-				];
 				scripts.forEach((script) => {
 					loadScript(script);
 				});
@@ -61,27 +50,27 @@
 
 				$.each(arrydados, function(index, value) {
 					let tempDate = new Date(value[0]);
-					let formattedDate = [tempDate.getDate() + 1, tempDate.getMonth() + 1, tempDate.getFullYear()].join('/');
+					let formattedDate = [
+						tempDate.getDate() + 1, 
+						tempDate.getMonth() + 1, 
+						tempDate.getFullYear()
+					].join('/');
+
 					let option = $("<option></option>").attr("value", value[1]).text(value[4] ? `${formattedDate} - ${value[4]}` : `${formattedDate}`);
 
 					if (ver_data) {
 						if (ver_data.toString() === value[1].toString()) {
 							option.attr("selected", true);
-							if(value[4]) {
+							if(value[2]) {
 								$('#dados-info').html(`<a href="${value[3]}" target="_blank">${value[2]}</a>`);
-							} else {
-								$('#dados-info').html(value[2]);
 							}
 						}
 					} else if (index === (len - 1)) {
 						option.attr("selected", true);
-						if(value[4]) {
+						if(value[2]) {
 							$('#dados-info').html(`<a href="${value[3]}">${value[2]}</a>`);
-						} else {
-							$('#dados-info').html(value[2]);
 						}
 					}
-
 					$('#lista-data-dados').append(option);
 				});
 			}).fail(function() {
@@ -94,7 +83,7 @@
 			$(document).ready(function() {
 				$('#lista-data-dados').on('change', function() {
 					let value = $(this).val();
-					$(location).prop('href', './index.html?ver-data=' + value);
+					$(location).prop('href', `./index.html?ver-data=${value}`);
 				});
 
 				//window.setTimeout($("aviso-fechar").on(), 1000);
@@ -143,7 +132,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td style="width: 175.078px;">
+						<td style="width: 176px;">
 							Informações coletadas <br>
 							na data <select name="lista-data-dados" id="lista-data-dados" style="width: 84px;"></select> <br>
 							<span id="dados-info"></span>
@@ -240,7 +229,7 @@
 			<h3>&nbsp;Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil&nbsp;</h3>
 			<p><b>Este site não é afiliado à operadora CLARO</b></p>
 			<p><b>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a></b></p>
-			<p>Codigo fonte do site disponivel no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a></p>
+			<p>Código fonte do site disponível no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a></p>
 			<!--<p>As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.</p>-->
 			<button id="aviso-fechar">FECHAR</button>
 			<br>
