@@ -3,9 +3,6 @@ name: Executar script API Claro por nome cidade e PWSH para processar dados ao m
 on:
   schedule:
     - cron: '0 1 * * FRI'
-
-  push:  
-    branches: ["main"]
   
   workflow_dispatch:
   
