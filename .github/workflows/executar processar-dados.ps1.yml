@@ -1,9 +1,6 @@
 name: Executar script para processar dados coletados
 
 on:
-  push:  
-    branches: ["main"]
-  
   workflow_dispatch:
 
 permissions:

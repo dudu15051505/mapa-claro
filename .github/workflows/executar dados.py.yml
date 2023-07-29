@@ -1,9 +1,6 @@
 name: Executar script API Claro por nome cidade
 
 on:
-  push:  
-    branches: ["main"]
-  
   workflow_dispatch:
 
 permissions:

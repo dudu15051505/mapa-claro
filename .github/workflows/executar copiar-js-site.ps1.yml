@@ -1,9 +1,6 @@
 name: Executar script para copiar js para site
 
 on:
-  push:  
-    branches: ["main"]
-  
   workflow_dispatch:
 
 permissions:
