@@ -9,32 +9,41 @@
 		<link rel="prefetch" href="./img/loading.gif" />
 		<link rel="prefetch" href="./img/loading2.gif" />
 		<link rel="prefetch" href="./img/loading3.gif" />
-		<script src="./js/jquery-3.6.0.min.js"></script>
-		<script src="./js/jquery.csv.min.js"></script>
+		<link rel="prefetch" href="./js/script.js" />
+		<link rel="prefetch" href="./js/locations/locations-data-update.js" />
+		<link rel="prefetch" href="./js/locations/locations-gpon.js" />
+		<link rel="prefetch" href="./js/locations/locations-hfc.js" />
+		<link rel="prefetch" href="./js/locations/locations-nada.js" />
+		<link rel="prefetch" href="./js/locations/locations-neutrogpon.js" />
+		<link rel="prefetch" href="./js/locations/locations-neutrohfc.js" />
+		<link rel="prefetch" href="./js/locations/locations-sobrepo.js" />
+		<link rel="prefetch" href="./js/locations/locations-erroapi.js" />
+		<script src="./js/jquery-3.7.0.min.js"></script>
+		<script src="./js/leaflet/leaflet.js"></script>
 		<script>
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
-			const ver_data = urlParams.get('ver-data');
+			const verData = urlParams.get(`ver-data`);
 			const scripts = [
-				"data-update.js",
-				"locations-gpon.js",
-				"locations-hfc.js",
-				"locations-nada.js",
-				"locations-neutrogpon.js",
-				"locations-neutrohfc.js",
-				"locations-neutrohfc.js",
-				"locations-sobrepo.js",
-				"locations-erroapi.js"
+				`locations-data-update.js`,
+				`locations-gpon.js`,
+				`locations-hfc.js`,
+				`locations-nada.js`,
+				`locations-neutrogpon.js`,
+				`locations-neutrohfc.js`,
+				`locations-neutrohfc.js`,
+				`locations-sobrepo.js`,
+				`locations-erroapi.js`
 			];
 
 			function loadScript(arquivo, old = false) {
-				let script = document.createElement("script");
-				let path = old ? `./js/old/${ver_data}/${arquivo}` : `./js/${arquivo}`;
+				let script = document.createElement(`script`);
+				let path = old ? `./js/locations/old/${verData}/${arquivo}` : `./js/locations/${arquivo}`;
 				script.src = path;
 				document.head.appendChild(script);
 			}			
 			
-			if (ver_data) {
+			if (verData) {
 				scripts.forEach((script) => {
 					loadScript(script, true);
 				});
@@ -44,74 +53,63 @@
 				});
 			}
 
-			$.get('./js/data-lista.txt', function(data) {
-				let arrydados = $.csv.toArrays(data);
-				let len = arrydados.length;
+			$.get(`./js/locations/locations-data-lista.txt`, function (data) {
+				let arryDados = data.split(`\n`).map(item => item.split(`","`).map(i => i.replace(/"/g, ``)));
 
-				$.each(arrydados, function(index, value) {
+				$.each(arryDados, function (index, value) {
 					let tempDate = new Date(value[0]);
-					let formattedDate = [
-						tempDate.getDate() + 1, 
-						tempDate.getMonth() + 1, 
-						tempDate.getFullYear()
-					].join('/');
-
-					let option = $("<option></option>").attr("value", value[1]).text(value[4] ? `${formattedDate} - ${value[4]}` : `${formattedDate}`);
-
-					if (ver_data) {
-						if (ver_data.toString() === value[1].toString()) {
-							option.attr("selected", true);
-							if(value[2]) {
-								$('#dados-info').html(`<a href="${value[3]}" target="_blank">${value[2]}</a>`);
-							}
-						}
-					} else if (index === (len - 1)) {
-						option.attr("selected", true);
-						if(value[2]) {
-							$('#dados-info').html(`<a href="${value[3]}">${value[2]}</a>`);
-						}
-					}
-					$('#lista-data-dados').append(option);
+					let formattedDate = `${tempDate.getDate() + 1}/${tempDate.getMonth() + 1}/${tempDate.getFullYear()}`;
+					let option = $(`<option></option>`).attr(`value`, value[1]).text(value[4] ? `${formattedDate} - ${value[4]}` : `${formattedDate}`);
+					$(`#lista-data-dados`).append(option);
+					$(`#dados-info`).append(`<span id="dados-info-${index}" style="display: none;"><a href="${value[3]}" target="_blank">${value[2]}</a></span>`);
 				});
-			}).fail(function() {
-				console.error('Erro ao carregar lista de dados passados.');
-				//alert('Erro ao carregar lista de dados passados.');
-				$('#telaerro-conteudo').html(`Erro ao carregar lista de dados passados.`);
-           		$('#telaerro').css('display','block');
+			}).done(function () {
+				if (verData) {
+					$(`#lista-data-dados option[value="${verData}"]`).attr(`selected`, true);
+				} else {
+					$(`#lista-data-dados option:last`).attr(`selected`, true);
+				}
+				
+				$(`#dados-info-${$(`#lista-data-dados`).prop(`selectedIndex`)}`).show();
+			}).fail(function () {
+				console.error(`Erro ao carregar lista de dados passados.`);
+				//alert(`Erro ao carregar lista de dados passados.`);
+				$(`#telaerro-conteudo`).html(`Erro ao carregar lista de dados passados.`);
+				$(`#telaerro`).show();
 			});
 
 			$(document).ready(function() {
-				$('#lista-data-dados').on('change', function() {
+				$(`#lista-data-dados`).on(`change`, function() {
 					let value = $(this).val();
-					$(location).prop('href', `./index.html?ver-data=${value}`);
+					$(location).prop(`href`, `./index.html?ver-data=${value}`);
 				});
 
-				//window.setTimeout($("aviso-fechar").on(), 1000);
+				//window.setTimeout($(`aviso-fechar`).on(), 1000);
 
-				$("#aviso-fechar").click(function() {
-					$("#aviso").fadeOut("slow");
+				$(`#aviso-fechar`).click(function() {
+					$(`#aviso`).fadeOut(`slow`);
 				});
 				
-				$("#telaerro-fechar").click(function() {
-					$("#telaerro").fadeOut("slow");
+				$(`#telaerro-fechar`).click(function() {
+					$(`#telaerro`).fadeOut(`slow`);
 				});		
 			});
 
 			$(document).ajaxStart(function() {
 				// Pela zueira, carrega uma img de load diferente aleatoriamente
 				let urls = [
-					'./img/loading.gif', 
-					'./img/loading2.gif',
-					'./img/loading3.gif'
+					`./img/loading.gif`, 
+					`./img/loading2.gif`,
+					`./img/loading3.gif`
 				];
-				$("#loadAjaxImg").attr('src', urls[Math.round(Math.random() * urls.length)]);
+				$(`#loadAjaxImg`).attr(`src`, urls[Math.round(Math.random() * urls.length)]);
 
 				// Mostra janela load em ação ajax
-				$("#telaerro").css("display","none");
-				$("#loadAjax").css("display","block");
+				$(`#telaerro`).hide();
+				$(`#loadAjax`).show();
 			}).ajaxComplete(function() {
 				// Esconde janela load em ação ajax ao termino
-				$("#loadAjax").css("display","none");
+				$(`#loadAjax`).hide();
 			});
 		</script>
 	</head>
@@ -125,17 +123,18 @@
 						<td>
 							<form id="formulario">
 								<label for="cep">CEP:</label> &nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required style="width: 70px;"> <br>
+								<input type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, ``).replace(/(\..*)\./g, `$1`);" required style="width: 70px;"> <br>
 								<label for="numero">Número:</label>
-								<input type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required style="width: 70px;"> <br>
+								<input type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, ``).replace(/(\..*)\./g, `$1`);" required style="width: 70px;"> <br>
 								<input type="submit" value="Consultar" />
 							</form>
 						</td>
 					</tr>
 					<tr>
 						<td style="width: 176px;">
-							Informações coletadas <br>
-							na data <select name="lista-data-dados" id="lista-data-dados" style="width: 84px;"></select> <br>
+							<label>
+								Informações coletadas <br> na data <select name="lista-data-dados" id="lista-data-dados" style="width: 84px;"></select> <br>
+							</label>
 							<span id="dados-info"></span>
 						</td>
 					</tr>
@@ -227,28 +226,30 @@
 			</table>
 		</div>
 		<div id="aviso" class="leaflet-control">
-			<h3>&nbsp;Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil&nbsp;</h3>
-			<p><b>Este site não é afiliado à operadora CLARO</b></p>
-			<p><b>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a></b></p>
-			<p>Código fonte do site disponível no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a></p>
-			<!--<p>As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.</p>-->
-			<button id="aviso-fechar">FECHAR</button>
-			<br>
-			<span>&nbsp;</span>
+			<div id="aviso-conteudo">
+				<h3>&nbsp;Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil&nbsp;</h3>
+				<p><b>Este site não é afiliado à operadora CLARO</b></p>
+				<p><b>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a></b></p>
+				<p>Código fonte do site disponível no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a></p>
+				<!--<p>As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.</p>-->
+				<button id="aviso-fechar">FECHAR</button>
+				<br>
+				<span>&nbsp;</span>
+			</div>
 		</div>
 		<div id="loadAjax" class="leaflet-control">
-			<h3>&nbsp;Carregando dados API Claro&nbsp;</h3>
-			<img id="loadAjaxImg" src="./img/loading.gif" />
+			<div id="loadAjax-conteudo">
+				<h3>&nbsp;Carregando dados API Claro&nbsp;</h3>
+				<img id="loadAjaxImg" src="./img/loading.gif" alt="Carregando"/>
+			</div>
 		</div>
-		<div id="telaerro" class="leaflet-control">
+		<div id="telaerro" class="leaflet-control" style="display: none;">
 			<span style="float: right; margin: 5px;">
 				<button id="telaerro-fechar">FECHAR</button> <br>
 			</span>
 			<div id="telaerro-conteudo">
 			</div>
 		</div>
-		<script defer src="./js/leaflet/leaflet.js"></script>
-		<script defer src="./js/fetch.umd.js"></script>
-		<script defer src="./js/script.js"></script>
+		<script src="./js/script.js"></script>
 	</body>
 </html>

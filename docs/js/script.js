@@ -1,29 +1,26 @@
-$(window).on('load', function() {
-    // Atualiza data update dados no HTML
-    $('#data-dados').html(data_update);
-
+$(window).on(`load`, function() {
     // Inicia mapa centralizado no Brasil
-    let map = L.map('map').setView([-14.235004, -51.925280], 5);
+    let map = L.map(`map`).setView([-14.235004, -51.925280], 5);
 
     // Adiciona layers de diferentes tipos de mapa
-    let osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors',
+    let osmLayer = L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+        attribution: `Map data &copy; <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors`,
         maxZoom: 18,
     });
-    let satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Imagery &copy; <a href="https://www.arcgis.com/" target="_blank">ArcGIS</a>',
+    let satelliteLayer = L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}`, {
+        attribution: `Imagery &copy; <a href="https://www.arcgis.com/" target="_blank">ArcGIS</a>`,
         maxZoom: 18,
     });
-    let cartoDarkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: 'Map data &copy; <a href ="https://carto.com/" target="_blank">CARTO</a>',
+    let cartoDarkLayer = L.tileLayer(`https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png`, {
+        attribution: `Map data &copy; <a href ="https://carto.com/" target="_blank">CARTO</a>`,
         maxZoom: 18,
     });
-    let cartoVoyagerLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: 'Map data &copy; <a href="https://carto.com/" target="_blank">CARTO</a>',
+    let cartoVoyagerLayer = L.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `Map data &copy; <a href="https://carto.com/" target="_blank">CARTO</a>`,
         maxZoom: 18,
     });
-    let stamenTerrainLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
-        attribution: 'Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0" target="_blank">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_blank">CC BY SA</a>',
+    let stamenTerrainLayer = L.tileLayer(`https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png`, {
+        attribution: `Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0" target="_blank">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_blank">CC BY SA</a>`,
         maxZoom: 18,
     });
     let baseLayers = {
@@ -38,8 +35,8 @@ $(window).on('load', function() {
     osmLayer.addTo(map);
 
     // Carrega um marcador para cada tipo de tecnologia como uma layer diferente, com base nos dados JS carregados
-    let GPON = L.layerGroup().addTo(map);
-    locations_gpon.forEach(function (location) {
+    let tecnologiaGpon = L.layerGroup().addTo(map);
+    locationsGpon.forEach(function (location) {
         let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
@@ -50,11 +47,11 @@ $(window).on('load', function() {
         let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
-        GPON.addLayer(marker);
+        tecnologiaGpon.addLayer(marker);
     });
 
-    let HFC = L.layerGroup().addTo(map);
-    locations_hfc.forEach(function (location) {
+    let tecnologiaHfc = L.layerGroup().addTo(map);
+    locationsHfc.forEach(function (location) {
         let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
@@ -65,11 +62,11 @@ $(window).on('load', function() {
         let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
-        HFC.addLayer(marker);
+        tecnologiaHfc.addLayer(marker);
     });
 
-    let SOBREPO = L.layerGroup().addTo(map);
-    locations_sobrepo.forEach(function (location) {
+    let tecnologiasSobrepro = L.layerGroup().addTo(map);
+    locationsSobrepro.forEach(function (location) {
         let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
@@ -80,11 +77,11 @@ $(window).on('load', function() {
         var marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
-        SOBREPO.addLayer(marker);
+        tecnologiasSobrepro.addLayer(marker);
     });
 
-    let GPONNEUTRO = L.layerGroup().addTo(map);
-    locations_neutrogpon.forEach(function (location) {
+    let tecnologiasGponNeutro = L.layerGroup().addTo(map);
+    locationsGponNeutro.forEach(function (location) {
         let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
@@ -95,11 +92,11 @@ $(window).on('load', function() {
         var marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
-        GPONNEUTRO.addLayer(marker);
+        tecnologiasGponNeutro.addLayer(marker);
     });
 
-    let HFCNEUTRO = L.layerGroup();
-    locations_neutrohfc.forEach(function (location) {
+    let tecnologiasHfcNeutro = L.layerGroup();
+    locationsHfcNeutro.forEach(function (location) {
         let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
@@ -110,11 +107,11 @@ $(window).on('load', function() {
         let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
-        HFCNEUTRO.addLayer(marker);
+        tecnologiasHfcNeutro.addLayer(marker);
     });
 
-    let SEMNADA = L.layerGroup();
-    locations_nada.forEach(function (location) {
+    let tecnologiasSemNada = L.layerGroup();
+    locationsSemNada.forEach(function (location) {
         let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
@@ -125,11 +122,11 @@ $(window).on('load', function() {
         let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
-        SEMNADA.addLayer(marker);
+        tecnologiasSemNada.addLayer(marker);
     });
 
-    let ERROAPI = L.layerGroup();
-    locations_erroapi.forEach(function (location) {
+    let tecnologiasErroApi = L.layerGroup();
+    locationsErroApi.forEach(function (location) {
         let iconUrl = `./img/marker-icon-${location.color}.png`;
         let customIcon = L.icon({
             iconUrl: iconUrl,
@@ -140,47 +137,47 @@ $(window).on('load', function() {
         let marker = L.marker([location.latitude, location.longitude], {
             icon: customIcon
         }).bindPopup(location.name);
-        ERROAPI.addLayer(marker);
+        tecnologiasErroApi.addLayer(marker);
     });
 
     // Cria menu layers com cada tecnologia e seus marcadores previamente carregados
-    let controle_tecnologias = {
-        'GPON <img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>': GPON,
-        'HFC <img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>': HFC,
-        'Sobreposição <img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>': SOBREPO,
-        'GPON Rede neutra <img height="20" width="15" src="./img/marker-icon-grey.png" alt="Marcador GPON Rede Neutra"/>': GPONNEUTRO,
-        'HFC Rede neutra <img height="20" width="15" src="./img/marker-icon-violet.png" alt="Marcador HFC Rede Neutra"/>': HFCNEUTRO,
-        'Sem serviço FIXO <img height="20" width="15" src="./img/marker-icon-black.png" alt="Marcador Sem serviço FIXO"/>': SEMNADA,
-        'ERRO Consulta API <img height="20" width="15" src="./img/marker-icon-orange.png" alt="Marcador ERRO Consulta API"/>': ERROAPI
+    let marcadoresTecnologias = {
+        'GPON <img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>': tecnologiaGpon,
+        'HFC <img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>': tecnologiaHfc,
+        'Sobreposição <img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>': tecnologiasSobrepro,
+        'GPON Rede neutra <img height="20" width="15" src="./img/marker-icon-grey.png" alt="Marcador GPON Rede Neutra"/>': tecnologiasGponNeutro,
+        'HFC Rede neutra <img height="20" width="15" src="./img/marker-icon-violet.png" alt="Marcador HFC Rede Neutra"/>': tecnologiasHfcNeutro,
+        'Sem serviço FIXO <img height="20" width="15" src="./img/marker-icon-black.png" alt="Marcador Sem serviço FIXO"/>': tecnologiasSemNada,
+        'ERRO Consulta API <img height="20" width="15" src="./img/marker-icon-orange.png" alt="Marcador ERRO Consulta API"/>': tecnologiasErroApi
     };
 
     // Inicia a layers dos varios tipos mapa e marcadores de tecnologia
-    L.control.layers(baseLayers, controle_tecnologias).addTo(map);
+    L.control.layers(baseLayers, marcadoresTecnologias).addTo(map);
 
     // Calcular a contagem numerica da legenda
-    $('#somatorio-gpon').html(`<span class = "center"> ${locations_gpon.length}</span>`);
-    $('#somatorio-hfc').html(`<span class = "center" > ${locations_hfc.length}</span>`);
-    $('#somatorio-sobre').html(`<span class = "center" > ${locations_sobrepo.length}</span>`);
-    $('#somatorio-neutragpon').html(`<span class = "center" > ${locations_neutrogpon.length}</span>`);
-    $('#somatorio-neutrahfc').html(`<span class = "center" > ${locations_neutrohfc.length}</span>`);
-    $('#somatorio-nada').html(`<span class = "center" > ${locations_nada.length}</span>`);
-    $('#somatorio-erroapi').html(`<span class = "center" > ${locations_erroapi.length}</span>`);
+    $(`#somatorio-gpon`).html(`<span class = "center"> ${locationsGpon.length}</span>`);
+    $(`#somatorio-hfc`).html(`<span class = "center" > ${locationsHfc.length}</span>`);
+    $(`#somatorio-sobre`).html(`<span class = "center" > ${locationsSobrepro.length}</span>`);
+    $(`#somatorio-neutragpon`).html(`<span class = "center" > ${locationsGponNeutro.length}</span>`);
+    $(`#somatorio-neutrahfc`).html(`<span class = "center" > ${locationsHfcNeutro.length}</span>`);
+    $(`#somatorio-nada`).html(`<span class = "center" > ${locationsSemNada.length}</span>`);
+    $(`#somatorio-erroapi`).html(`<span class = "center" > ${locationsErroApi.length}</span>`);
 
     // Função para validar os campos antes de fazer a consulta CEP e Numero
     function validarCampos() {
-        let cep = $('#cep').val();
-        let numero = $('#numero').val();
+        let cep = $(`#cep`).val();
+        let numero = $(`#numero`).val();
         // Verificar se os campos estão preenchidos corretamente
         if (cep.length !== 8) {
-            //alert('O campo CEP deve conter 8 números.');
-            $('#telaerro-conteudo').html(`O campo CEP deve conter 8 números.`);
-            $('#telaerro').css('display','block');
+            //alert(`O campo CEP deve conter 8 números.`);
+            $(`#telaerro-conteudo`).html(`O campo CEP deve conter 8 números.`);
+            $(`#telaerro`).show();
             return false;
         }
         if (numero.length < 1 || numero.length > 9) {
-            //alert('O campo Número deve conter de 1 a 9 números.');
-            $('#telaerro-conteudo').html(`O campo Número deve conter de 1 a 9 números.`);
-            $('#telaerro').css('display','block');
+            //alert(`O campo Número deve conter de 1 a 9 números.`);
+            $(`#telaerro-conteudo`).html(`O campo Número deve conter de 1 a 9 números.`);
+            $(`#telaerro`).show();
             return false;
         }
         return true;
@@ -191,156 +188,156 @@ $(window).on('load', function() {
         if (!validarCampos()) {
             return;
         }
-        let cep = $('#cep').val();
-        let numero = $('#numero').val();
+        let cep = $(`#cep`).val();
+        let numero = $(`#numero`).val();
         let url = `https://api.amxrest.net/viability/${cep}/${numero}`;
         $.ajax({
             url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
+            type: `GET`,
+            dataType: `json`,
+            success: function (dadosApiClaro) {
 
-                if (data.statusCode == 200) {
-
+                if (dadosApiClaro.statusCode == 200) {
                     //Realiza consulta endereço em outra api, o resultado retornado da api claro possue varios erros no cadastro como nome do logradouro
                     //Caso api não retorne dados, fall back para dados api claro
-                    let logradouro = '';
-                    let bairro = '';
-                    let cidade = '';
-                    let uf = '';
+                    let logradouro = ``;
+                    let bairro = ``;
+                    let cidade = ``;
+                    let uf = ``;
                     $.ajax({
                         url: `https://viacep.com.br/ws/${cep}/json/`,
-                        type: 'GET',
-                        dataType: 'json',
+                        type: `GET`,
+                        dataType: `json`,
                         async: false,
-                        success: function (data_viacep) {
-                            if (data_viacep.logradouro != null) {
-                                logradouro = String(data_viacep.logradouro);
+                        success: function (dataViacep) {
+                            if (dataViacep.logradouro != null) {
+                                logradouro = String(dataViacep.logradouro);
                             } else {
-                                logradouro = data.data.logradouro;
+                                logradouro = dadosApiClaro.data.logradouro;
                             }
 
-                            if (data_viacep.bairro != null) {
-                                bairro = String(data_viacep.bairro);
+                            if (dataViacep.bairro != null) {
+                                bairro = String(dataViacep.bairro);
                             } else {
-                                bairro = data.data.bairro;
+                                bairro = dadosApiClaro.data.bairro;
                             }
 
-                            if (data_viacep.localidade != null) {
-                                cidade = String(data_viacep.localidade);
+                            if (dataViacep.localidade != null) {
+                                cidade = String(dataViacep.localidade);
                             } else {
-                                cidade = data.data.cidade;
+                                cidade = dadosApiClaro.data.cidade;
                             }
 
-                            if (data_viacep.uf != null) {
-                                uf = String(data_viacep.uf);
+                            if (dataViacep.uf != null) {
+                                uf = String(dataViacep.uf);
                             } else {
-                                uf = data.data.uf;
+                                uf = dadosApiClaro.data.uf;
                             }
                         },
                         error: function () {
-                            logradouro = data.data.logradouro;
-                            bairro = data.data.bairro;
-                            cidade = data.data.cidade;
-                            uf = data.data.uf;
-                            numero = data.data.number;
+                            logradouro = dadosApiClaro.data.logradouro;
+                            bairro = dadosApiClaro.data.bairro;
+                            cidade = dadosApiClaro.data.cidade;
+                            uf = dadosApiClaro.data.uf;
+                            numero = dadosApiClaro.data.number;
+
+                            console.error(`Erro ao carregar dados do viacep, fallback para dados fornecidos pela própria api claro.`);
                         }
                     });
                     // Exibir campos Logradouro, Number e Cidade em uma linha, mais dados consulta tecnologia bia api cep
-                    let resultado = '<span> Localização aproximada <br> ';
+                    let resultado = `<span> Localização aproximada <br> `;
                     resultado += `Ver no <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${logradouro}, ${numero}, ${cidade}, ${uf}, Brasil`)}" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span> <br>`;
                     resultado += `Consulta oficial disponível na <a href="https://planos.claro.com.br/monte-sua-combinacao?cep=${cep}&number=${numero}" target="_blank">CLARO</a>`;
-                    resultado += `<p>Endereço: ${logradouro}, ${data.data.number}, ${bairro}, ${cidade}, ${uf}, Brasil</p>`;
+                    resultado += `<p>Endereço: ${logradouro}, ${numero}, ${bairro}, ${cidade}, ${uf}, Brasil</p>`;
 
-                    for (let i = 0; i < data.data.technologies.length; i++) {
-                        let technology = data.data.technologies[i];
+                    $.each(dadosApiClaro.data.technologies, function (index, technology) {
                         // Verifica se a rede utilizada é da VTAL
-                        if (data.data.cableNodeID === 'GPONAVTAL') {
-                            if (technology.name === 'Cable' && technology.gpon === false) {
+                        if (dadosApiClaro.data.cableNodeID === `GPONAVTAL`) {
+                            if (technology.name === `Cable` && technology.gpon === false) {
                                 if (technology.tv != false || technology.phone != false || technology.internet != false) {
-                                    resultado += '<p> SERVIÇOS VIA REDE NEUTRA VTAL:<br>';
+                                    resultado += `<p> SERVIÇOS VIA REDE NEUTRA VTAL:<br>`;
                                     if (technology.tv === true) {
-                                        resultado += '&#9679; TV<br>';
+                                        resultado += `&#9679; TV<br>`;
                                     }
                                     if (technology.phone === true) {
-                                        resultado += '&#9679; TELEFONE FIXO<br>';
+                                        resultado += `&#9679; TELEFONE FIXO<br>`;
                                     }
                                     if (technology.internet === true) {
-                                        resultado += '&#9679; INTERNET<br>';
+                                        resultado += `&#9679; INTERNET<br>`;
                                     }
-                                    resultado += '</p>';
+                                    resultado += `</p>`;
                                 }
                             }
                         }
                         // Verifica se a rede utilizada é da ATC
-                        else if (data.data.cableNodeID === 'GPONAATC') {
-                            if (technology.name === 'Cable' && technology.gpon === false) {
+                        else if (dadosApiClaro.data.cableNodeID === `GPONAATC`) {
+                            if (technology.name === `Cable` && technology.gpon === false) {
                                 if (technology.tv != false || technology.phone != false || technology.internet != false) {
-                                    resultado += '<p> SERVIÇOS VIA REDE NEUTRA ATC:<br>';
+                                    resultado += `<p> SERVIÇOS VIA REDE NEUTRA ATC:<br>`;
                                     if (technology.tv === true) {
-                                        resultado += '&#9679; TV<br>';
+                                        resultado += `&#9679; TV<br>`;
                                     }
                                     if (technology.phone === true) {
-                                        resultado += '&#9679; TELEFONE FIXO<br>';
+                                        resultado += `&#9679; TELEFONE FIXO<br>`;
                                     }
                                     if (technology.internet === true) {
-                                        resultado += '&#9679; INTERNET<br>';
+                                        resultado += `&#9679; INTERNET<br>`;
                                     }
-                                    resultado += '</p>';
+                                    resultado += `</p>`;
                                 }
                             }
                         }
                         // A rede é propria
                         else {
                             // Verificar se é rede HFC
-                            if (technology.name === 'Cable' && technology.gpon === false) {
+                            if (technology.name === `Cable` && technology.gpon === false) {
                                 if (technology.tv != false || technology.phone != false || technology.internet != false) {
-                                    resultado += '<p> SERVIÇOS VIA HFC(COAXIAL):<br>';
+                                    resultado += `<p> SERVIÇOS VIA HFC(COAXIAL):<br>`;
                                     if (technology.tv === true) {
-                                        resultado += '&#9679; TV<br>';
+                                        resultado += `&#9679; TV<br>`;
                                     }
                                     if (technology.phone === true) {
-                                        resultado += '&#9679; TELEFONE FIXO<br>';
+                                        resultado += `&#9679; TELEFONE FIXO<br>`;
                                     }
                                     if (technology.internet === true) {
-                                        resultado += '&#9679; INTERNET<br>';
+                                        resultado += `&#9679; INTERNET<br>`;
                                     }
-                                    resultado += '</p>';
+                                    resultado += `</p>`;
                                 }
                             }
                             // Verificar se é rede GPON
-                            else if (technology.name === 'Cable' && technology.gpon === true) {
+                            else if (technology.name === `Cable` && technology.gpon === true) {
                                 if (technology.tv != false || technology.phone != false || technology.internet != false) {
-                                    resultado += '<p> SERVIÇOS VIA GPON(FIBRA):<br>';
+                                    resultado += `<p> SERVIÇOS VIA GPON(FIBRA):<br>`;
                                     if (technology.tv === true) {
-                                        resultado += '&#9679; TV<br>';
+                                        resultado += `&#9679; TV<br>`;
                                     }
                                     if (technology.phone === true) {
-                                        resultado += '&#9679; TELEFONE FIXO<br>';
+                                        resultado += `&#9679; TELEFONE FIXO<br>`;
                                     }
                                     if (technology.internet === true) {
-                                        resultado += '&#9679; INTERNET<br>';
+                                        resultado += `&#9679; INTERNET<br>`;
                                     }
-                                    resultado += '</p>';
+                                    resultado += `</p>`;
                                 }
                             }
                             // Verificar se é rede Satellite
-                            else if (technology.name === 'Satellite') {
-                                resultado += '<p> SERVIÇOS VIA SATELLITE / MOVEL:<br>';
+                            else if (technology.name === `Satellite`) {
+                                resultado += `<p> SERVIÇOS VIA SATELLITE / MÓVEL:<br>`;
                                 if (technology.tv === true) {
-                                    resultado += '&#9679; TV<br>';
+                                    resultado += `&#9679; TV<br>`;
                                 }
                                 if (technology.phone === true) {
-                                    resultado += '&#9679; TELEFONE FIXO<br>';
+                                    resultado += `&#9679; TELEFONE FIXO<br>`;
                                 }
                                 if (technology.internet === true) {
-                                    resultado += '&#9679; INTERNET<br>';
+                                    resultado += `&#9679; INTERNET<br>`;
                                 }
-                                resultado += '</p>';
+                                resultado += `</p>`;
                             }
                             // Deu ruim, solicita usuario reportar no GITHUB
                             else {
-                                resultado += '<span> Ocorreu algum erro, se possivel reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/">GITHUB</a> informando o CEP e Numero pesquisado para futura verificação.</span>';
+                                resultado += `<span> Ocorreu algum erro, se possível reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/">GITHUB</a> informando o CEP e Numero pesquisado para futura verificação.</span>`;
                             }
                         }
                         // Gera URL para pegar geocodificação do endereço fornecido
@@ -360,7 +357,7 @@ $(window).on('load', function() {
                                 let latitude = parseFloat(firstResult.lat);
                                 let longitude = parseFloat(firstResult.lon);
                                 let customIcon = L.icon({
-                                    iconUrl: './img/marker-icon-blue.png',
+                                    iconUrl: `./img/marker-icon-blue.png`,
                                     iconSize: [25, 41],
                                     iconAnchor: [12, 41],
                                     popupAnchor: [0, -41]
@@ -377,41 +374,41 @@ $(window).on('load', function() {
                             }
                             // Caso não retorno nada na url
                             else {
-                                console.error('Endereço não encontrado.');
-                                $('#telaerro-conteudo').html(`<b>Endereço não encontrado na base de geolocalização <a href="https://www.openstreetmap.org/search?query=${encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil')}#map=5/-13.240/-50.383'" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br>
+                                console.error(`Endereço não encontrado.`);
+                                $(`#telaerro-conteudo`).html(`<b>Endereço não encontrado na base de geolocalização <a href="https://www.openstreetmap.org/search?query=${encodeURIComponent(logradouro + ', ' + numero + ', ' + cidade + ', ' + uf + ', Brasil')}#map=5/-13.240/-50.383" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br>
                                 <br>                                                               
                                 Dados retornados pela API Claro: <br>
                                 <br>
                                 ${resultado}
                                 `);
-                                $('#telaerro').css('display','block');
-                                //alert('Endereço não encontrado.');
+                                $(`#telaerro`).show();
+                                //alert(`Endereço não encontrado.`);
                             }
                         }).catch(function (error) {
                             // Caso falhe consulta a url por algum erro de conexão/servidor
-                            console.error('Erro ao processar a solicitação de geocodificação: ', error);
-                            $('#telaerro-conteudo').html(`Erro ao processar a solicitação de geocodificação. <br> ${error}`);
-                            $('#telaerro').css('display','block');
-                            //alert('Erro ao processar a solicitação de geocodificação.');
+                            console.error(`Erro ao processar a solicitação de geocodificação: `, error);
+                            $(`#telaerro-conteudo`).html(`Erro ao processar a solicitação de geocodificação. <br> ${error}`);
+                            $(`#telaerro`).show();
+                            //alert(`Erro ao processar a solicitação de geocodificação.`);
                         });
-                    }
+                    });
                 } else {
                     console.error(`Resultado não esperado no retorno da API, Erro: \n ${JSON.stringify(data, null, 9)}`);
-                    $('#telaerro-conteudo').html(`Resultado não esperado no retorno da API. <br> ${JSON.stringify(data, null, 9)}`);
-                    $('#telaerro').css('display','block');
-                    //alert('Resultado não esperado no retorno da API.');
+                    $(`#telaerro-conteudo`).html(`Resultado não esperado no retorno da API. <br> ${JSON.stringify(data, null, 9)}`);
+                    $(`#telaerro`).show();
+                    //alert(`Resultado não esperado no retorno da API.`);
                 }
             },
             error: function (data) {
                 console.error(`Resultado não esperado no retorno da API, Erro: \n ${JSON.stringify(data, null, 9)}`);
-                $('#telaerro-conteudo').html(`Resultado não esperado no retorno da API. <br> ${JSON.stringify(data, null, 9)}`);
-                $('#telaerro').css('display','block');
-                //alert('Resultado não esperado no retorno da API.');
+                $(`#telaerro-conteudo`).html(`Resultado não esperado no retorno da API. <br> ${JSON.stringify(data, null, 9)}`);
+                $(`#telaerro`).show();
+                //alert(`Resultado não esperado no retorno da API.`);
             }
         });
     }
     // Lidar com o envio do formulário
-    $('#formulario').submit(function (event) {
+    $(`#formulario`).submit(function (event) {
         event.preventDefault();
         consultarViabilidade();
     });	

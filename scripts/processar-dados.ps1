@@ -1,8 +1,9 @@
+#$diretorio_trabalho = "/home/runner/work/mapa-claro-beta/mapa-claro-beta/scripts"
 $diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts"
 $diretorio_arquivos = "$diretorio_trabalho/dados"
 $diretorio_arquivos_manual = "$diretorio_trabalho/dados manuais"
 $diretorio_arquivos_erro = "$diretorio_trabalho/erro consulta"
-$diretorio_arquivos_js = "$diretorio_trabalho/js"
+$diretorio_arquivos_js = "$diretorio_trabalho/js/locations"
 
 if (!(Test-Path $diretorio_arquivos)) {
     New-Item $diretorio_arquivos -ItemType Directory
@@ -39,13 +40,13 @@ New-Item -Path "$diretorio_arquivos_js" -Name "locations-neutrogpon.js" -ItemTyp
 New-Item -Path "$diretorio_arquivos_js" -Name "locations-neutrohfc.js" -ItemType "file" -Value "" -Force
 New-Item -Path "$diretorio_arquivos_js" -Name "locations-erroapi.js" -ItemType "file" -Value "" -Force
 
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" "var locations_gpon = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" "var locations_sobrepo = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" "var locations_hfc = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" "var locations_nada = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" "var locations_neutrogpon = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" "var locations_neutrohfc = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" "var locations_erroapi = ["
+Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" "var locationsGpon = ["
+Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" "var locationsSobrepro = ["
+Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" "var locationsHfc = ["
+Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" "var locationsSemNada = ["
+Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" "var locationsGponNeutro = ["
+Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" "var locationsHfcNeutro = ["
+Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" "var locationsErroApi = ["
 
 # CIDADES ACERTADAS MANUALMENTE
 

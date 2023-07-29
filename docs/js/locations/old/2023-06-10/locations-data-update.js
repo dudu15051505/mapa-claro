@@ -1,0 +1,1 @@
+var locationsDataUpdate = "10/06/2023"
