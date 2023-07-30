@@ -1,0 +1,56 @@
+[
+  {
+    "name": "João Monlevade, MG <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-43.173463",
+    "latitude": "-19.812646"
+  },
+  {
+    "name": "Piraquara, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-49.062411",
+    "latitude": "-25.442171"
+  },
+  {
+    "name": "Foz do Iguaçu, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-54.582689",
+    "latitude": "-25.542748"
+  },
+  {
+    "name": "Guaratuba, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-48.575223",
+    "latitude": "-25.881672"
+  },
+  {
+    "name": "Ibiporã, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-51.052243",
+    "latitude": "-23.265941"
+  },
+  {
+    "name": "Paiçandu, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-52.046013",
+    "latitude": "-23.455534"
+  },
+  {
+    "name": "Quatro Barras, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-49.076306",
+    "latitude": "-25.367317"
+  },
+  {
+    "name": "Telêmaco Borba, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-50.617585",
+    "latitude": "-24.32452"
+  },
+  {
+    "name": "União da Vitória, PR <br> GPON REDE NEUTRA",
+    "color": "grey",
+    "longitude": "-51.087313",
+    "latitude": "-26.227319"
+  }
+]

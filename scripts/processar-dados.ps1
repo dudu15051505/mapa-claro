@@ -32,31 +32,13 @@ $NEUTROGPON = @();
 $NEUTROHFC = @();
 $ERROAPI = @();
 
-New-Item -Path "$diretorio_arquivos_js" -Name "locations-gpon.js" -ItemType "file" -Value "" -Force
-New-Item -Path "$diretorio_arquivos_js" -Name "locations-sobrepo.js" -ItemType "file" -Value "" -Force
-New-Item -Path "$diretorio_arquivos_js" -Name "locations-hfc.js" -ItemType "file" -Value "" -Force
-New-Item -Path "$diretorio_arquivos_js" -Name "locations-nada.js" -ItemType "file" -Value "" -Force
-New-Item -Path "$diretorio_arquivos_js" -Name "locations-neutrogpon.js" -ItemType "file" -Value "" -Force
-New-Item -Path "$diretorio_arquivos_js" -Name "locations-neutrohfc.js" -ItemType "file" -Value "" -Force
-New-Item -Path "$diretorio_arquivos_js" -Name "locations-erroapi.js" -ItemType "file" -Value "" -Force
-
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" "var locationsGpon = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" "var locationsSobrepro = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" "var locationsHfc = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" "var locationsSemNada = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" "var locationsGponNeutro = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" "var locationsHfcNeutro = ["
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" "var locationsErroApi = ["
-
-# CIDADES ACERTADAS MANUALMENTE
-
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" "/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */"
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" "/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */"
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" "/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */"
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" "/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */"
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" "/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */"
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" "/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */"
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" "/* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */"
+New-Item -Path "$diretorio_arquivos_js" -Name "locations-gpon.json" -ItemType "file" -Value "" -Force
+New-Item -Path "$diretorio_arquivos_js" -Name "locations-sobrepo.json" -ItemType "file" -Value "" -Force
+New-Item -Path "$diretorio_arquivos_js" -Name "locations-hfc.json" -ItemType "file" -Value "" -Force
+New-Item -Path "$diretorio_arquivos_js" -Name "locations-nada.json" -ItemType "file" -Value "" -Force
+New-Item -Path "$diretorio_arquivos_js" -Name "locations-neutrogpon.json" -ItemType "file" -Value "" -Force
+New-Item -Path "$diretorio_arquivos_js" -Name "locations-neutrohfc.json" -ItemType "file" -Value "" -Force
+New-Item -Path "$diretorio_arquivos_js" -Name "locations-erroapi.json" -ItemType "file" -Value "" -Force
 
 foreach($row_nomearquivos in $nomearquivos_manual) {
 	$arquivo_nome = $row_nomearquivos.NAME.remove(2,1).insert(2,";").split(";");
@@ -91,61 +73,59 @@ foreach($row_nomearquivos in $nomearquivos_manual) {
 			}
 			
 			if($tem_gpon -eq 1) {					
-				$GPON += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> GPON', color: 'green', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
-
+				$GPON += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> GPON"
+					color = "green"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_soprepo -eq 1) {
-				$SOBRE += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$SOBRE += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> Sobreposição HFC e GPON"
+					color = "yellow"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_hfc -eq 1) {
-				$HFC += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> HFC', color: 'red', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$HFC += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> HFC"
+					color = "red"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_gpon_neutro -eq 1) {
-				$NEUTROGPON += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> GPON REDE NEUTRA', color: 'grey', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$NEUTROGPON += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> GPON REDE NEUTRA"
+					color = "grey"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_hfc_neutro -eq 1) {
-				$NEUTROHFC += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> HFC REDE NEUTRA', color: 'violet', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$NEUTROHFC += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> HFC REDE NEUTRA"
+					color = "violet"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_nada -eq 1) {
-				$NADA += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> Sem serviço fixo', color: 'black', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$NADA += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> Sem serviço fixo"
+					color = "black"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 		}
 	}	
+	
 }
 
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" $GPON
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" $SOBRE
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" $HFC
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" $NADA
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" $NEUTROGPON
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" $NEUTROHFC
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" $ERROAPI
-
 # CIDADES VIA CONSULTA AUTOMATICA
-
-$GPON = @();
-$HFC = @();
-$SOBRE = @();
-$NADA = @();
-$NEUTROGPON = @();
-$NEUTROHFC = @();
-$ERROAPI = @();
-
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" ""
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" ""
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" ""
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" ""
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" ""
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" ""
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" ""
-
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" "/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */"
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" "/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */"
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" "/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */"
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" "/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */"
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" "/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */"
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" "/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */"
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" "/* CIDADES CONSULTADAS AUTOMATICAMENTE PELO SCRIPT */"
 
 foreach($row_nomearquivos in $nomearquivos) {
 	$arquivo_nome = $row_nomearquivos.NAME.split("-");	
@@ -180,45 +160,55 @@ foreach($row_nomearquivos in $nomearquivos) {
 			}
 			
 			if($tem_gpon -eq 1) {					
-				$GPON += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> GPON', color: 'green', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
-
+				$GPON += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> GPON"
+					color = "green"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_soprepo -eq 1) {
-				$SOBRE += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> Sobreposição HFC e GPON', color: 'yellow', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$SOBRE += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> Sobreposição HFC e GPON"
+					color = "yellow"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_hfc -eq 1) {
-				$HFC += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> HFC', color: 'red', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$HFC += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> HFC"
+					color = "red"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_gpon_neutro -eq 1) {
-				$NEUTROGPON += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> GPON REDE NEUTRA', color: 'grey', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$NEUTROGPON += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> GPON REDE NEUTRA"
+					color = "grey"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_hfc_neutro -eq 1) {
-				$NEUTROHFC += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> HFC REDE NEUTRA', color: 'violet', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$NEUTROHFC += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> HFC REDE NEUTRA"
+					color = "violet"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 			if($tem_nada -eq 1) {
-				$NADA += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome[0]+" <br> Sem serviço fixo', color: 'black', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+				$NADA += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> Sem serviço fixo"
+					color = "black"
+					latitude = $latitude
+					longitude = $longitude
+				}
 			}
 		}
 	}	
-}
-
-if(!($GPON.Count -eq 0)) {
-	$GPON[$GPON.Count-1] = $GPON[$GPON.Count-1] -replace ".$"
-}
-if(!($HFC.Count -eq 0)) {
-	$HFC[$HFC.Count-1] = $HFC[$HFC.Count-1] -replace ".$"
-}
-if(!($SOBRE.Count -eq 0)) {
-	$SOBRE[$SOBRE.Count-1] = $SOBRE[$SOBRE.Count-1] -replace ".$"
-}
-if(!($NADA.Count -eq 0)) {
-	$NADA[$NADA.Count-1] = $NADA[$NADA.Count-1] -replace ".$"
-}
-if(!($NEUTROGPON.Count -eq 0)) {
-	$NEUTROGPON[$NEUTROGPON.Count-1] = $NEUTROGPON[$NEUTROGPON.Count-1] -replace ".$"
-}
-if(!($NEUTROHFC.Count -eq 0)) {
-	$NEUTROHFC[$NEUTROHFC.Count-1] = $NEUTROHFC[$NEUTROHFC.Count-1] -replace ".$"
 }
 
 foreach($row_nomearquivos in $nomearquivos_erro) {
@@ -237,7 +227,12 @@ foreach($row_nomearquivos in $nomearquivos_erro) {
 		if($row_csv.uf -eq $arquivo_nome_inicio[3] -And $row_csv.municipio -eq $arquivo_nome[1]) {
 			$latitude = $row_csv.latitude;
 			$longitude = $row_csv.longitude;
-			$ERROAPI += "{ name: '"+$arquivo_nome[1]+", "+$arquivo_nome_inicio[3]+" <br> ERRO na consulta API', color: 'orange', latitude: '"+$latitude+"', longitude: '"+$longitude+"' },";
+			$ERROAPI += @{
+					name = "$($arquivo_nome[1]), $($arquivo_nome[0]) <br> ERRO na consulta API"
+					color = "orange"
+					latitude = $latitude
+					longitude = $longitude
+				}
 		}
 	}	
 }
@@ -245,20 +240,78 @@ if(!($ERROAPI.Count -eq 0)) {
 	$ERROAPI[$ERROAPI.Count-1] = $ERROAPI[$ERROAPI.Count-1] -replace ".$"
 }
 
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" $GPON
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" $SOBRE
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" $HFC
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" $NADA
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" $NEUTROGPON
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" $NEUTROHFC
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" $ERROAPI
-			
-Add-Content -Path "$diretorio_arquivos_js\locations-gpon.js" "];"
-Add-Content -Path "$diretorio_arquivos_js\locations-sobrepo.js" "];"
-Add-Content -Path "$diretorio_arquivos_js\locations-hfc.js" "];"
-Add-Content -Path "$diretorio_arquivos_js\locations-nada.js" "];"
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrogpon.js" "];"
-Add-Content -Path "$diretorio_arquivos_js\locations-neutrohfc.js" "];"
-Add-Content -Path "$diretorio_arquivos_js\locations-erroapi.js" "];"
+# Convertendo os arrays para JSON
+$GPON_JSON = $GPON | ForEach-Object {
+    @{
+        name = $_.name
+        color = $_.color
+        latitude = $_.latitude
+        longitude = $_.longitude
+    }
+} | ConvertTo-Json
 
+$HFC_JSON = $HFC | ForEach-Object {
+    @{
+        name = $_.name
+        color = $_.color
+        latitude = $_.latitude
+        longitude = $_.longitude
+    }
+} | ConvertTo-Json
+
+$SOBRE_JSON = $SOBRE | ForEach-Object {
+    @{
+        name = $_.name
+        color = $_.color
+        latitude = $_.latitude
+        longitude = $_.longitude
+    }
+} | ConvertTo-Json
+
+$NADA_JSON = $NADA | ForEach-Object {
+    @{
+        name = $_.name
+        color = $_.color
+        latitude = $_.latitude
+        longitude = $_.longitude
+    }
+} | ConvertTo-Json
+
+$NEUTROGPON_JSON = $NEUTROGPON | ForEach-Object {
+    @{
+        name = $_.name
+        color = $_.color
+        latitude = $_.latitude
+        longitude = $_.longitude
+    }
+} | ConvertTo-Json
+
+$NEUTROHFC_JSON = $NEUTROHFC | ForEach-Object {
+    @{
+        name = $_.name
+        color = $_.color
+        latitude = $_.latitude
+        longitude = $_.longitude
+    }
+} | ConvertTo-Json
+
+$ERROAPI_JSON = $ERROAPI | ForEach-Object {
+    @{
+        name = $_.name
+        color = $_.color
+        latitude = $_.latitude
+        longitude = $_.longitude
+    }
+} | ConvertTo-Json
+
+# Salvar os dados JSON em arquivos
+Set-Content -Path "$diretorio_arquivos_js/locations-gpon.json" $GPON_JSON
+Set-Content -Path "$diretorio_arquivos_js/locations-sobrepo.json" $SOBRE_JSON
+Set-Content -Path "$diretorio_arquivos_js/locations-hfc.json" $HFC_JSON
+Set-Content -Path "$diretorio_arquivos_js/locations-nada.json" $NADA_JSON
+Set-Content -Path "$diretorio_arquivos_js/locations-neutrogpon.json" $NEUTROGPON_JSON
+Set-Content -Path "$diretorio_arquivos_js/locations-neutrohfc.json" $NEUTROHFC_JSON
+Set-Content -Path "$diretorio_arquivos_js/locations-erroapi.json" $ERROAPI_JSON
+
+			
 Write-Host "fim"

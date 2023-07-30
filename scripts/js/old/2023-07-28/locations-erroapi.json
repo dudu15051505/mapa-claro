@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Belém, ERRO CADASTRO API AL <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.490399",
+    "latitude": "-9.570472"
+  },
+  {
+    "name": "Campo Grande, ERRO CADASTRO API AL <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.792608",
+    "latitude": "-9.955423"
+  },
+  {
+    "name": "São Sebastião, ERRO CADASTRO API AL <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.558967",
+    "latitude": "-9.930434"
+  },
+  {
+    "name": "Viçosa, ERRO CADASTRO API AL <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.243107",
+    "latitude": "-9.367631"
+  },
+  {
+    "name": "Maraú, ERRO CADASTRO API BA <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-39.013656",
+    "latitude": "-14.103549"
+  },
+  {
+    "name": "Santa Luzia, ERRO CADASTRO API BA <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-39.328678",
+    "latitude": "-15.434188"
+  },
+  {
+    "name": "Santana, ERRO CADASTRO API BA <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-44.05064",
+    "latitude": "-12.979217"
+  },
+  {
+    "name": "São Gabriel, ERRO CADASTRO API BA <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-41.884267",
+    "latitude": "-11.217453"
+  },
+  {
+    "name": "Valença, ERRO CADASTRO API BA <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-39.072953",
+    "latitude": "-13.366948"
+  },
+  {
+    "name": "Vera Cruz, ERRO CADASTRO API BA <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-38.615295",
+    "latitude": "-12.956845"
+  },
+  {
+    "name": "Cascavel, ERRO CADASTRO API CE <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-38.241178",
+    "latitude": "-4.129666"
+  },
+  {
+    "name": "Lagoa Santa, ERRO CADASTRO API GO <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-51.399333",
+    "latitude": "-19.185113"
+  },
+  {
+    "name": "Santa Isabel, ERRO CADASTRO API GO <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-49.425931",
+    "latitude": "-15.295849"
+  },
+  {
+    "name": "Santa Luzia, ERRO CADASTRO API MA <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-45.690026",
+    "latitude": "-4.068726"
+  },
+  {
+    "name": "Itapeva, ERRO CADASTRO API MG <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-46.224053",
+    "latitude": "-22.766488"
+  },
+  {
+    "name": "Mesquita, ERRO CADASTRO API MG <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-42.607877",
+    "latitude": "-19.224022"
+  },
+  {
+    "name": "Presidente Bernardes, ERRO CADASTRO API MG <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-43.189532",
+    "latitude": "-20.76557"
+  },
+  {
+    "name": "Rio Branco, ERRO CADASTRO API MT <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-58.125892",
+    "latitude": "-15.248331"
+  },
+  {
+    "name": "Amparo, ERRO CADASTRO API PB <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-37.062838",
+    "latitude": "-7.555022"
+  },
+  {
+    "name": "Aparecida, ERRO CADASTRO API PB <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-38.080259",
+    "latitude": "-6.784657"
+  },
+  {
+    "name": "Belém, ERRO CADASTRO API PB <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-35.51658",
+    "latitude": "-6.742614"
+  },
+  {
+    "name": "Paulista, ERRO CADASTRO API PB <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-37.618548",
+    "latitude": "-6.591381"
+  },
+  {
+    "name": "Santa Luzia, ERRO CADASTRO API PB <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.917792",
+    "latitude": "-6.860922"
+  },
+  {
+    "name": "Santo André, ERRO CADASTRO API PB <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.621339",
+    "latitude": "-7.220157"
+  },
+  {
+    "name": "Sertãozinho, ERRO CADASTRO API PB <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-35.437159",
+    "latitude": "-6.751273"
+  },
+  {
+    "name": "Cachoeirinha, ERRO CADASTRO API PE <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.240182",
+    "latitude": "-8.486685"
+  },
+  {
+    "name": "Parnamirim, ERRO CADASTRO API PE <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-39.579547",
+    "latitude": "-8.087292"
+  },
+  {
+    "name": "Trindade, ERRO CADASTRO API PE <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-40.26472",
+    "latitude": "-7.759"
+  },
+  {
+    "name": "Várzea Grande, ERRO CADASTRO API PI <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-42.247973",
+    "latitude": "-6.548993"
+  },
+  {
+    "name": "Guaíra, ERRO CADASTRO API PR <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-54.257327",
+    "latitude": "-24.085005"
+  },
+  {
+    "name": "Rio Claro, ERRO CADASTRO API RJ <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-44.141874",
+    "latitude": "-22.720001"
+  },
+  {
+    "name": "Santa Maria, ERRO CADASTRO API RN <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-35.691409",
+    "latitude": "-5.838022"
+  },
+  {
+    "name": "São Vicente, ERRO CADASTRO API RN <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-36.682696",
+    "latitude": "-6.218931"
+  },
+  {
+    "name": "Vera Cruz, ERRO CADASTRO API RN <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-35.427979",
+    "latitude": "-6.043989"
+  },
+  {
+    "name": "Viçosa, ERRO CADASTRO API RN <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-37.946236",
+    "latitude": "-5.982529"
+  },
+  {
+    "name": "Jardinópolis, ERRO CADASTRO API SC <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-52.862524",
+    "latitude": "-26.719136"
+  },
+  {
+    "name": "Praia Grande, ERRO CADASTRO API SC <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-49.952503",
+    "latitude": "-29.191846"
+  },
+  {
+    "name": "São Carlos, ERRO CADASTRO API SC <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-53.003704",
+    "latitude": "-27.079757"
+  },
+  {
+    "name": "Vera Cruz, ERRO CADASTRO API SP <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-49.820735",
+    "latitude": "-22.218308"
+  },
+  {
+    "name": "Alvorada, ERRO CADASTRO API TO <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-49.124926",
+    "latitude": "-12.478465"
+  },
+  {
+    "name": "Cachoeirinha, ERRO CADASTRO API TO <br> ERRO na consulta API",
+    "color": "orange",
+    "longitude": "-47.923399",
+    "latitude": "-6.115596"
+  },
+  {
+    "name": null,
+    "color": null,
+    "longitude": null,
+    "latitude": null
+  }
+]

@@ -94,12 +94,6 @@ for i in range(len(cities)):
 # Formata a data em dd/mm/YYYY
 data_formatada = date.today().strftime("%d/%m/%Y")
 
-# Cria o arquivo locations-data-update.js
-conteudo_arquivo = 'var locationsDataUpdate = "{}"'.format(data_formatada)
-f = open(diretorio_trabalho + "js/locations/locations-data-update.js", "w")
-f.write(conteudo_arquivo)
-f.close()
-
 # Cria o arquivo locations-data-lista.json
 # Novos valores a serem adicionados no JSON
 novos_valores = [
