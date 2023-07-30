@@ -1,4 +1,4 @@
-var locations_neutrohfc = [
+var locationsHfcNeutro = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'João Monlevade, MG <br> HFC REDE NEUTRA', color: 'violet', latitude: '-19.812646', longitude: '-43.173463' },
 { name: 'Palmas, PR <br> HFC REDE NEUTRA', color: 'violet', latitude: '-26.483868', longitude: '-51.988812' },

@@ -1,4 +1,4 @@
-var locations_hfc = [
+var locationsHfc = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'São Gonçalo, RJ <br> HFC', color: 'red', latitude: '-22.82679', longitude: '-43.063351' },
 { name: 'Criciúma, SC <br> HFC', color: 'red', latitude: '-28.672267', longitude: '-49.372887' },
