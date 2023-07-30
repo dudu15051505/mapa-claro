@@ -1,1 +1,0 @@
-var locationsDataUpdate = "30/06/2023"

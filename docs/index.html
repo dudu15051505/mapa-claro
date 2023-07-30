@@ -7,7 +7,6 @@
 		<link rel="icon" type="image/x-icon" href="./favicon.ico">
 		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
 		<link rel="stylesheet" href="./css/css.css" />
-		<link rel="preload" as="script" type="text/javascript" href="./js/jquery-3.7.0.min.js" />
 		<link rel="preload" as="script" type="text/javascript" href="./js/leaflet/leaflet.js" />
 		<link rel="preload" as="script" type="text/javascript" href="./js/script.js" />
 		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-black.png" />
@@ -16,121 +15,39 @@
 		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-orange.png" />
 		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-red.png" />
 		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-violet.png" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-yellow.png" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-yellow.png" />	
+		<link rel="preload" as="image" type="image/png" href="./js/leaflet/images/layers.png" />
 		<link rel="prefetch" as="image" type="image/png" href="./img/marker-icon-blue.png" />
-		<link rel="prefetch" as="image" type="image/png" href="./img/google_maps_icon.png" />
+		<link rel="prefetch" as="image" type="image/png" href="./img/google_maps_icon.png" />	
 		<link rel="prefetch" as="image" type="image/svg+xml" href="./img/osm_icon.svg" />
-		<link rel="prefetch" as="image" type="image/gif" href="./img/loading.gif" />
+		<link rel="prefetch" as="image" type="image/gif" href="./img/loading0.gif" />
+		<link rel="prefetch" as="image" type="image/gif" href="./img/loading1.gif" />
 		<link rel="prefetch" as="image" type="image/gif" href="./img/loading2.gif" />
-		<link rel="prefetch" as="image" type="image/gif" href="./img/loading3.gif" />
-		<script type="text/javascript" src="./js/jquery-3.7.0.min.js"></script>
 		<script type="text/javascript" src="./js/leaflet/leaflet.js"></script>
 		<script type="text/javascript">
 			const verData = new URLSearchParams(window.location.search).get("ver-data");
-			const scripts = [
-				"locations-data-update.js",
-				"locations-gpon.js",
-				"locations-hfc.js",
-				"locations-nada.js",
-				"locations-neutrogpon.js",
-				"locations-neutrohfc.js",
-				"locations-sobrepo.js",
-				"locations-erroapi.js",
-			];
 
-			function loadScript(arquivo, old = false) {
-				let path = old ? `./js/locations/old/${verData}/${arquivo}` : `./js/locations/${arquivo}`;
-
-				$.ajax({
-					method: 'GET',
-					dataType: "script",
-					url: path,
-					cache: false,
-                    async: false,
-				})
-				.fail(function () {
-					$('#telaerro-conteudo').html(`
-					<span> Ocorreu algum erro, se possível reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/" target="_blank">GITHUB</a> com uma print da tela</span> <br>
-					Erro ao carregar o dados: ${path} <br>
-					`);
-					$('#telaerro').show();
-					console.error(`Erro ao carregar o script: ${path}`);	
+			document.addEventListener('DOMContentLoaded', function () {
+				document.getElementById('lista-data-dados').addEventListener('change', function () {
+					let value = this.value;
+					window.location.href = `./index.html?ver-data=${value}`;
 				});
-			}
 
-			if (verData) {
-				scripts.forEach((script) => loadScript(script, true));
-			} else {
-				scripts.forEach((script) => loadScript(script, false));
-			}
+				document.getElementById('aviso-fechar').addEventListener('click', function () {
+					document.getElementById('aviso').style.display = 'none';
+				});
 
-			$.ajax({
-				url: './js/locations/locations-data-lista.json',
-				method: 'GET',
-				dataType: 'json',
-				cache: false,
-				async: true,
-				success: function (data) {
-					$.each(data, function (index, value) {
-						let tempDate = new Date(value.data);
-						let formattedDate = `${tempDate.getDate() + 1}/${tempDate.getMonth() + 1}/${tempDate.getFullYear()}`;
-						let option = $('<option></option>').attr('value', value.valorCampo).text(value.informacaoExtra ? `${formattedDate} - ${value.informacaoExtra}` : `${formattedDate}`);
-						$('#lista-data-dados').append(option);
-						$('#dados-info').append(`<span id="dados-info-${index}" style="display: none;"><a href="${value.url}" target="_blank">${value.textoUrl}</a></span>`);
-					});
-				},
-				complete: function () {
-					if (verData) {
-						$('#lista-data-dados option[value="' + verData + '"]').attr('selected', true);
-					} else {
-						$('#lista-data-dados option:last').attr('selected', true);
-					}
+				document.getElementById('telaerro-fechar').addEventListener('click', function () {
+					document.getElementById('telaerro').style.display = 'none';
+				});
 
-					$('#dados-info-' + $('#lista-data-dados').prop('selectedIndex')).show();
-				},
-				error: function () {
-					console.error('Erro ao carregar lista de dados passados.');
-					//alert('Erro ao carregar lista de dados passados.');
-					$('#telaerro-conteudo').html('Erro ao carregar lista de dados passados.');
-					$('#telaerro').show();
+				if (!verData) {
+					const avisoElement = document.querySelector('#aviso');
+					avisoElement.style.display = 'block';
 				}
 			});
-
-			$(document).ready(function() {
-				$(`#lista-data-dados`).on(`change`, function() {
-					let value = $(this).val();
-					$(location).prop(`href`, `./index.html?ver-data=${value}`);
-				});
-
-				//window.setTimeout($(`aviso-fechar`).on(), 1000);
-
-				$(`#aviso-fechar`).click(function() {
-					$(`#aviso`).fadeOut(`slow`);
-				});
-				
-				$(`#telaerro-fechar`).click(function() {
-					$(`#telaerro`).fadeOut(`slow`);
-				});	
-				
-				if(!verData) {
-					$('#aviso').show();
-				}	
-			});
-
-			$(document).ajaxStart(function() {
-				let urls = [
-					`./img/loading.gif`, 
-					`./img/loading2.gif`,
-					`./img/loading3.gif`
-				];
-				$(`#loadAjaxImg`).attr(`src`, urls[Math.round(Math.random() * urls.length)]);
-
-				$(`#telaerro`).hide();
-				$(`#loadAjax`).show();
-			}).ajaxComplete(function() {
-				$(`#loadAjax`).hide();
-			});
 		</script>
+		<script type="text/javascript" src="./js/script.js"></script>
 	</head>
 	<body>
 		<div id="map">
@@ -265,6 +182,5 @@
 			<div id="telaerro-conteudo">
 			</div>
 		</div>
-		<script type="text/javascript" src="./js/script.js"></script>
 	</body>
 </html>
