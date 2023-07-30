@@ -45,6 +45,8 @@
 					method: 'GET',
 					dataType: "script",
 					url: path,
+					cache: false,
+                    async: false,
 				})
 				.fail(function () {
 					$('#telaerro-conteudo').html(`
