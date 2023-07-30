@@ -1,4 +1,4 @@
-var locations_gpon = [
+var locationsGpon = [
 /* CIDADES ADICIONADAS MANUALMENTE, POR ERRO NO CADASTRO DE CONSULTA API DA CLARO */
 { name: 'Arapiraca, AL <br> GPON', color: 'green', latitude: '-9.754866', longitude: '-36.661471' },
 { name: 'Trindade, GO <br> GPON', color: 'green', latitude: '-16.651708', longitude: '-49.492667' },
