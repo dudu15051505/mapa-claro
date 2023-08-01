@@ -248,7 +248,7 @@ $GPON_JSON = $GPON | ForEach-Object {
         latitude = $_.latitude
         longitude = $_.longitude
     }
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 1
 
 $HFC_JSON = $HFC | ForEach-Object {
     @{
@@ -257,7 +257,7 @@ $HFC_JSON = $HFC | ForEach-Object {
         latitude = $_.latitude
         longitude = $_.longitude
     }
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 1
 
 $SOBRE_JSON = $SOBRE | ForEach-Object {
     @{
@@ -266,7 +266,7 @@ $SOBRE_JSON = $SOBRE | ForEach-Object {
         latitude = $_.latitude
         longitude = $_.longitude
     }
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 1
 
 $NADA_JSON = $NADA | ForEach-Object {
     @{
@@ -275,7 +275,7 @@ $NADA_JSON = $NADA | ForEach-Object {
         latitude = $_.latitude
         longitude = $_.longitude
     }
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 1
 
 $NEUTROGPON_JSON = $NEUTROGPON | ForEach-Object {
     @{
@@ -284,7 +284,7 @@ $NEUTROGPON_JSON = $NEUTROGPON | ForEach-Object {
         latitude = $_.latitude
         longitude = $_.longitude
     }
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 1
 
 $NEUTROHFC_JSON = $NEUTROHFC | ForEach-Object {
     @{
@@ -293,7 +293,7 @@ $NEUTROHFC_JSON = $NEUTROHFC | ForEach-Object {
         latitude = $_.latitude
         longitude = $_.longitude
     }
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 1
 
 $ERROAPI_JSON = $ERROAPI | ForEach-Object {
     @{
@@ -302,7 +302,7 @@ $ERROAPI_JSON = $ERROAPI | ForEach-Object {
         latitude = $_.latitude
         longitude = $_.longitude
     }
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 1
 
 # Salvar os dados JSON em arquivos
 Set-Content -Path "$diretorio_arquivos_js/locations-gpon.json" $GPON_JSON

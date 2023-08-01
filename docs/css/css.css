@@ -79,7 +79,7 @@ body, html {
 	margin: 20px;
 }
 
-#loadAjax {
+#load {
 	background-color: #ffffff;
 	position: absolute;
 	left: 50%;
@@ -95,7 +95,7 @@ body, html {
     line-height: 1.5;
 }
 
-#loadAjax-conteudo {
+#load-conteudo {
 	margin: 20px;
 }
 

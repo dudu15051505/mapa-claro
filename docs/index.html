@@ -5,10 +5,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
 		<link rel="icon" type="image/x-icon" href="./favicon.ico">
-		<link rel="stylesheet" href="./js/leaflet/leaflet.css" />
-		<link rel="stylesheet" href="./css/css.css" />
+		<link rel="stylesheet" href="./js/leaflet/leaflet-min.css" />
+		<link rel="stylesheet" href="./css/css-min.css" />
 		<link rel="preload" as="script" type="text/javascript" href="./js/leaflet/leaflet.js" />
-		<link rel="preload" as="script" type="text/javascript" href="./js/script.js" />
+		<link rel="preload" as="script" type="text/javascript" href="./js/script-min.js" />
 		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-black.png" />
 		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-green.png" />
 		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-grey.png" />
@@ -23,8 +23,8 @@
 		<link rel="prefetch" as="image" type="image/gif" href="./img/loading0.gif" />
 		<link rel="prefetch" as="image" type="image/gif" href="./img/loading1.gif" />
 		<link rel="prefetch" as="image" type="image/gif" href="./img/loading2.gif" />
-		<script type="text/javascript" src="./js/leaflet/leaflet.js"></script>
-		<script type="text/javascript">
+		<script type="text/javascript" src="./js/leaflet/leaflet.js" defer></script>
+		<script type="text/javascript" defer>
 			const verData = new URLSearchParams(window.location.search).get("ver-data");
 
 			document.addEventListener('DOMContentLoaded', function () {
@@ -47,7 +47,7 @@
 				}
 			});
 		</script>
-		<script type="text/javascript" src="./js/script.js"></script>
+		<script type="text/javascript" src="./js/script-min.js" defer></script>
 	</head>
 	<body>
 		<div id="map">
@@ -169,10 +169,10 @@
 				<button id="aviso-fechar">FECHAR</button>
 			</div>
 		</div>
-		<div id="loadAjax" class="leaflet-control">
-			<div id="loadAjax-conteudo">
+		<div id="load" class="leaflet-control">
+			<div id="load-conteudo">
 				<h3>&nbsp;Carregando&nbsp;</h3>
-				<img id="loadAjaxImg" src="#" alt="Carregando"/>
+				<img id="loadImg" src="#" alt="Carregando"/>
 			</div>
 		</div>
 		<div id="telaerro" class="leaflet-control" style="display: none;">
