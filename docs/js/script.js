@@ -262,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		const cep = document.getElementById('cep').value;
 		const numero = document.getElementById('numero').value;
 		const url = `https://api.amxrest.net/viability/${cep}/${numero}`;
+		const urlOficialConsultaClaro = `https://planos.claro.com.br/monte-sua-combinacao?cep=${cep}&number=${numero}`;
 		try {
 			const response = await fetch(url);
 			if (response.ok) {
@@ -299,8 +300,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				let resultado = `<span> Localização aproximada <br> `;
 				resultado += `Ver no <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${logradouro}, ${numero}, ${cidade}, ${uf}, Brasil`)}" target="_blank"> Google Maps <img src="./img/google_maps_icon.png" /></a> </span> <br>`;
-				resultado += `Consulta oficial disponível na <a href="https://planos.claro.com.br/monte-sua-combinacao?cep=${cep}&number=${numero}" target="_blank">CLARO</a>`;
-				resultado += `<p>Endereço: ${logradouro}, ${numero}, ${bairro}, ${cidade}, ${uf}, Brasil</p>`;
+				resultado += `Consulta oficial disponível na <a href="${urlOficialConsultaClaro}" target="_blank">CLARO</a>`;
+				resultado += `<p>CEP: ${cep} Número: ${numero}<br>`;
+				resultado += `Endereço: ${logradouro}, ${numero}, ${bairro}, ${cidade}, ${uf}, Brasil </p>`;
 
 				for (const technology of dadosApiClaro.data.technologies) {
 					let tipoRede = null;
@@ -310,32 +312,25 @@ document.addEventListener('DOMContentLoaded', function() {
 						tipoRede = 'REDE NEUTRA VTAL';
 					} else if (dadosApiClaro.data.cableNodeID === 'GPONAATC') {
 						tipoRede = 'REDE NEUTRA ATC';
-					} else {
-						tipoRede = 'HFC (COAXIAL)';
-						if (technology.gpon) {
-							tipoRede = 'GPON (FIBRA)';
-						}
-					}
-
-					if (technology.name === 'Cable') {
-						if (technology.tv)
-							servicosDisponiveis.push('TV');
-						if (technology.phone)
-							servicosDisponiveis.push('TELEFONE FIXO');
-						if (technology.internet)
-							servicosDisponiveis.push('INTERNET');
-					}
-
-					if (technology.name === 'Satellite') {
+					} else if (technology.name === 'Satellite') {
 						tipoRede = 'SATELLITE / MÓVEL';
-						if (technology.tv)
-							servicosDisponiveis.push('TV');
-						if (technology.phone)
-							servicosDisponiveis.push('TELEFONE FIXO');
-						if (technology.internet)
-							servicosDisponiveis.push('INTERNET');
+					} else if (technology.gpon) {
+						tipoRede = 'GPON (FIBRA)';
+					} else if (!technology.gpon) {
+						tipoRede = 'HFC (COAXIAL)';
+					} else {
+						const textoErro = `Erro ao definir tipo de tecnologia, se possível reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/" target="_blank">GITHUB</a> informando o CEP e Numero pesquisado para futura verificação. <br>`;
+						textoErro += resultado += `<span>${JSON.stringify(technology, null, "\t")}</span>`;
+						throw textoErro;
 					}
 
+					if (technology.tv)
+						servicosDisponiveis.push('TV');
+					if (technology.phone)
+						servicosDisponiveis.push('TELEFONE FIXO');
+					if (technology.internet)
+						servicosDisponiveis.push('INTERNET');
+					
 					if (servicosDisponiveis.length > 0) {
 						resultado += `<p> SERVIÇOS VIA ${tipoRede}:<br>`;
 						for (const servico of servicosDisponiveis) {
@@ -343,7 +338,14 @@ document.addEventListener('DOMContentLoaded', function() {
 						}
 						resultado += `</p>`;
 					} else {
-						resultado += `<span> Ocorreu algum erro, se possível reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/" target="_blank">GITHUB</a> informando o CEP e Numero pesquisado para futura verificação.</span>`;
+						if (technology.name === 'Cable' && servicosDisponiveis.length === 0) {							
+							resultado += `<span> A tecnologia ${tipoRede} retornou na consulta, mas não a serviços ativos na API</span> <br>`;
+							resultado += `<span>Realize uma consulta oficial diretamente no site da <a href="${urlOficialConsultaClaro}" target="_blank">CLARO</a> para confirmar os serviços disponíveis</span> <br>`;
+						}
+						else {
+							resultado += `<span> Ocorreu algum erro, se possível reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/" target="_blank">GITHUB</a> informando o CEP e Numero pesquisado para futura verificação.</span> <br>`;
+							resultado += `<span>${JSON.stringify(technology, null, "\t")}</span>`;
+						}
 					}
 				}
 
