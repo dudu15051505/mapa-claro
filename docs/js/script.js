@@ -133,6 +133,34 @@ document.addEventListener('DOMContentLoaded', function() {
 		return true;
 	}
 
+	function Busca() {
+		const buscaValor = document.getElementById('busca-valor').value;
+		const url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + buscaValor;
+	
+		fetch(url)
+			.then(response => response.json())
+			.then(data => {
+				if (data.length > 0) {
+
+					telaErroElement.style.display = 'none';
+
+					map.setView([parseFloat(data[0].lat), parseFloat(data[0].lon)], 10);
+					L.marker([parseFloat(data[0].lat), parseFloat(data[0].lon)]).addTo(map);
+				} else {
+					console.error('Local não encontrado.');
+					const urlPesquisaOpenStreetMap = `https://www.openstreetmap.org/search?query=${encodeURIComponent(buscaValor)}`;
+
+					telaErroConteudoElement.innerHTML = `Local não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}#map=5/-13.240/-50.383" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>`;
+					telaErroElement.style.display = 'block';
+				}
+			})
+			.catch(error => {
+				console.error('Erro na busca: ', error)
+				telaErroConteudoElement.innerHTML = `Erro na busca: <br><br> ${error}`;
+				telaErroElement.style.display = 'block';
+			});
+	}
+
 	async function loadDataList() {
 		fetch('./js/locations/locations-data-lista.json')
 			.then(response => {
@@ -369,7 +397,9 @@ document.addEventListener('DOMContentLoaded', function() {
 							4
 						} else {
 							console.error('Endereço não encontrado.');
-							telaErroConteudoElement.innerHTML = `<b>Endereço não encontrado na base de geolocalização <a href="${geocodingResponse.url}#map=5/-13.240/-50.383" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>Dados retornados pela API Claro: <br><br> ${resultado}`;
+							const urlPesquisaOpenStreetMap = `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${logradouro} ${numero}, ${cidade}, ${uf}, Brasil#map=5/-13.240/-50.383`)}`;
+							
+							telaErroConteudoElement.innerHTML = `<b>Endereço não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>Dados retornados pela API Claro: <br><br> ${resultado}`;
 							telaErroElement.style.display = 'block';
 						}
 					} else {
@@ -428,5 +458,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('formulario').addEventListener('submit', function(event) {
 		event.preventDefault();
 		consultarViabilidade();
+	});
+
+	document.getElementById('busca').addEventListener('submit', function(event) {
+		event.preventDefault();
+		Busca();
+		console.log('teste');
 	});
 });
