@@ -58,6 +58,14 @@
 				<thead>
 					<tr>
 						<td>
+							<form id="busca">
+								<input placeholder="Buscar(Cidade - Rua - ETC)" type="text" id="busca-valor" />
+								<input type="submit" value="Buscar" />
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<form id="formulario">
 								<input placeholder="CEP" type="text" id="cep" minlength="8" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, ``).replace(/(\..*)\./g, `$1`);" required style="width: 70px;"> <br>
 								<input placeholder="Número" type="text" id="numero" minlength="1" maxlength="9" oninput="this.value = this.value.replace(/[^0-9.]/g, ``).replace(/(\..*)\./g, `$1`);" required style="width: 70px;">
