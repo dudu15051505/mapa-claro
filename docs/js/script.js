@@ -14,20 +14,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	const loadImg = document.getElementById('loadImg');
     const getJsonPath = (verData, filename) => verData ? `./js/locations/old/${verData}/${filename}` : `./js/locations/${filename}`;
 	
-    const fetchPromises = [
-		addMarkersAndLayers(getJsonPath(verData, "locations-gpon.json"), "GPON", "green", 'somatorio-gpon'),
-		addMarkersAndLayers(getJsonPath(verData, "locations-hfc.json"), "HFC", "red", 'somatorio-hfc'),
-		addMarkersAndLayers(getJsonPath(verData, "locations-sobrepo.json"), "Sobreposição", "yellow", 'somatorio-sobre'),
-		addMarkersAndLayers(getJsonPath(verData, "locations-neutrogpon.json"), "GPON Rede neutra", "grey", 'somatorio-neutragpon'),
-		addMarkersAndLayers(getJsonPath(verData, "locations-neutrohfc.json"), "HFC Rede neutra", "violet", 'somatorio-neutrahfc'),
-		addMarkersAndLayers(getJsonPath(verData, "locations-nada.json"), "Sem serviço FIXO", "black", 'somatorio-nada'),
-		addMarkersAndLayers(getJsonPath(verData, "locations-erroapi.json"), "ERRO Consulta API", "orange", 'somatorio-erroapi')
-	];
-
 	const urls = [
 		`./img/loading0.gif`,
 		`./img/loading1.gif`,
 		`./img/loading2.gif`
+	];
+
+	const carregarMarcacoesMapa = [
+		[true, 'GPON', () => addMarkersAndLayers(getJsonPath(verData, "locations-gpon.json"), "GPON", "green", 'somatorio-gpon')],
+		[true,'HFC', () => addMarkersAndLayers(getJsonPath(verData, "locations-hfc.json"), "HFC", "red", 'somatorio-hfc')],
+		[true,'Sobreposição', () => addMarkersAndLayers(getJsonPath(verData, "locations-sobrepo.json"), "Sobreposição", "yellow", 'somatorio-sobre')],
+		[true,'GPON Rede neutra', () => addMarkersAndLayers(getJsonPath(verData, "locations-neutrogpon.json"), "GPON Rede neutra", "grey", 'somatorio-neutragpon')],
+		[false,'HFC Rede neutra', () => addMarkersAndLayers(getJsonPath(verData, "locations-neutrohfc.json"), "HFC Rede neutra", "violet", 'somatorio-neutrahfc')],
+		[false,'ERRO Consulta API', () => addMarkersAndLayers(getJsonPath(verData, "locations-erroapi.json"), "ERRO Consulta API", "orange", 'somatorio-erroapi')],
+		[false,'Sem serviço FIXO', () => addMarkersAndLayers(getJsonPath(verData, "locations-nada.json"), "Sem serviço FIXO", "black", 'somatorio-nada')]
 	];
 
 	const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -133,61 +133,59 @@ document.addEventListener('DOMContentLoaded', function() {
 		return true;
 	}
 
-	function addLayerToMap(layer) {
-		layer.addTo(map);
-	}
-
-	function loadDataList() {
-		const request = new XMLHttpRequest();
-		request.open('GET', './js/locations/locations-data-lista.json', false);
-		request.send(null);
-
-		if (request.status === 200) {
-			const data = JSON.parse(request.responseText);
-            const listaDataDadosElement = document.getElementById('lista-data-dados');
-
-			data.forEach((value, index) => {
-				const tempDate = new Date(value.data);
-				const formattedDate = `${tempDate.getDate() + 1}/${tempDate.getMonth() + 1}/${tempDate.getFullYear()}`;
-				const option = new Option(
-					value.informacaoExtra ? `${formattedDate} - ${value.informacaoExtra}` : `${formattedDate}`,
-					value.valorCampo);
-				document.getElementById('lista-data-dados').appendChild(option);
-
-                const dadosInfoElement = document.getElementById('dados-info');
-                const spanElement = document.createElement('span');
-
-                spanElement.setAttribute('id', `dados-info-${index}`);
-                spanElement.style.display = 'none';
-
-                if(value.textoUrl) {
-                    const anchorElement = document.createElement('a');
-                    anchorElement.setAttribute('href', value.url);
-                    anchorElement.setAttribute('target', '_blank');
-                    anchorElement.textContent = value.textoUrl;
-
-                    spanElement.appendChild(anchorElement);
-                    dadosInfoElement.appendChild(spanElement);
-                }
+	async function loadDataList() {
+		fetch('./js/locations/locations-data-lista.json')
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Erro ao carregar lista de dados passados.');
+				}
+				return response.json();
+			})
+			.then(data => {
+				const listaDataDadosElement = document.getElementById('lista-data-dados');
+	
+				data.forEach((value, index) => {
+					const tempDate = new Date(value.data);
+					const formattedDate = `${tempDate.getDate() + 1}/${tempDate.getMonth() + 1}/${tempDate.getFullYear()}`;
+					const option = new Option(
+						value.informacaoExtra ? `${formattedDate} - ${value.informacaoExtra}` : `${formattedDate}`,
+						value.valorCampo);
+					document.getElementById('lista-data-dados').appendChild(option);
+	
+					const dadosInfoElement = document.getElementById('dados-info');
+					const spanElement = document.createElement('span');
+	
+					spanElement.setAttribute('id', `dados-info-${index}`);
+					spanElement.style.display = 'none';
+	
+					if (value.textoUrl) {
+						const anchorElement = document.createElement('a');
+						anchorElement.setAttribute('href', value.url);
+						anchorElement.setAttribute('target', '_blank');
+						anchorElement.textContent = value.textoUrl;
+	
+						spanElement.appendChild(anchorElement);
+						dadosInfoElement.appendChild(spanElement);
+					}
+				});
+	
+				if (verData) {
+					listaDataDadosElement.value = verData;
+				} else {
+					const lastOption = listaDataDadosElement.options[listaDataDadosElement.options.length - 1];
+					lastOption.selected = true;
+				}
+	
+				if (document.getElementById(`dados-info-${listaDataDadosElement.selectedIndex}`)) {
+					const dadosInfoElement = document.getElementById(`dados-info-${listaDataDadosElement.selectedIndex}`);
+					dadosInfoElement.style.display = 'block';
+				}
+	
+			})
+			.catch(error => {
+				telaErroConteudoElement.textContent = error;
+				telaErroElement.style.display = 'block';
 			});
-
-			if (verData) {
-				listaDataDadosElement.value = verData;
-			} else {
-				const lastOption = listaDataDadosElement.options[listaDataDadosElement.options.length - 1];
-				lastOption.selected = true;
-			}
-
-            if(document.getElementById(`dados-info-${listaDataDadosElement.selectedIndex}`)) {
-                const dadosInfoElement = document.getElementById(`dados-info-${listaDataDadosElement.selectedIndex}`);
-			    dadosInfoElement.style.display = 'block';
-            }			
-
-		} else {
-			console.error('Erro ao carregar lista de dados passados.');			
-			telaErroConteudoElement.textContent = 'Erro ao carregar lista de dados passados.';;
-			telaErroElement.style.display = 'block';
-		}
 	}
 
 	async function fetchJSON(url) {
@@ -218,9 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			document.getElementById(somatorioId).innerHTML = `<span class="center">${conteudo.length}</span>`;
 
-			const iconUrl = `./img/marker-icon-${color}.png`;
 			const customIcon = L.icon({
-				iconUrl: iconUrl,
+				iconUrl: `./img/marker-icon-${color}.png`,
 				iconSize: [25, 41],
 				iconAnchor: [12, 41],
 				popupAnchor: [0, -41]
@@ -321,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					} else {
 						const textoErro = `Erro ao definir tipo de tecnologia, se possível reporte via <a href="https://github.com/dudu15051505/mapa-claro-beta/issues/" target="_blank">GITHUB</a> informando o CEP e Numero pesquisado para futura verificação. <br>`;
 						textoErro += resultado += `<span>${JSON.stringify(technology, null, "\t")}</span>`;
-						throw textoErro;
+						throw new Error(textoErro);
 					}
 
 					if (technology.tv)
@@ -400,23 +397,33 @@ document.addEventListener('DOMContentLoaded', function() {
 		telaLoad.style.display = 'none';
 	}
 
-	loadDataList();
-
-	Promise.all(fetchPromises)
-		.then(layers => {
-			addLayerToMap(locationsGponLayer);
-			addLayerToMap(locationsHfcLayer);
-			addLayerToMap(locationsSobreproLayer);
-			addLayerToMap(locationsGponNeutroLayer);
-		})
-		.catch(error => {
-			telaErroConteudoElement.textContent = `Erro ao carregar dados: ${error}`;
+	async function addLayerToMap(layerName) {
+		const layer = locationLayers[layerName];
+		if (layer) {
+			layer.addTo(map);
+		} else {
+			telaErroConteudoElement.textContent = `Camada não encontrada: ${layerName}`;
 			telaErroElement.style.display = 'block';
-		});
-
-    osmLayer.addTo(map);
+		}
+	}
 
 	L.control.layers(baseLayers, overlayMaps).addTo(map);
+
+	loadDataList();
+
+	carregarMarcacoesMapa.forEach(async (valor, index) => {
+		try {
+			const layers = await Promise.race([valor[2]()]);
+			if (valor[0]) {
+				addLayerToMap(valor[1]);
+			}
+		} catch (error) {
+			telaErroConteudoElement.textContent = `Erro ao carregar dados: ${error}`;
+			telaErroElement.style.display = 'block';
+		}
+	});
+
+    osmLayer.addTo(map);
     
 	document.getElementById('formulario').addEventListener('submit', function(event) {
 		event.preventDefault();
