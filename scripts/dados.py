@@ -94,27 +94,4 @@ for i in range(len(cities)):
 # Formata a data em dd/mm/YYYY
 data_formatada = date.today().strftime("%d/%m/%Y")
 
-# Cria o arquivo locations-data-lista.json
-# Novos valores a serem adicionados no JSON
-novos_valores = [
-    {
-        "data": data_formatada,
-        "valorCampo": data_formatada,
-        "textoUrl": "",
-        "url": "#",
-        "informacaoExtra": "Consulta automática"
-    }
-]
-
-# Carregar o arquivo JSON existente
-with open(diretorio_trabalho + 'js/locations/locations-data-lista.json', 'r', encoding='utf-8') as json_file:
-    dados_existentes = json.load(json_file)
-
-# Adicionar os novos valores aos dados existentes
-dados_existentes.extend(novos_valores)
-
-# Escrever o JSON atualizado de volta ao arquivo com a codificação utf-8
-with open(diretorio_trabalho + 'js/locations/locations-data-lista.json', 'w', encoding='utf-8') as json_file:
-    json.dump(dados_existentes, json_file, indent=2, ensure_ascii=False)
-
 print("Fim execução script!")
