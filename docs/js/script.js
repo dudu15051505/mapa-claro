@@ -328,12 +328,12 @@ document.addEventListener('DOMContentLoaded', function() {
 					let tipoRede = null;
 					const servicosDisponiveis = [];
 
-					if (dadosApiClaro.data.cableNodeID === 'GPONAVTAL') {
+					if (technology.name === 'Satellite') {
+						tipoRede = 'SATELLITE / MÓVEL';
+					} else if (dadosApiClaro.data.cableNodeID === 'GPONAVTAL') {
 						tipoRede = 'REDE NEUTRA VTAL';
 					} else if (dadosApiClaro.data.cableNodeID === 'GPONAATC') {
 						tipoRede = 'REDE NEUTRA ATC';
-					} else if (technology.name === 'Satellite') {
-						tipoRede = 'SATELLITE / MÓVEL';
 					} else if (technology.gpon) {
 						tipoRede = 'GPON (FIBRA)';
 					} else if (!technology.gpon) {
