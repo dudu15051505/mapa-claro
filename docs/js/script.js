@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-	let locations = [];
     const map = L.map('map').setView([-14.235004, -51.925280], 5);
     const locationsGponLayer = L.layerGroup();
 	const locationsHfcLayer = L.layerGroup();
@@ -21,13 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	];
 
 	const carregarMarcacoesMapa = [
-		[true, 'GPON', () => addMarkersAndLayers(getJsonPath(verData, "locations-gpon.json"), "GPON", "green", 'somatorio-gpon')],
-		[true,'HFC', () => addMarkersAndLayers(getJsonPath(verData, "locations-hfc.json"), "HFC", "red", 'somatorio-hfc')],
-		[true,'Sobreposição', () => addMarkersAndLayers(getJsonPath(verData, "locations-sobrepo.json"), "Sobreposição", "yellow", 'somatorio-sobre')],
-		[true,'GPON Rede neutra', () => addMarkersAndLayers(getJsonPath(verData, "locations-neutrogpon.json"), "GPON Rede neutra", "grey", 'somatorio-neutragpon')],
-		[false,'HFC Rede neutra', () => addMarkersAndLayers(getJsonPath(verData, "locations-neutrohfc.json"), "HFC Rede neutra", "violet", 'somatorio-neutrahfc')],
-		[false,'ERRO Consulta API', () => addMarkersAndLayers(getJsonPath(verData, "locations-erroapi.json"), "ERRO Consulta API", "orange", 'somatorio-erroapi')],
-		[false,'Sem serviço FIXO', () => addMarkersAndLayers(getJsonPath(verData, "locations-nada.json"), "Sem serviço FIXO", "black", 'somatorio-nada')]
+		[true, 'GPON', () => addMarkersAndLayers(getJsonPath(verData, "locations-gpon.json"), "GPON", 'somatorio-gpon')],
+		[true,'HFC', () => addMarkersAndLayers(getJsonPath(verData, "locations-hfc.json"), "HFC", 'somatorio-hfc')],
+		[true,'Sobreposição', () => addMarkersAndLayers(getJsonPath(verData, "locations-sobrepo.json"), "Sobreposição", 'somatorio-sobre')],
+		[true,'GPON Rede neutra', () => addMarkersAndLayers(getJsonPath(verData, "locations-neutrogpon.json"), "GPON Rede neutra", 'somatorio-neutragpon')],
+		[false,'HFC Rede neutra', () => addMarkersAndLayers(getJsonPath(verData, "locations-neutrohfc.json"), "HFC Rede neutra", 'somatorio-neutrahfc')],
+		[false,'ERRO Consulta API', () => addMarkersAndLayers(getJsonPath(verData, "locations-erroapi.json"), "ERRO Consulta API", 'somatorio-erroapi')],
+		[false,'Sem serviço FIXO', () => addMarkersAndLayers(getJsonPath(verData, "locations-nada.json"), "Sem serviço FIXO", 'somatorio-nada')]
 	];
 
 	const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -231,30 +230,26 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	async function addMarkersAndLayers(url, type, color, somatorioId) {
+	async function addMarkersAndLayers(url, type, somatorioId) {
 		try {
 			const layerGroup = L.layerGroup();
 			const conteudo = await fetchJSON(url);
 
-			locations.push({
-				type,
-				color,
-				data: conteudo
-			});
+			document.getElementById(somatorioId).innerHTML = `<span class="center">${conteudo.length}</span>`;			
 
-			document.getElementById(somatorioId).innerHTML = `<span class="center">${conteudo.length}</span>`;
+			conteudo.forEach(function(dadosJson) {
+				const customIcon = L.icon({
+					iconUrl: `./img/marker-icon-${dadosJson.color}.png`,
+					iconSize: [25, 41],
+					iconAnchor: [12, 41],
+					popupAnchor: [0, -41]
+				});
 
-			const customIcon = L.icon({
-				iconUrl: `./img/marker-icon-${color}.png`,
-				iconSize: [25, 41],
-				iconAnchor: [12, 41],
-				popupAnchor: [0, -41]
-			});
-
-			conteudo.forEach(function(loc) {
-				const marker = L.marker([loc.latitude, loc.longitude], {
+				const marker = L.marker([dadosJson.latitude, dadosJson.longitude], {
 					icon: customIcon
-				}).bindPopup(loc.name);
+				});
+
+				marker.bindPopup(dadosJson.name);	
 
 				marker.addTo(layerGroup);
 			});

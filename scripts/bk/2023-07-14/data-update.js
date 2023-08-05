@@ -1,1 +1,0 @@
-var data_update = "14/07/2023"

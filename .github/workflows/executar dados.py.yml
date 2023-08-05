@@ -17,6 +17,8 @@ jobs:
 
       - name: checkout repo content
         uses: actions/checkout@v3
+        with:
+          ref: dev
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -43,4 +45,4 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main 
+          branch: dev 
