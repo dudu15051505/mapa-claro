@@ -1,6 +1,10 @@
+$githubWorkspace = $env:GITHUB_WORKSPACE
+$caminhoRelativo = "scripts/"
+$diretorio_raiz = Join-Path $githubWorkspace $caminhoRelativo
+
 #$diretorio_raiz = "/home/runner/work/mapa-claro-beta/mapa-claro-beta"
-$diretorio_raiz = "/home/runner/work/mapa-claro/mapa-claro"
-$diretorio_trabalho = "$diretorio_raiz/scripts"
+#$diretorio_raiz = "/home/runner/work/mapa-claro/mapa-claro"
+$diretorio_trabalho = "$githubWorkspace/scripts"
 $diretorio_site = "$diretorio_raiz/docs"
 $diretorio_arquivos_processados = "$diretorio_trabalho/processados"
 

@@ -11,8 +11,12 @@ from datetime import date
 def remover_acentos(texto):
     return unidecode(texto)
 
+github_workspace = os.environ.get('GITHUB_WORKSPACE')
+caminho_relativo = "scripts/"
+diretorio_trabalho = os.path.join(github_workspace, caminho_relativo)
+
 #diretorio_trabalho = "/home/runner/work/mapa-claro-beta/mapa-claro-beta/scripts/"
-diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts/"
+#diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts/"
 
 csv_path = diretorio_trabalho + "arquivo.csv"
 

@@ -1,24 +1,31 @@
+class menssagemErro extends Error {
+	constructor(message) {
+		super(message);
+		this.name = "<b>Erro</b>";
+	}
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    const map = L.map('map').setView([-14.235004, -51.925280], 5);
-    const locationsGponLayer = L.layerGroup();
+	const telaErroConteudoElement = document.getElementById('telaerro-conteudo');
+	const telaErroElement = document.getElementById('telaerro');
+   const map = L.map('map').setView([-14.235004, -51.925280], 5);
+   const locationsGponLayer = L.layerGroup();
 	const locationsHfcLayer = L.layerGroup();
 	const locationsSobreproLayer = L.layerGroup();
 	const locationsGponNeutroLayer = L.layerGroup();
 	const locationsHfcNeutroLayer = L.layerGroup();
 	const locationsSemNadaLayer = L.layerGroup();
 	const locationsErroApiLayer = L.layerGroup();
-    const telaErroConteudoElement = document.getElementById('telaerro-conteudo');
-	const telaErroElement = document.getElementById('telaerro');
-    const telaLoad = document.getElementById('load');
+   const telaLoad = document.getElementById('load');
 	const loadImg = document.getElementById('loadImg');
-    const getJsonPath = (verData, filename) => verData ? `./js/locations/old/${verData}/${filename}` : `./js/locations/${filename}`;
+   const getJsonPath = (verData, filename) => verData ? `./js/locations/old/${verData}/${filename}` : `./js/locations/${filename}`;
 	
 	const urls = [
 		`./img/loading0.gif`,
 		`./img/loading1.gif`,
 		`./img/loading2.gif`
 	];
-
+	
 	const carregarMarcacoesMapa = [
 		[true, 'GPON', () => addMarkersAndLayers(getJsonPath(verData, "locations-gpon.json"), "GPON", 'somatorio-gpon')],
 		[true,'HFC', () => addMarkersAndLayers(getJsonPath(verData, "locations-hfc.json"), "HFC", 'somatorio-hfc')],
@@ -93,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"Esri World Topo Map": esriWorldTopoMap
 	};
 
-    const overlayMaps = {
+   const overlayMaps = {
 		'GPON <img height="20" width="15" src="./img/marker-icon-green.png" alt="Marcador GPON"/>': locationsGponLayer,
 		'HFC <img height="20" width="15" src="./img/marker-icon-red.png" alt="Marcador HFC"/>': locationsHfcLayer,
 		'Sobreposição <img height="20" width="15" src="./img/marker-icon-yellow.png" alt="Marcador Sobreposição"/>': locationsSobreproLayer,
@@ -103,30 +110,42 @@ document.addEventListener('DOMContentLoaded', function() {
 		'ERRO Consulta API <img height="20" width="15" src="./img/marker-icon-orange.png" alt="Marcador ERRO Consulta API"/>': locationsErroApiLayer
 	};
 
-    const locationLayers = {
-        'GPON': locationsGponLayer,
-        'HFC': locationsHfcLayer,
-        'Sobreposição': locationsSobreproLayer,
-        'GPON Rede neutra': locationsGponNeutroLayer,
-        'HFC Rede neutra': locationsHfcNeutroLayer,
-        'Sem serviço FIXO': locationsSemNadaLayer,
-        'ERRO Consulta API': locationsErroApiLayer
-    };
+   const locationLayers = {
+      'GPON': locationsGponLayer,
+      'HFC': locationsHfcLayer,
+      'Sobreposição': locationsSobreproLayer,
+      'GPON Rede neutra': locationsGponNeutroLayer,
+      'HFC Rede neutra': locationsHfcNeutroLayer,
+      'Sem serviço FIXO': locationsSemNadaLayer,
+      'ERRO Consulta API': locationsErroApiLayer
+   };4
+	
+	function ocultarTelaLoad(status = 'none') {
+		telaLoad.style.display = status;
+	}
 
-    function validarCampos() {
+	function ocultarTelaErro(status = 'none') {
+		telaErroElement.style.display = status;
+		ocultarTelaLoad();
+	}
+	
+	function exibirErro(menssagem) {
+		telaErroConteudoElement.innerHTML = menssagem;
+		ocultarTelaErro('block');
+	}
+
+   function validarCampos() {
 		const cep = document.getElementById('cep').value;
 		const numero = document.getElementById('numero').value;
 
-		telaLoad.style.display = 'none';
+		ocultarTelaLoad();
 
 		if (cep.length !== 8) {
-			telaErroConteudoElement.innerHTML = 'O campo CEP deve conter 8 números.';
-			telaErroElement.style.display = 'block';
+			exibirErro('O campo CEP deve conter 8 números.');
 			return false;
 		}
 		if (numero.length < 1 || numero.length > 9) {
-			telaErroConteudoElement.innerHTML = 'O campo Número deve conter de 1 a 9 números.';
-			telaErroElement.style.display = 'block';
+			exibirErro('O campo Número deve conter de 1 a 9 números.');
 			return false;
 		}
 		return true;
@@ -135,13 +154,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	function Busca() {
 		const buscaValor = document.getElementById('busca-valor').value;
 		const url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + buscaValor;
-	
+
 		fetch(url)
 			.then(response => response.json())
 			.then(data => {
 				if (data.length > 0) {
 
-					telaErroElement.style.display = 'none';
+					ocultarTelaErro();
 
 					map.setView([parseFloat(data[0].lat), parseFloat(data[0].lon)], 10);
 					L.marker([parseFloat(data[0].lat), parseFloat(data[0].lon)]).addTo(map);
@@ -149,14 +168,11 @@ document.addEventListener('DOMContentLoaded', function() {
 					console.error('Local não encontrado.');
 					const urlPesquisaOpenStreetMap = `https://www.openstreetmap.org/search?query=${encodeURIComponent(buscaValor)}`;
 
-					telaErroConteudoElement.innerHTML = `Local não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}#map=5/-13.240/-50.383" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>`;
-					telaErroElement.style.display = 'block';
+					throw new menssagemErro(`Local não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}#map=5/-13.240/-50.383" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>`);
 				}
 			})
 			.catch(error => {
-				console.error('Erro na busca: ', error)
-				telaErroConteudoElement.innerHTML = `Erro na busca: <br><br> ${error}`;
-				telaErroElement.style.display = 'block';
+				exibirErro(error);
 			});
 	}
 
@@ -210,8 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 			})
 			.catch(error => {
-				telaErroConteudoElement.textContent = error;
-				telaErroElement.style.display = 'block';
+				exibirErro(error);
 			});
 	}
 
@@ -223,10 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			return response.json();
 		} catch (error) {
-			console.error(error.message);
-
-			telaErroConteudoElement.textContent = error.message;
-			telaErroElement.style.display = 'block';
+			exibirErro(error);
 		}
 	}
 
@@ -255,29 +267,26 @@ document.addEventListener('DOMContentLoaded', function() {
 			});
 
 			if (conteudo.length > 0) {
-                if (type in locationLayers) {
+               if (type in locationLayers) {
                     locationLayers[type].addLayer(layerGroup);
-                } else {
-                    telaErroConteudoElement.textContent = `Tipo de localização desconhecido: ${type}`;
-			        telaErroElement.style.display = 'block';
-                }
+               } else {
+						throw new menssagemErro(`Tipo de localização desconhecido: ${type}`);
+               }
             }
 		} catch (error) {
-			telaErroConteudoElement.textContent = `Erro ao carregar dados: ${error}`;
-			telaErroElement.style.display = 'block';
+			exibirErro(error);
 		}
 	}
 
 	async function consultarViabilidade() {
-
 		loadImg.setAttribute('src', urls[Math.floor(Math.random() * urls.length)]);
 
 		if (!validarCampos()) {
 			return;
 		}
 
-        telaErroElement.style.display = 'none';
-		telaLoad.style.display = 'block';
+      ocultarTelaErro();
+		ocultarTelaLoad('block');
 
 		const cep = document.getElementById('cep').value;
 		const numero = document.getElementById('numero').value;
@@ -389,37 +398,26 @@ document.addEventListener('DOMContentLoaded', function() {
 							marker.bindPopup(resultado).openPopup();
 							map.panTo(new L.LatLng(latitude, longitude));
 							map.setView([latitude, longitude], 16);
-							4
 						} else {
 							console.error('Endereço não encontrado.');
 							const urlPesquisaOpenStreetMap = `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${logradouro} ${numero}, ${cidade}, ${uf}, Brasil#map=5/-13.240/-50.383`)}`;
 							
-							telaErroConteudoElement.innerHTML = `<b>Endereço não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>Dados retornados pela API Claro: <br><br> ${resultado}`;
-							telaErroElement.style.display = 'block';
+							throw new menssagemErro(`<b>Endereço não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>Dados retornados pela API Claro: <br><br> ${resultado}`);
 						}
 					} else {
-						console.error('Erro ao processar a solicitação de geocodificação:', geocodingResponse.status, '-', geocodingResponse.statusText);
-						telaErroConteudoElement.innerHTML = 'Erro ao processar a solicitação de geocodificação.';
-						telaErroElement.style.display = 'block';
+						throw new menssagemErro('Erro ao processar a solicitação de geocodificação:', geocodingResponse.status, '-', geocodingResponse.statusText);
 					}
-				} catch (geocodingError) {
-					console.error('Erro ao processar a solicitação de geocodificação:', geocodingError);
-					telaErroConteudoElement.innerHTML = 'Erro ao processar a solicitação de geocodificação.';
-					telaErroElement.style.display = 'block';
+				} catch (error) {
+					exibirErro(error);
 				}
-
 			} else {
-				console.error(`Erro ao consultar a API: ${response.status} - ${response.statusText}`);
-				telaErroConteudoElement.innerHTML = 'Erro ao consultar a API.';
-				telaErroElement.style.display = 'block';
+				exibirErro(`Erro ao consultar a API: ${response.status} - ${response.statusText}`);
 			}
 		} catch (error) {
-			console.error('Erro ao processar a solicitação:', error);
-			telaErroConteudoElement.innerHTML = 'Erro ao processar a solicitação.';
-			telaErroElement.style.display = 'block';
+			exibirErro(`Erro ao processar a solicitação: ${error}`);
 		}
 
-		telaLoad.style.display = 'none';
+		ocultarTelaLoad();
 	}
 
 	async function addLayerToMap(layerName) {
@@ -427,8 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (layer) {
 			layer.addTo(map);
 		} else {
-			telaErroConteudoElement.textContent = `Camada não encontrada: ${layerName}`;
-			telaErroElement.style.display = 'block';
+			exibirErro(`Camada não encontrada: ${layerName}`);
 		}
 	}
 
@@ -443,8 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				addLayerToMap(valor[1]);
 			}
 		} catch (error) {
-			telaErroConteudoElement.textContent = `Erro ao carregar dados: ${error}`;
-			telaErroElement.style.display = 'block';
+			exibirErro(`Erro ao carregar dados: ${error}`);
 		}
 	});
 
@@ -458,6 +454,5 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('busca').addEventListener('submit', function(event) {
 		event.preventDefault();
 		Busca();
-		console.log('teste');
 	});
 });
