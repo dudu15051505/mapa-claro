@@ -4,28 +4,32 @@
 		<title>Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
-		<link rel="icon" type="image/x-icon" href="./favicon.ico">
-		<link rel="preload" as="script" type="text/javascript" href="./js/leaflet/leaflet.js" />
-		<link rel="preload" as="script" type="text/javascript" href="./js/script-min.js" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-black.png" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-green.png" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-grey.png" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-orange.png" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-red.png" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-violet.png" />
-		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-yellow.png" />	
-		<link rel="preload" as="image" type="image/png" href="./js/leaflet/images/layers.png" />
-		<link rel="prefetch" as="image" type="image/png" href="./img/marker-icon-blue.png" />
-		<link rel="prefetch" as="image" type="image/png" href="./img/google_maps_icon.png" />	
-		<link rel="prefetch" as="image" type="image/svg+xml" href="./img/osm_icon.svg" />
-		<link rel="prefetch" as="image" type="image/gif" href="./img/loading0.gif" />
-		<link rel="prefetch" as="image" type="image/gif" href="./img/loading1.gif" />
-		<link rel="prefetch" as="image" type="image/gif" href="./img/loading2.gif" />
-		<link rel="stylesheet" href="./js/leaflet/leaflet-min.css" />
-		<link rel="stylesheet" href="./css/css-min.css" />
-		<script type="text/javascript" src="./js/leaflet/leaflet.js" defer></script>
 		<script type="text/javascript" defer>
+			const JSONToPreload = [				
+				'locations-sobrepo.json',
+				'locations-erroapi.json',
+				'locations-gpon.json',
+				'locations-nada.json',
+				'locations-neutrogpon.json',
+				'locations-neutrohfc.json',
+				'locations-hfc.json'
+			];
+
 			const verData = new URLSearchParams(window.location.search).get("ver-data");
+			
+			function addPreloadJSON(linksArray, verData) {
+				const basePath = verData ? `./js/locations/old/${verData}/` : `./js/locations/`;
+				linksArray.forEach(link => {
+					const linkElement = document.createElement('link');
+					linkElement.rel = 'preload';
+					linkElement.href = basePath + link;
+					linkElement.as = 'fetch';
+					linkElement.crossOrigin = 'anonymous';
+					document.head.appendChild(linkElement);
+				});
+			}
+
+			addPreloadJSON(JSONToPreload, verData);
 
 			document.addEventListener('DOMContentLoaded', function () {
 				document.getElementById('lista-data-dados').addEventListener('change', function () {
@@ -47,8 +51,29 @@
 				}
 			});
 		</script>
+		<link rel="preload" href="./js/locations/locations-data-lista.json" as="fetch" crossorigin="anonymous">
+		<link rel="preload" as="script" type="text/javascript" href="./js/leaflet/leaflet.js" />
+		<link rel="preload" as="script" type="text/javascript" href="./js/script-min.js" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-black.png" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-green.png" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-grey.png" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-orange.png" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-red.png" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-violet.png" />
+		<link rel="preload" as="image" type="image/png" href="./img/marker-icon-yellow.png" />	
+		<link rel="preload" as="image" type="image/png" href="./js/leaflet/images/layers.png" />
+		<link rel="prefetch" as="image" type="image/png" href="./img/marker-icon-blue.png" />
+		<link rel="prefetch" as="image" type="image/png" href="./img/google_maps_icon.png" />	
+		<link rel="prefetch" as="image" type="image/svg+xml" href="./img/osm_icon.svg" />
+		<link rel="prefetch" as="image" type="image/gif" href="./img/loading0.gif" />
+		<link rel="prefetch" as="image" type="image/gif" href="./img/loading1.gif" />
+		<link rel="prefetch" as="image" type="image/gif" href="./img/loading2.gif" />
+		<link rel="stylesheet" href="./js/leaflet/leaflet-min.css" />
+		<link rel="stylesheet" href="./css/css-min.css" />
+		<script type="text/javascript" src="./js/leaflet/leaflet.js" defer></script>
 		<script type="text/javascript" src="./js/script-min.js" defer></script>
 		<!--<script type="text/javascript" src="./js/script.js" defer></script>-->
+		<link rel="icon" type="image/x-icon" href="./favicon.ico">
 	</head>
 	<body>
 		<div id="map">
