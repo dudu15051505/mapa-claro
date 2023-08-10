@@ -1,7 +1,7 @@
-class menssagemErro extends Error {
+class mensagemErro extends Error {
 	constructor(message) {
 		super(message);
-		this.name = "<b>Erro</b>";
+		this.name = "Erro";
 	}
 }
 
@@ -119,6 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
       'Sem serviço FIXO': locationsSemNadaLayer,
       'ERRO Consulta API': locationsErroApiLayer
    };4
+
+	function deslocarMarcador(coordenada, maxOffset) {
+		return parseFloat(coordenada) + (Math.random() * maxOffset - maxOffset / 2);
+	}
 	
 	function ocultarTelaLoad(status = 'none') {
 		telaLoad.style.display = status;
@@ -168,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					console.error('Local não encontrado.');
 					const urlPesquisaOpenStreetMap = `https://www.openstreetmap.org/search?query=${encodeURIComponent(buscaValor)}`;
 
-					throw new menssagemErro(`Local não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}#map=5/-13.240/-50.383" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>`);
+					throw new mensagemErro(`Local não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}#map=5/-13.240/-50.383" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>`);
 				}
 			})
 			.catch(error => {
@@ -257,7 +261,10 @@ document.addEventListener('DOMContentLoaded', function() {
 					popupAnchor: [0, -41]
 				});
 
-				const marker = L.marker([dadosJson.latitude, dadosJson.longitude], {
+				const marker = L.marker([
+					deslocarMarcador(dadosJson.latitude, 0.005), 
+					deslocarMarcador(dadosJson.longitude, 0.005)
+				], {
 					icon: customIcon
 				});
 
@@ -270,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
                if (type in locationLayers) {
                     locationLayers[type].addLayer(layerGroup);
                } else {
-						throw new menssagemErro(`Tipo de localização desconhecido: ${type}`);
+						throw new mensagemErro(`Tipo de localização desconhecido: ${type}`);
                }
             }
 		} catch (error) {
@@ -311,15 +318,10 @@ document.addEventListener('DOMContentLoaded', function() {
 						cidade = dadosViacep.localidade || dadosApiClaro.data.cidade;
 						uf = dadosViacep.uf || dadosApiClaro.data.uf;
 					} else {
-						console.error('Erro ao carregar dados do viacep, fallback para dados fornecidos pela própria API claro.');
-						logradouro = dadosApiClaro.data.logradouro;
-						bairro = dadosApiClaro.data.bairro;
-						cidade = dadosApiClaro.data.cidade;
-						uf = dadosApiClaro.data.uf;
-						numero = dadosApiClaro.data.number;
+						throw new mensagemErro('Erro ao carregar dados do viacep, fallback para dados fornecidos pela própria API claro.')
 					}
-				} catch (viacepError) {
-					console.error('Erro ao carregar dados do viacep, fallback para dados fornecidos pela própria API claro.', viacepError);
+				} catch (Error) {
+					console.error(Error);
 					logradouro = dadosApiClaro.data.logradouro;
 					bairro = dadosApiClaro.data.bairro;
 					cidade = dadosApiClaro.data.cidade;
@@ -402,10 +404,10 @@ document.addEventListener('DOMContentLoaded', function() {
 							console.error('Endereço não encontrado.');
 							const urlPesquisaOpenStreetMap = `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${logradouro} ${numero}, ${cidade}, ${uf}, Brasil#map=5/-13.240/-50.383`)}`;
 							
-							throw new menssagemErro(`<b>Endereço não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>Dados retornados pela API Claro: <br><br> ${resultado}`);
+							throw new mensagemErro(`<b>Endereço não encontrado na base de geolocalização <a href="${urlPesquisaOpenStreetMap}" target="_blank">OpenStreetMap <img src="./img/osm_icon.svg" style="height: 20px;width: 20px;" /></a></b> <br><br>Dados retornados pela API Claro: <br><br> ${resultado}`);
 						}
 					} else {
-						throw new menssagemErro('Erro ao processar a solicitação de geocodificação:', geocodingResponse.status, '-', geocodingResponse.statusText);
+						throw new mensagemErro('Erro ao processar a solicitação de geocodificação:', geocodingResponse.status, '-', geocodingResponse.statusText);
 					}
 				} catch (error) {
 					exibirErro(error);
@@ -438,13 +440,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			const layers = await Promise.race([valor[2]()]);
 			if (valor[0]) {
 				addLayerToMap(valor[1]);
-			}
+		  }
 		} catch (error) {
 			exibirErro(`Erro ao carregar dados: ${error}`);
 		}
 	});
 
-    osmLayer.addTo(map);
+   osmLayer.addTo(map);
     
 	document.getElementById('formulario').addEventListener('submit', function(event) {
 		event.preventDefault();
