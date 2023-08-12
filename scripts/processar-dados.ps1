@@ -1,10 +1,6 @@
 $githubWorkspace = $env:GITHUB_WORKSPACE
 $caminhoRelativo = "scripts/"
-$diretorio_raiz = Join-Path $githubWorkspace $caminhoRelativo
-$diretorio_trabalho = $githubWorkspace
-
-#$diretorio_trabalho = "/home/runner/work/mapa-claro-beta/mapa-claro-beta/scripts"
-#$diretorio_trabalho = "/home/runner/work/mapa-claro/mapa-claro/scripts"
+$diretorio_trabalho = Join-Path $githubWorkspace $caminhoRelativo
 $diretorio_arquivos = "$diretorio_trabalho/dados"
 $diretorio_arquivos_manual = "$diretorio_trabalho/dados manuais"
 $diretorio_arquivos_erro = "$diretorio_trabalho/erro consulta"

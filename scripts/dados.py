@@ -40,7 +40,7 @@ with open(csv_path, "r") as csvfile:
         cities.append(row[1])
 
 # Definir o número de consultas após o qual será definido um tempo de espera aleatório
-consultas_por_intervalo = 20
+consultas_por_intervalo = 10
 
 # Loop pelas cidades e fazer a solicitação GET para cada uma delas
 for i in range(len(cities)):
