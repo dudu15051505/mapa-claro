@@ -193,7 +193,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 				data.forEach((value, index) => {
 					const tempDate = new Date(value.data);
-					const formattedDate = `${tempDate.getDate() + 1}/${tempDate.getMonth() + 1}/${tempDate.getFullYear()}`;
+					tempDate.setHours(tempDate.getHours() + 3);
+					const formattedDate = `${tempDate.getDate()}/${tempDate.getMonth() + 1}/${tempDate.getFullYear()}`;
 					const option = new Option(
 						value.informacaoExtra ? `${formattedDate} - ${value.informacaoExtra}` : `${formattedDate}`,
 						value.valorCampo);
