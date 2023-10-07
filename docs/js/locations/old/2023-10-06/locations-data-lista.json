@@ -147,10 +147,17 @@
     "valorCampo": "2023-09-29"
   },
   {
-    "informacaoExtra": "Consulta automática",
     "url": "#",
-    "data": "2023-10-06",
     "textoUrl": "",
+    "informacaoExtra": "Consulta automática",
+    "data": "2023-10-06",
     "valorCampo": "2023-10-06"
+  },
+  {
+    "informacaoExtra": "Consulta automática",
+    "data": "2023-10-06",
+    "url": "#",
+    "valorCampo": "2023-10-06",
+    "textoUrl": ""
   }
 ]
