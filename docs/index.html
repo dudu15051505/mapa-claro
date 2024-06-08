@@ -41,14 +41,23 @@
 					document.getElementById('aviso').style.display = 'none';
 				});
 
+				document.getElementById('aviso2-fechar').addEventListener('click', function () {
+					document.getElementById('aviso2').style.display = 'none';
+				});
+
 				document.getElementById('telaerro-fechar').addEventListener('click', function () {
 					document.getElementById('telaerro').style.display = 'none';
 				});
+
+				const avisoElement2 = document.querySelector('#aviso2');
+					avisoElement2.style.display = 'block';
 
 				if (!verData) {
 					const avisoElement = document.querySelector('#aviso');
 					avisoElement.style.display = 'block';
 				}
+
+				
 			});
 		</script>
 		<link rel="preload" href="./js/locations/locations-data-lista.json" as="fetch" crossorigin="anonymous">
@@ -196,13 +205,22 @@
 				</tbody>
 			</table>
 		</div>
+		<div id="aviso2" class="leaflet-control">
+			<div id="aviso-conteudo">
+				<h2>Este mapa não esta sendo atualizado mais rotineiramente por problemas continuos na API de consulta de cidades da CLARO, como alternativa utilize o outro projeto de mapa que utiliza os dados enviados pelas operadoras para a ANTEL em: 
+					<br><a href="https://mapa-operadoras-fixas-brasil.dudu-lab.xyz/" target="_blank">https://mapa-operadoras-fixas-brasil.dudu-lab.xyz/</a></h2>
+				<h2>A consulta de disponibilidade e tipo de tecnologia por CEP + Numero via API da CLARO continua funcionando normalmente!</h2>
+				
+				<button id="aviso2-fechar">FECHAR</button>
+			</div>
+		</div>
 		<div id="aviso" class="leaflet-control">
 			<div id="aviso-conteudo">
 				<h3>&nbsp;Mapa com disponibilidade de tecnologias serviços Claro Fixa no Brasil&nbsp;</h3>
 				<p><b>Este site não é afiliado à operadora CLARO</b></p>
 				<p><b>Para realizar consultas oficiais, utilize o site da <a href="https://planos.claro.com.br/cep" target="_blank">CLARO</a></b></p>
 				<p>Código fonte do site disponível no <a href="https://github.com/dudu15051505/mapa-claro" target="_blank">GitHub</a></p>
-				<!--<p>As marcações exibidas, são retornadas de consulta de API, a exemplo HFC Rede neutra é retornada, mas nunca ninguém viu essa rede.</p>-->
+				
 				<button id="aviso-fechar">FECHAR</button>
 			</div>
 		</div>

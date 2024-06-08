@@ -112,6 +112,23 @@ body, html {
     line-height: 1.5;
 	display: none;
 }
+
+#aviso2 {
+	background-color: #ffffff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	border-radius: 12px;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+	display: none;
+}
+
 #aviso-conteudo {
 	margin: 20px;
 }
